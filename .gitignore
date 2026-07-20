@@ -2,3 +2,16 @@
 **/Proforma*.pdf
 **/*Invoice*.pdf
 **/*invoice*.pdf
+
+# Python / packaging
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.ipynb_checkpoints/
+
+#enviroment
+.code-workspace
+

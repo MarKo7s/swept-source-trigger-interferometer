@@ -1,0 +1,7 @@
+# Prefer: pip install -e ".[notebooks]"
+# Legacy mirror of pyproject.toml dependencies.
+
+pyserial>=3.5
+matplotlib>=3.7
+jupyter>=1.0
+ipykernel>=6.0
