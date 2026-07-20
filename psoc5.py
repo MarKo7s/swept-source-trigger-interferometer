@@ -2,6 +2,8 @@ import serial
 
 #\r was added before every command to make it compatible with serial port protocol in c++/cli
 feedbackmode = {'Normal':0, 'Time':1, 'Count':2, 'Frequency': 3, 'All':4}
+
+
 class PSOC5_trigger:
     def __init__(self, COM, BR = 115200, timeout = 1): #COM port and BauRate=default 115200
         self.COM = COM
