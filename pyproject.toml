@@ -1,5 +1,5 @@
 [project]
-name = "trigger"
+name = "pySSTri"
 version = "1.0.0"
 description = "Serial interface for the ModeLab swept-source interferometer PSOC5 camera trigger"
 readme = "README.md"
@@ -23,7 +23,6 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-package-dir = {"trigger" = "."}
 packages = [
-  "trigger",
+  "pySSTri",
 ]

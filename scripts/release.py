@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tag and push a trigger release from pyproject.toml version."""
+"""Tag and push a pySSTri release from pyproject.toml version."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PYPROJECT = REPO_ROOT / "pyproject.toml"
 CHANGELOG = REPO_ROOT / "CHANGELOG.md"
 REPOSITORY_URL = "https://github.com/MarKo7s/swept-source-trigger-interferometer.git"
-PACKAGE_NAME = "trigger"
+PACKAGE_NAME = "pySSTri"
 
 
 def read_version(pyproject_path: Path) -> str:

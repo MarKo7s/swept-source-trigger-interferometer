@@ -6,9 +6,13 @@
 
 ```
 .
-├── psoc5.py                PSOC5_trigger serial API
+├── pySSTri/                Python serial package
+│   ├── __init__.py         exports SSTriggerInterferometer
+│   └── serialInterface.py  SSTriggerInterferometer serial API
+├── psoc5/
+│   └── firmware/           PSOC Creator / firmware project (was Trigger/)
+├── pcb/                    Eagle schematics / board
 ├── trigger_example.ipynb   usage example
-├── Trigger/                PCB / PSOC Creator / Eagle project
 ├── images/
 ├── scripts/release.py      git-tag release helper
 ├── pyproject.toml          package version + deps
@@ -17,24 +21,24 @@
 
 ## PCB schematics
 
-Schematics available in Autodesk Eagle: `Trigger/Eagle_project/Trigger_PSCOS5LP`
+Schematics available in Autodesk Eagle: `pcb/Eagle_project/Trigger_PSOC5LP`
 
 ## Firmware / tools
 
 1. [Install PSOC programmer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.psocprogrammer) (update firmware), then close it.
 2. [Install PSOC creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/)
-3. Open `Trigger_PSOC5.cywrk` inside the Psoc_creator_project folder with PSOC Creator. Program the board via **Debug → Program**.
+3. Open `Trigger_PSOC5.cywrk` inside `psoc5/firmware/Psoc_creator_project` with PSOC Creator. Program the board via **Debug → Program**.
 
 ## Python interface
 
-Use `trigger.PSOC5_trigger` to talk to the board over serial and change trigger settings. Example notebook: `trigger_example.ipynb`.
+Use `SSTriggerInterferometer` to talk to the board over serial and change trigger settings. Example notebook: `trigger_example.ipynb`.
 
 Baudrate defaults to 115200; pass the COM port when creating the object:
 
 ```python
-import trigger
+from pySSTri import SSTriggerInterferometer
 
-board = trigger.PSOC5_trigger(COM="COM6")
+board = SSTriggerInterferometer(COM="COM6")
 board.discoverMethods()
 board.ID()
 ```
@@ -44,13 +48,13 @@ board.ID()
 ### From GitHub (tagged release)
 
 ```bash
-pip install "trigger @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.0.0"
+pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.0.0"
 ```
 
 With the example notebook extras:
 
 ```bash
-pip install "trigger[notebooks] @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.0.0"
+pip install "pySSTri[notebooks] @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.0.0"
 ```
 
 ### Local development (editable install)
@@ -64,15 +68,15 @@ pip install -e ".[notebooks]"
 ### Conda environment
 
 ```bash
-conda create -n trigger_env python=3.11 -y
-conda activate trigger_env
+conda create -n pySSTri_env python=3.11 -y
+conda activate pySSTri_env
 pip install -e ".[notebooks]"
 ```
 
 Register the Jupyter kernel (once):
 
 ```bash
-python -m ipykernel install --user --name trigger_env --display-name "Python (trigger_env)"
+python -m ipykernel install --user --name pySSTri_env --display-name "Python (pySSTri_env)"
 ```
 
 `requirements.txt` remains available for legacy workflows; prefer `pip install -e ".[notebooks]"`.
@@ -83,13 +87,13 @@ python -m ipykernel install --user --name trigger_env --display-name "Python (tr
 
 The package version is defined in **one place only**: `pyproject.toml` → `[project].version`.
 
-Do **not** edit `__init__.py` on each release. `trigger.__version__` is read from pip metadata after install (`importlib.metadata`).
+Do **not** edit `pySSTri/__init__.py` on each release. `pySSTri.__version__` is read from pip metadata after install (`importlib.metadata`).
 
 Check the installed version:
 
 ```bash
-pip show trigger
-python -c "import trigger; print(trigger.__version__)"
+pip show pySSTri
+python -c "import pySSTri; print(pySSTri.__version__)"
 ```
 
 Use [semantic versioning](https://semver.org/): `MAJOR.MINOR.PATCH`.
@@ -110,7 +114,7 @@ The script reads the version from `pyproject.toml`, pushes `release`, creates an
 After that, others can install with:
 
 ```bash
-pip install "trigger @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@vX.Y.Z"
+pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@vX.Y.Z"
 ```
 
 Dry run (no git changes):
@@ -122,7 +126,7 @@ python scripts/release.py --from-changelog --dry-run
 Optional: create a GitHub Release page with the same notes (`gh` CLI required):
 
 ```bash
-gh release create vX.Y.Z --title "trigger X.Y.Z" --notes-file CHANGELOG.md
+gh release create vX.Y.Z --title "pySSTri X.Y.Z" --notes-file CHANGELOG.md
 ```
 
 **Requirements before release:** clean working tree (all changes committed); tag `vX.Y.Z` must not already exist on GitHub.
