@@ -1,4 +1,4 @@
-# Proforma / invoice PDFs
+﻿# Proforma / invoice PDFs
 **/Proforma*.pdf
 **/*Invoice*.pdf
 **/*invoice*.pdf
@@ -6,12 +6,18 @@
 # Python / packaging
 __pycache__/
 *.py[cod]
+*.egg
 *.egg-info/
 .eggs/
 dist/
 build/
 .ipynb_checkpoints/
 
-#enviroment
-.code-workspace
+# Local IDE / editor
+*.code-workspace
 
+# Legacy pre-restructure tree (PSoC project lives under psoc5/firmware/)
+Trigger/
+
+# PSoC Creator per-user workspace overlay
+*.cywrk.ModeLabQBI
