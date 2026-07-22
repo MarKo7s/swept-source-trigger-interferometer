@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
   28:Generated_Source\PSoC5/Counter_PM.c **** *     Save the current user configuration
   29:Generated_Source\PSoC5/Counter_PM.c **** *
   30:Generated_Source\PSoC5/Counter_PM.c **** * Parameters:  
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 2
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 2
 
 
   31:Generated_Source\PSoC5/Counter_PM.c **** *  void
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
   56:Generated_Source\PSoC5/Counter_PM.c **** /*******************************************************************************
   57:Generated_Source\PSoC5/Counter_PM.c **** * Function Name: Counter_RestoreConfig
   58:Generated_Source\PSoC5/Counter_PM.c **** ********************************************************************************
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 3
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 3
 
 
   59:Generated_Source\PSoC5/Counter_PM.c **** *
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
   84:Generated_Source\PSoC5/Counter_PM.c ****     #endif /* (!Counter_UsingFixedFunction) */
   85:Generated_Source\PSoC5/Counter_PM.c **** }
   86:Generated_Source\PSoC5/Counter_PM.c **** 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 4
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 4
 
 
   87:Generated_Source\PSoC5/Counter_PM.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
   99 0008 FFF7FEFF 		bl	Counter_Stop
  100              	.LVL2:
  128:Generated_Source\PSoC5/Counter_PM.c ****     Counter_SaveConfig();
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 5
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 5
 
 
  101              		.loc 1 128 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  131 0006 08BD     		pop	{r3, pc}
  132              		.cfi_endproc
  133              	.LFE3:
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 6
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 6
 
 
  134              		.size	Counter_Wakeup, .-Counter_Wakeup
@@ -322,15 +322,15 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  152 000b 01       		.uleb128 0x1
  153 000c 64000000 		.4byte	.LASF26
  154 0010 0C       		.byte	0xc
- 155 0011 20020000 		.4byte	.LASF27
- 156 0015 C1010000 		.4byte	.LASF28
+ 155 0011 C1010000 		.4byte	.LASF27
+ 156 0015 28020000 		.4byte	.LASF28
  157 0019 00000000 		.4byte	.Ldebug_ranges0+0
  158 001d 00000000 		.4byte	0
  159 0021 00000000 		.4byte	.Ldebug_line0
  160 0025 02       		.uleb128 0x2
  161 0026 01       		.byte	0x1
  162 0027 06       		.byte	0x6
- 163 0028 7B020000 		.4byte	.LASF0
+ 163 0028 1C020000 		.4byte	.LASF0
  164 002c 02       		.uleb128 0x2
  165 002d 01       		.byte	0x1
  166 002e 08       		.byte	0x8
@@ -346,7 +346,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  176 0041 02       		.uleb128 0x2
  177 0042 04       		.byte	0x4
  178 0043 05       		.byte	0x5
- 179 0044 57020000 		.4byte	.LASF4
+ 179 0044 F8010000 		.4byte	.LASF4
  180 0048 02       		.uleb128 0x2
  181 0049 04       		.byte	0x4
  182 004a 07       		.byte	0x7
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  188 0056 02       		.uleb128 0x2
  189 0057 08       		.byte	0x8
  190 0058 07       		.byte	0x7
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 7
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 7
 
 
  191 0059 5B010000 		.4byte	.LASF7
@@ -395,7 +395,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  222 0098 02       		.uleb128 0x2
  223 0099 08       		.byte	0x8
  224 009a 04       		.byte	0x4
- 225 009b 60020000 		.4byte	.LASF14
+ 225 009b 01020000 		.4byte	.LASF14
  226 009f 02       		.uleb128 0x2
  227 00a0 04       		.byte	0x4
  228 00a1 07       		.byte	0x7
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  245 00c1 77000000 		.4byte	0x77
  246 00c5 02       		.byte	0x2
  247 00c6 00       		.byte	0
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 8
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 8
 
 
  248 00c7 07       		.uleb128 0x7
@@ -427,7 +427,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  251 00cd 49       		.byte	0x49
  252 00ce A6000000 		.4byte	0xa6
  253 00d2 08       		.uleb128 0x8
- 254 00d3 44020000 		.4byte	.LASF19
+ 254 00d3 E5010000 		.4byte	.LASF19
  255 00d7 01       		.byte	0x1
  256 00d8 2A       		.byte	0x2a
  257 00d9 00000000 		.4byte	.LFB0
@@ -478,14 +478,14 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  302 0148 9C       		.byte	0x9c
  303 0149 57010000 		.4byte	0x157
  304 014d 09       		.uleb128 0x9
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 9
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 9
 
 
  305 014e 06000000 		.4byte	.LVL4
  306 0152 F1000000 		.4byte	0xf1
  307 0156 00       		.byte	0
  308 0157 0A       		.uleb128 0xa
- 309 0158 6C020000 		.4byte	.LASF29
+ 309 0158 0D020000 		.4byte	.LASF29
  310 015c 01       		.byte	0x1
  311 015d 15       		.byte	0x15
  312 015e C7000000 		.4byte	0xc7
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  359 0019 0B       		.uleb128 0xb
  360 001a 03       		.uleb128 0x3
  361 001b 0E       		.uleb128 0xe
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 10
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 10
 
 
  362 001c 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  416 0052 07       		.uleb128 0x7
  417 0053 16       		.uleb128 0x16
  418 0054 00       		.byte	0
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 11
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 11
 
 
  419 0055 03       		.uleb128 0x3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  473 008e 13       		.uleb128 0x13
  474 008f 02       		.uleb128 0x2
  475 0090 18       		.uleb128 0x18
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 12
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 12
 
 
  476 0091 00       		.byte	0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  528      00000201 
  528      FB0E0D00 
  528      01010101 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 13
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 13
 
 
  529              	.LASF22:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  548      6420696E 
  548      7400
  549              	.LASF9:
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 14
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 14
 
 
  550 0104 75696E74 		.ascii	"uint8\000"
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  572      52657374 
  572      6F726543 
  572      6F6E6669 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 15
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccFX62Mq.s 			page 15
 
 
  573              	.LASF13:
@@ -848,45 +848,49 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc83Bvhf.s 			page 1
  576 01b7 73686F72 		.ascii	"short int\000"
  576      7420696E 
  576      7400
- 577              	.LASF28:
- 578 01c1 433A5C55 		.ascii	"C:\\Users\\ModeLabQBI\\LAB\\hardware\\SweepSourceTr"
- 578      73657273 
- 578      5C4D6F64 
- 578      654C6162 
- 578      5142495C 
- 579 01ef 69676765 		.ascii	"igger\\Trigger\\Psoc_creator_project\\Trigger.cydsn"
- 579      725C5472 
- 579      69676765 
- 579      725C5073 
- 579      6F635F63 
- 580 021f 00       		.ascii	"\000"
- 581              	.LASF27:
- 582 0220 47656E65 		.ascii	"Generated_Source\\PSoC5\\Counter_PM.c\000"
- 582      72617465 
- 582      645F536F 
- 582      75726365 
- 582      5C50536F 
- 583              	.LASF19:
- 584 0244 436F756E 		.ascii	"Counter_SaveConfig\000"
- 584      7465725F 
- 584      53617665 
- 584      436F6E66 
- 584      696700
- 585              	.LASF4:
- 586 0257 6C6F6E67 		.ascii	"long int\000"
- 586      20696E74 
- 586      00
- 587              	.LASF14:
- 588 0260 6C6F6E67 		.ascii	"long double\000"
- 588      20646F75 
- 588      626C6500 
- 589              	.LASF29:
- 590 026c 436F756E 		.ascii	"Counter_backup\000"
- 590      7465725F 
- 590      6261636B 
- 590      757000
- 591              	.LASF0:
- 592 027b 7369676E 		.ascii	"signed char\000"
- 592      65642063 
- 592      68617200 
+ 577              	.LASF27:
+ 578 01c1 47656E65 		.ascii	"Generated_Source\\PSoC5\\Counter_PM.c\000"
+ 578      72617465 
+ 578      645F536F 
+ 578      75726365 
+ 578      5C50536F 
+ 579              	.LASF19:
+ 580 01e5 436F756E 		.ascii	"Counter_SaveConfig\000"
+ 580      7465725F 
+ 580      53617665 
+ 580      436F6E66 
+ 580      696700
+ 581              	.LASF4:
+ 582 01f8 6C6F6E67 		.ascii	"long int\000"
+ 582      20696E74 
+ 582      00
+ 583              	.LASF14:
+ 584 0201 6C6F6E67 		.ascii	"long double\000"
+ 584      20646F75 
+ 584      626C6500 
+ 585              	.LASF29:
+ 586 020d 436F756E 		.ascii	"Counter_backup\000"
+ 586      7465725F 
+ 586      6261636B 
+ 586      757000
+ 587              	.LASF0:
+ 588 021c 7369676E 		.ascii	"signed char\000"
+ 588      65642063 
+ 588      68617200 
+ 589              	.LASF28:
+ 590 0228 433A5C55 		.ascii	"C:\\Users\\ModeLabQBI\\LAB\\hardware\\SweepSourceTr"
+ 590      73657273 
+ 590      5C4D6F64 
+ 590      654C6162 
+ 590      5142495C 
+ 591 0256 69676765 		.ascii	"igger\\psoc5\\firmware\\PSOC_trigger_firmware_Trigg"
+ 591      725C7073 
+ 591      6F63355C 
+ 591      6669726D 
+ 591      77617265 
+ 592 0286 65725F50 		.ascii	"er_Polarity_Low\\Trigger.cydsn\000"
+ 592      6F6C6172 
+ 592      6974795F 
+ 592      4C6F775C 
+ 592      54726967 
  593              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

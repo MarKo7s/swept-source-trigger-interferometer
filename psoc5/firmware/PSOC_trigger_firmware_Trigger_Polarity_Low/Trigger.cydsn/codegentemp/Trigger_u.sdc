@@ -1,3 +1,3 @@
-# Component constraints for C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\Trigger\Psoc_creator_project\Trigger.cydsn\TopDesign\TopDesign.cysch
-# Project: C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\Trigger\Psoc_creator_project\Trigger.cydsn\Trigger.cyprj
-# Date: Fri, 17 Jul 2026 09:04:39 GMT
+# Component constraints for C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\TopDesign\TopDesign.cysch
+# Project: C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\Trigger.cyprj
+# Date: Wed, 22 Jul 2026 04:27:31 GMT

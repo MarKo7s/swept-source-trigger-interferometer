@@ -41,6 +41,7 @@
 #include "Timer.h"
 #include "isr_timer.h"
 #include "isr_swStart.h"
+#include "muxSel.h"
 #include "UART_IntClock.h"
 #include "core_cm3_psoc5.h"
 #include "CyDmac.h"

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
   28:Generated_Source\PSoC5/UART_PM.c **** };
   29:Generated_Source\PSoC5/UART_PM.c **** 
   30:Generated_Source\PSoC5/UART_PM.c **** 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 2
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 2
 
 
   31:Generated_Source\PSoC5/UART_PM.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
   68:Generated_Source\PSoC5/UART_PM.c **** *  Does not restore the FIFO which is a set of nonretention registers.
   69:Generated_Source\PSoC5/UART_PM.c **** *
   70:Generated_Source\PSoC5/UART_PM.c **** * Parameters:
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 3
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 3
 
 
   71:Generated_Source\PSoC5/UART_PM.c **** *  None.
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  108:Generated_Source\PSoC5/UART_PM.c **** *  None.
  109:Generated_Source\PSoC5/UART_PM.c **** *
  110:Generated_Source\PSoC5/UART_PM.c **** * Return:
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 4
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 4
 
 
  111:Generated_Source\PSoC5/UART_PM.c **** *  None.
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  140:Generated_Source\PSoC5/UART_PM.c ****     #endif /* End UART_RX_ENABLED || UART_HD_ENABLED*/
  141:Generated_Source\PSoC5/UART_PM.c **** 
  142:Generated_Source\PSoC5/UART_PM.c ****     UART_Stop();
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 5
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 5
 
 
   87              		.loc 1 142 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  110              		@ frame_needed = 0, uses_anonymous_args = 0
  111 0000 08B5     		push	{r3, lr}
  112              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 6
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 6
 
 
  113              		.cfi_offset 3, -8
@@ -356,9 +356,9 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  154 000b 01       		.uleb128 0x1
  155 000c 74000000 		.4byte	.LASF25
  156 0010 0C       		.byte	0xc
- 157 0011 44020000 		.4byte	.LASF26
- 158 0015 AC010000 		.4byte	.LASF27
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 7
+ 157 0011 E5010000 		.4byte	.LASF26
+ 158 0015 19020000 		.4byte	.LASF27
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 7
 
 
  159 0019 00000000 		.4byte	.Ldebug_ranges0+0
@@ -367,7 +367,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  162 0025 02       		.uleb128 0x2
  163 0026 01       		.byte	0x1
  164 0027 06       		.byte	0x6
- 165 0028 38020000 		.4byte	.LASF0
+ 165 0028 D9010000 		.4byte	.LASF0
  166 002c 02       		.uleb128 0x2
  167 002d 01       		.byte	0x1
  168 002e 08       		.byte	0x8
@@ -383,7 +383,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  178 0041 02       		.uleb128 0x2
  179 0042 04       		.byte	0x4
  180 0043 05       		.byte	0x5
- 181 0044 17020000 		.4byte	.LASF4
+ 181 0044 B8010000 		.4byte	.LASF4
  182 0048 02       		.uleb128 0x2
  183 0049 04       		.byte	0x4
  184 004a 07       		.byte	0x7
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  213 0080 04       		.byte	0x4
  214 0081 1F010000 		.4byte	.LASF10
  215 0085 02       		.uleb128 0x2
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 8
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 8
 
 
  216 0086 01       		.byte	0x1
@@ -434,7 +434,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  226 009d 02       		.uleb128 0x2
  227 009e 08       		.byte	0x8
  228 009f 04       		.byte	0x4
- 229 00a0 2C020000 		.4byte	.LASF14
+ 229 00a0 CD010000 		.4byte	.LASF14
  230 00a4 02       		.uleb128 0x2
  231 00a5 04       		.byte	0x4
  232 00a6 07       		.byte	0x7
@@ -446,14 +446,14 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  238 00b2 45       		.byte	0x45
  239 00b3 C4000000 		.4byte	0xc4
  240 00b7 07       		.uleb128 0x7
- 241 00b8 20020000 		.4byte	.LASF29
+ 241 00b8 C1010000 		.4byte	.LASF29
  242 00bc 03       		.byte	0x3
  243 00bd 47       		.byte	0x47
  244 00be 6B000000 		.4byte	0x6b
  245 00c2 00       		.byte	0
  246 00c3 00       		.byte	0
  247 00c4 08       		.uleb128 0x8
- 248 00c5 65020000 		.4byte	.LASF16
+ 248 00c5 06020000 		.4byte	.LASF16
  249 00c9 03       		.byte	0x3
  250 00ca 4D       		.byte	0x4d
  251 00cb AB000000 		.4byte	0xab
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  270 00f6 01       		.byte	0x1
  271 00f7 78       		.byte	0x78
  272 00f8 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 9
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 9
 
 
  273 00fc 28000000 		.4byte	.LFE2-.LFB2
@@ -490,7 +490,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  279 010b 52010000 		.4byte	0x152
  280 010f 00       		.byte	0
  281 0110 0A       		.uleb128 0xa
- 282 0111 0B020000 		.4byte	.LASF20
+ 282 0111 AC010000 		.4byte	.LASF20
  283 0115 01       		.byte	0x1
  284 0116 AC       		.byte	0xac
  285 0117 00000000 		.4byte	.LFB3
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  327 017d 5A       		.byte	0x5a
  328 017e 00       		.byte	0
  329              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 10
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 10
 
 
  330              	.Ldebug_abbrev0:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  384 0035 00       		.byte	0
  385 0036 05       		.uleb128 0x5
  386 0037 35       		.uleb128 0x35
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 11
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 11
 
 
  387 0038 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  441 006e 0E       		.uleb128 0xe
  442 006f 3A       		.uleb128 0x3a
  443 0070 0B       		.uleb128 0xb
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 12
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 12
 
 
  444 0071 3B       		.uleb128 0x3b
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  498 00ab 0B       		.uleb128 0xb
  499 00ac 3B       		.uleb128 0x3b
  500 00ad 0B       		.uleb128 0xb
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 13
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 13
 
 
  501 00ae 49       		.uleb128 0x49
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  555              		.section	.debug_line,"",%progbits
  556              	.Ldebug_line0:
  557 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 14
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 14
 
 
  557      02004E00 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  577 00da 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
  577      66756E63 
  577      74696F6E 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 15
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 15
 
 
  577      2D736563 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  602              	.LASF2:
  603 018f 73686F72 		.ascii	"short int\000"
  603      7420696E 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 16
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc1uTuvV.s 			page 16
 
 
  603      7400
@@ -908,48 +908,52 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccTDoPeB.s 			page 1
  605      61725478 
  605      42756666 
  605      657200
- 606              	.LASF27:
- 607 01ac 433A5C55 		.ascii	"C:\\Users\\ModeLabQBI\\LAB\\hardware\\SweepSourceTr"
- 607      73657273 
- 607      5C4D6F64 
- 607      654C6162 
- 607      5142495C 
- 608 01da 69676765 		.ascii	"igger\\Trigger\\Psoc_creator_project\\Trigger.cydsn"
- 608      725C5472 
- 608      69676765 
- 608      725C5073 
- 608      6F635F63 
- 609 020a 00       		.ascii	"\000"
- 610              	.LASF20:
- 611 020b 55415254 		.ascii	"UART_Wakeup\000"
- 611      5F57616B 
- 611      65757000 
- 612              	.LASF4:
- 613 0217 6C6F6E67 		.ascii	"long int\000"
- 613      20696E74 
- 613      00
- 614              	.LASF29:
- 615 0220 656E6162 		.ascii	"enableState\000"
- 615      6C655374 
- 615      61746500 
- 616              	.LASF14:
- 617 022c 6C6F6E67 		.ascii	"long double\000"
- 617      20646F75 
- 617      626C6500 
- 618              	.LASF0:
- 619 0238 7369676E 		.ascii	"signed char\000"
- 619      65642063 
- 619      68617200 
- 620              	.LASF26:
- 621 0244 47656E65 		.ascii	"Generated_Source\\PSoC5\\UART_PM.c\000"
- 621      72617465 
- 621      645F536F 
- 621      75726365 
- 621      5C50536F 
- 622              	.LASF16:
- 623 0265 55415254 		.ascii	"UART_BACKUP_STRUCT\000"
- 623      5F424143 
- 623      4B55505F 
- 623      53545255 
- 623      435400
+ 606              	.LASF20:
+ 607 01ac 55415254 		.ascii	"UART_Wakeup\000"
+ 607      5F57616B 
+ 607      65757000 
+ 608              	.LASF4:
+ 609 01b8 6C6F6E67 		.ascii	"long int\000"
+ 609      20696E74 
+ 609      00
+ 610              	.LASF29:
+ 611 01c1 656E6162 		.ascii	"enableState\000"
+ 611      6C655374 
+ 611      61746500 
+ 612              	.LASF14:
+ 613 01cd 6C6F6E67 		.ascii	"long double\000"
+ 613      20646F75 
+ 613      626C6500 
+ 614              	.LASF0:
+ 615 01d9 7369676E 		.ascii	"signed char\000"
+ 615      65642063 
+ 615      68617200 
+ 616              	.LASF26:
+ 617 01e5 47656E65 		.ascii	"Generated_Source\\PSoC5\\UART_PM.c\000"
+ 617      72617465 
+ 617      645F536F 
+ 617      75726365 
+ 617      5C50536F 
+ 618              	.LASF16:
+ 619 0206 55415254 		.ascii	"UART_BACKUP_STRUCT\000"
+ 619      5F424143 
+ 619      4B55505F 
+ 619      53545255 
+ 619      435400
+ 620              	.LASF27:
+ 621 0219 433A5C55 		.ascii	"C:\\Users\\ModeLabQBI\\LAB\\hardware\\SweepSourceTr"
+ 621      73657273 
+ 621      5C4D6F64 
+ 621      654C6162 
+ 621      5142495C 
+ 622 0247 69676765 		.ascii	"igger\\psoc5\\firmware\\PSOC_trigger_firmware_Trigg"
+ 622      725C7073 
+ 622      6F63355C 
+ 622      6669726D 
+ 622      77617265 
+ 623 0277 65725F50 		.ascii	"er_Polarity_Low\\Trigger.cydsn\000"
+ 623      6F6C6172 
+ 623      6974795F 
+ 623      4C6F775C 
+ 623      54726967 
  624              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

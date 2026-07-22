@@ -2,7 +2,7 @@
 --	Conversion of Trigger.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Jul 17 19:04:40 2026
+--	Wed Jul 22 14:27:32 2026
 --
 
 USE cypress.cypress.all;
@@ -15,20 +15,20 @@ ARCHITECTURE R_T_L OF top_RTL IS
 SIGNAL tmpOE__ref_net_0 : bit;
 SIGNAL zero : bit;
 SIGNAL tmpFB_0__ref_net_0 : bit;
-TERMINAL Net_401 : bit;
+TERMINAL Net_510 : bit;
 SIGNAL tmpIO_0__ref_net_0 : bit;
 TERMINAL tmpSIOVREF__ref_net_0 : bit;
 SIGNAL one : bit;
 SIGNAL tmpINTERRUPT_0__ref_net_0 : bit;
 SIGNAL tmpOE__BPD_in_net_0 : bit;
 SIGNAL tmpFB_0__BPD_in_net_0 : bit;
-TERMINAL Net_414 : bit;
+TERMINAL Net_511 : bit;
 SIGNAL tmpIO_0__BPD_in_net_0 : bit;
 TERMINAL tmpSIOVREF__BPD_in_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__BPD_in_net_0 : bit;
 SIGNAL Net_149 : bit;
 SIGNAL \Comp:Net_1\ : bit;
-SIGNAL Net_458 : bit;
+SIGNAL Net_512 : bit;
 SIGNAL \Comp:Net_9\ : bit;
 SIGNAL tmpOE__comp_out_monitor_net_0 : bit;
 SIGNAL tmpFB_0__comp_out_monitor_net_0 : bit;
@@ -101,7 +101,7 @@ SIGNAL \Counter:CounterUDB:cmp_less\ : bit;
 SIGNAL \Counter:CounterUDB:cmp_equal\ : bit;
 SIGNAL \Counter:CounterUDB:prevCompare\ : bit;
 SIGNAL \Counter:CounterUDB:cmp_out_reg_i\ : bit;
-SIGNAL Net_409 : bit;
+SIGNAL Net_505 : bit;
 SIGNAL \Counter:CounterUDB:count_stored_i\ : bit;
 SIGNAL \Counter:CounterUDB:count_enable\ : bit;
 SIGNAL \Counter:CounterUDB:cs_addr_2\ : bit;
@@ -229,6 +229,7 @@ ATTRIBUTE port_state_att of \Counter:CounterUDB:sC16:counterdp:f1_bus_stat_reg_1
 SIGNAL \Counter:CounterUDB:sC16:counterdp:f1_blk_stat_reg_1\ : bit;
 ATTRIBUTE port_state_att of \Counter:CounterUDB:sC16:counterdp:f1_blk_stat_reg_1\:SIGNAL IS 2;
 SIGNAL tmpOE__count_out_net_0 : bit;
+SIGNAL Net_520 : bit;
 SIGNAL tmpFB_0__count_out_net_0 : bit;
 SIGNAL tmpIO_0__count_out_net_0 : bit;
 TERMINAL tmpSIOVREF__count_out_net_0 : bit;
@@ -1344,6 +1345,33 @@ SIGNAL \Timer:Net_57\ : bit;
 SIGNAL Net_469 : bit;
 SIGNAL Net_479 : bit;
 SIGNAL \Timer:Net_102\ : bit;
+SIGNAL \mux:tmp__mux_reg\ : bit;
+SIGNAL Net_519 : bit;
+SIGNAL \muxSel:clk\ : bit;
+SIGNAL \muxSel:rst\ : bit;
+SIGNAL \muxSel:control_out_0\ : bit;
+SIGNAL Net_523 : bit;
+SIGNAL \muxSel:control_out_1\ : bit;
+SIGNAL Net_524 : bit;
+SIGNAL \muxSel:control_out_2\ : bit;
+SIGNAL Net_525 : bit;
+SIGNAL \muxSel:control_out_3\ : bit;
+SIGNAL Net_527 : bit;
+SIGNAL \muxSel:control_out_4\ : bit;
+SIGNAL Net_528 : bit;
+SIGNAL \muxSel:control_out_5\ : bit;
+SIGNAL Net_529 : bit;
+SIGNAL \muxSel:control_out_6\ : bit;
+SIGNAL Net_530 : bit;
+SIGNAL \muxSel:control_out_7\ : bit;
+SIGNAL \muxSel:control_7\ : bit;
+SIGNAL \muxSel:control_6\ : bit;
+SIGNAL \muxSel:control_5\ : bit;
+SIGNAL \muxSel:control_4\ : bit;
+SIGNAL \muxSel:control_3\ : bit;
+SIGNAL \muxSel:control_2\ : bit;
+SIGNAL \muxSel:control_1\ : bit;
+SIGNAL \muxSel:control_0\ : bit;
 SIGNAL \Counter:CounterUDB:prevCapture\\D\ : bit;
 SIGNAL \Counter:CounterUDB:overflow_reg_i\\D\ : bit;
 SIGNAL \Counter:CounterUDB:underflow_reg_i\\D\ : bit;
@@ -1419,7 +1447,7 @@ tmpOE__ref_net_0 <=  ('1') ;
 
 \Counter:CounterUDB:cmp_out_i\ <= ((not \Counter:CounterUDB:cmp_less\ and not \Counter:CounterUDB:cmp_equal\));
 
-\Counter:CounterUDB:count_enable\ <= ((not Net_437 and not \Counter:CounterUDB:count_stored_i\ and Net_458));
+\Counter:CounterUDB:count_enable\ <= ((not Net_437 and not \Counter:CounterUDB:count_stored_i\ and Net_512));
 
 \PWM:PWMUDB:sc_kill_tmp\\D\ <= (not \PWM:PWMUDB:tc_i\);
 
@@ -1550,7 +1578,11 @@ Net_356D <= ((not \UART:BUART:reset_reg\ and \UART:BUART:tx_state_2\)
 
 \freqcounter:CounterUDB:status_2\ <= ((not \freqcounter:CounterUDB:overflow_reg_i\ and \freqcounter:CounterUDB:reload\));
 
-\freqcounter:CounterUDB:count_enable\ <= ((not Net_437 and not \freqcounter:CounterUDB:count_stored_i\ and Net_409));
+\freqcounter:CounterUDB:count_enable\ <= ((not Net_437 and not \freqcounter:CounterUDB:count_stored_i\ and not Net_519 and Net_512)
+	OR (not Net_437 and not \freqcounter:CounterUDB:count_stored_i\ and Net_505 and Net_519));
+
+Net_520 <= ((not Net_519 and Net_512)
+	OR (Net_505 and Net_519));
 
 ref:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"9258165d-13b5-4f34-908d-53846cb1b8b2",
@@ -1611,7 +1643,7 @@ ref:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(tmpOE__ref_net_0),
 		y=>(zero),
 		fb=>(tmpFB_0__ref_net_0),
-		analog=>Net_401,
+		analog=>Net_510,
 		io=>(tmpIO_0__ref_net_0),
 		siovref=>(tmpSIOVREF__ref_net_0),
 		annotation=>(open),
@@ -1681,7 +1713,7 @@ BPD_in:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(tmpOE__ref_net_0),
 		y=>(zero),
 		fb=>(tmpFB_0__BPD_in_net_0),
-		analog=>Net_414,
+		analog=>Net_511,
 		io=>(tmpIO_0__BPD_in_net_0),
 		siovref=>(tmpSIOVREF__BPD_in_net_0),
 		annotation=>(open),
@@ -1694,11 +1726,11 @@ BPD_in:cy_psoc3_pins_v1_10
 		interrupt=>tmpINTERRUPT_0__BPD_in_net_0);
 \Comp:ctComp\:cy_psoc3_ctcomp_v1_0
 	GENERIC MAP(cy_registers=>"")
-	PORT MAP(vplus=>Net_414,
-		vminus=>Net_401,
+	PORT MAP(vplus=>Net_511,
+		vminus=>Net_510,
 		clock=>Net_149,
 		clk_udb=>Net_149,
-		cmpout=>Net_458);
+		cmpout=>Net_512);
 comp_out_monitor:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"8eb2b5a1-0936-4e74-8739-6a560815c57d",
 		drive_mode=>"110",
@@ -1756,7 +1788,7 @@ comp_out_monitor:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__ref_net_0),
-		y=>Net_458,
+		y=>Net_512,
 		fb=>(tmpFB_0__comp_out_monitor_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__comp_out_monitor_net_0),
@@ -2092,7 +2124,7 @@ count_out:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__ref_net_0),
-		y=>Net_409,
+		y=>Net_520,
 		fb=>(tmpFB_0__count_out_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__count_out_net_0),
@@ -2768,7 +2800,7 @@ Rx_1:cy_psoc3_pins_v1_10
 isr_count:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_409);
+	PORT MAP(int_signal=>Net_520);
 isr_sw:cy_isr_v1_0
 	GENERIC MAP(int_type=>"00",
 		is_nmi=>'0')
@@ -3159,6 +3191,16 @@ isr_swStart:cy_isr_v1_0
 	GENERIC MAP(int_type=>"00",
 		is_nmi=>'0')
 	PORT MAP(int_signal=>Net_482);
+\muxSel:Sync:ctrl_reg\:cy_psoc3_control
+	GENERIC MAP(cy_init_value=>"00000000",
+		cy_force_order=>'1',
+		cy_ctrl_mode_1=>"00000000",
+		cy_ctrl_mode_0=>"00000000",
+		cy_ext_reset=>'0')
+	PORT MAP(reset=>zero,
+		clock=>zero,
+		control=>(\muxSel:control_7\, \muxSel:control_6\, \muxSel:control_5\, \muxSel:control_4\,
+			\muxSel:control_3\, \muxSel:control_2\, \muxSel:control_1\, Net_519));
 \Counter:CounterUDB:prevCapture\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\Counter:CounterUDB:ClockOutFromEnBlock\,
@@ -3182,9 +3224,9 @@ isr_swStart:cy_isr_v1_0
 \Counter:CounterUDB:cmp_out_reg_i\:cy_dff
 	PORT MAP(d=>\Counter:CounterUDB:cmp_out_i\,
 		clk=>\Counter:CounterUDB:ClockOutFromEnBlock\,
-		q=>Net_409);
+		q=>Net_505);
 \Counter:CounterUDB:count_stored_i\:cy_dff
-	PORT MAP(d=>Net_458,
+	PORT MAP(d=>Net_512,
 		clk=>\Counter:CounterUDB:ClockOutFromEnBlock\,
 		q=>\Counter:CounterUDB:count_stored_i\);
 \PWM:PWMUDB:min_kill_reg\:cy_dsrff
@@ -3408,7 +3450,7 @@ Net_356:cy_dff
 		clk=>\freqcounter:CounterUDB:ClockOutFromEnBlock\,
 		q=>\freqcounter:CounterUDB:cmp_out_reg_i\);
 \freqcounter:CounterUDB:count_stored_i\:cy_dff
-	PORT MAP(d=>Net_409,
+	PORT MAP(d=>Net_520,
 		clk=>\freqcounter:CounterUDB:ClockOutFromEnBlock\,
 		q=>\freqcounter:CounterUDB:count_stored_i\);
 cydff_1:cy_dff

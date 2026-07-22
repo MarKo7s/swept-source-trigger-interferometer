@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "name": "PSoC5 Trigger",
+      "includePath": [
+        "${workspaceFolder}/psoc5/firmware/PSOC_trigger_firmware_Trigger_Polarity_Low/Trigger.cydsn",
+        "${workspaceFolder}/psoc5/firmware/PSOC_trigger_firmware_Trigger_Polarity_Low/Trigger.cydsn/Generated_Source/PSoC5"
+      ],
+      "defines": [
+        "DEBUG",
+        "CY_CORE_ID=0"
+      ],
+      "cStandard": "c99",
+      "intelliSenseMode": "gcc-arm",
+      "compilerPath": ""
+    }
+  ],
+  "version": 4
+}

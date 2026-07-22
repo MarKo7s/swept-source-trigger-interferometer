@@ -1,6 +1,6 @@
 // ======================================================================
 // Trigger.v generated from TopDesign.cysch
-// 07/17/2026 at 19:04
+// 07/22/2026 at 14:27
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -752,9 +752,44 @@ module Timer_v2_80_5 (
 
 endmodule
 
+// Component: mux_v1_10
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\mux_v1_10"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\mux_v1_10\mux_v1_10.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\mux_v1_10"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\mux_v1_10\mux_v1_10.v"
+`endif
+
+// Component: CyControlReg_v1_80
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v"
+`endif
+
 // top
 module top ;
 
+          wire  Net_532;
+          wire  Net_530;
+          wire  Net_529;
+          wire  Net_528;
+          wire  Net_527;
+          wire  Net_525;
+          wire  Net_524;
+          wire  Net_523;
+          wire  Net_531;
           wire  Net_471;
           wire  Net_469;
           wire  Net_473;
@@ -775,11 +810,9 @@ module top ;
           wire  Net_361;
           wire  Net_364;
           wire  Net_365;
-          wire  Net_359;
           wire  Net_355;
           wire  Net_353;
           wire  Net_357;
-          wire  Net_358;
           wire  Net_354;
           wire  Net_256;
           wire  Net_276;
@@ -802,17 +835,21 @@ module top ;
           wire  Net_142;
           wire  Net_140;
           wire  Net_148;
-    electrical  Net_401;
-          wire  Net_482;
-          wire  Net_10;
+          wire  Net_519;
+          wire  Net_505;
+          wire  Net_520;
+          wire  Net_512;
+    electrical  Net_510;
+    electrical  Net_511;
           wire  Net_479;
+          wire  Net_10;
+          wire  Net_358;
+          wire  Net_359;
+          wire  Net_147;
+          wire  Net_482;
+          wire  Net_149;
           wire  Net_495;
           wire  Net_437;
-          wire  Net_147;
-          wire  Net_409;
-          wire  Net_149;
-          wire  Net_458;
-    electrical  Net_414;
 
 	wire [0:0] tmpOE__ref_net;
 	wire [0:0] tmpFB_0__ref_net;
@@ -877,7 +914,7 @@ module top ;
 		 (.oe(tmpOE__ref_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__ref_net[0:0]}),
-		  .analog({Net_401}),
+		  .analog({Net_510}),
 		  .io({tmpIO_0__ref_net[0:0]}),
 		  .siovref(tmpSIOVREF__ref_net),
 		  .interrupt({tmpINTERRUPT_0__ref_net[0:0]}),
@@ -953,7 +990,7 @@ module top ;
 		 (.oe(tmpOE__BPD_in_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__BPD_in_net[0:0]}),
-		  .analog({Net_414}),
+		  .analog({Net_511}),
 		  .io({tmpIO_0__BPD_in_net[0:0]}),
 		  .siovref(tmpSIOVREF__BPD_in_net),
 		  .interrupt({tmpINTERRUPT_0__BPD_in_net[0:0]}),
@@ -968,9 +1005,9 @@ module top ;
 
     Comp_v2_0_0 Comp (
         .clock(Net_149),
-        .CmpOut(Net_458),
-        .Vminus(Net_401),
-        .Vplus(Net_414));
+        .CmpOut(Net_512),
+        .Vminus(Net_510),
+        .Vplus(Net_511));
 
 	wire [0:0] tmpOE__comp_out_monitor_net;
 	wire [0:0] tmpFB_0__comp_out_monitor_net;
@@ -1033,7 +1070,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		comp_out_monitor
 		 (.oe(tmpOE__comp_out_monitor_net),
-		  .y({Net_458}),
+		  .y({Net_512}),
 		  .fb({tmpFB_0__comp_out_monitor_net[0:0]}),
 		  .io({tmpIO_0__comp_out_monitor_net[0:0]}),
 		  .siovref(tmpSIOVREF__comp_out_monitor_net),
@@ -1136,8 +1173,8 @@ module top ;
     Counter_v3_0_1 Counter (
         .capture(1'b0),
         .clock(Net_149),
-        .comp(Net_409),
-        .count(Net_458),
+        .comp(Net_505),
+        .count(Net_512),
         .downCnt(1'b0),
         .enable(Net_482),
         .interrupt(Net_138),
@@ -1219,7 +1256,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		count_out
 		 (.oe(tmpOE__count_out_net),
-		  .y({Net_409}),
+		  .y({Net_520}),
 		  .fb({tmpFB_0__count_out_net[0:0]}),
 		  .io({tmpIO_0__count_out_net[0:0]}),
 		  .siovref(tmpSIOVREF__count_out_net),
@@ -1447,7 +1484,7 @@ module top ;
 	cy_isr_v1_0
 		#(.int_type(2'b10))
 		isr_count
-		 (.int_signal(Net_409));
+		 (.int_signal(Net_520));
 
 
 
@@ -1461,7 +1498,7 @@ module top ;
         .capture(1'b0),
         .clock(Net_149),
         .comp(Net_485),
-        .count(Net_409),
+        .count(Net_520),
         .downCnt(1'b0),
         .enable(Net_482),
         .interrupt(Net_487),
@@ -1533,6 +1570,45 @@ module top ;
 		isr_swStart
 		 (.int_signal(Net_482));
 
+
+    // -- Mux start --
+    if (1)
+    begin : mux
+        reg  tmp__mux_reg;
+        always @(Net_512 or Net_505 or Net_519)
+        begin
+            case (Net_519)
+                1'b0 :  tmp__mux_reg = Net_512;
+                1'b1 :  tmp__mux_reg = Net_505;
+            endcase
+        end
+        assign Net_520 = tmp__mux_reg;
+    end
+    // -- Mux end --
+
+    CyControlReg_v1_80 muxSel (
+        .clock(1'b0),
+        .control_0(Net_519),
+        .control_1(Net_523),
+        .control_2(Net_524),
+        .control_3(Net_525),
+        .control_4(Net_527),
+        .control_5(Net_528),
+        .control_6(Net_529),
+        .control_7(Net_530),
+        .reset(1'b0));
+    defparam muxSel.Bit0Mode = 0;
+    defparam muxSel.Bit1Mode = 0;
+    defparam muxSel.Bit2Mode = 0;
+    defparam muxSel.Bit3Mode = 0;
+    defparam muxSel.Bit4Mode = 0;
+    defparam muxSel.Bit5Mode = 0;
+    defparam muxSel.Bit6Mode = 0;
+    defparam muxSel.Bit7Mode = 0;
+    defparam muxSel.BitValue = 0;
+    defparam muxSel.BusDisplay = 0;
+    defparam muxSel.ExtrReset = 0;
+    defparam muxSel.NumOutputs = 1;
 
 
 

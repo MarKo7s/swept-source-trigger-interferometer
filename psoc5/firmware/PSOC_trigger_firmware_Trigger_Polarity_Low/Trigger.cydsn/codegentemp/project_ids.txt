@@ -1,6 +1,6 @@
-C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\Trigger\Psoc_creator_project\Trigger.cydsn\Trigger.cyprj|a67fb168-0999-43ca-b4b8-d632a269dffa
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|445c4b95-5e7c-40e3-bac2-a02bdd0b249d
-C:\Users\ModeLabQBI\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|256747e2-e632-4b63-9ded-c7ffc5266126
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|d8171e0c-7333-42f4-ab75-d46523b61a58
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|9c3fa7cc-6d3e-46fd-8629-aa55bc951f56
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|7e4ff633-96e4-4f1c-afab-4c0d384674a1
+C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\Trigger.cyprj|7fdd4956-6ed5-4f01-ae7a-0221b269b23d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|09a27489-d352-4b43-b627-9975fb0b2648
+C:\Users\ModeLabQBI\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|8dd84271-2983-4bb0-acb5-6f57a69a9eb8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|60c35c2a-9c59-4ab4-8af5-fa797c25ecd8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|ea075e72-3052-4453-b46e-45b336fec325
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b8a92d53-1062-46f7-9c95-0b44217385c9

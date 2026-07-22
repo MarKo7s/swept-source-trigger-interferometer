@@ -27,7 +27,23 @@ Schematics available in Autodesk Eagle: `pcb/Eagle_project/Trigger_PSOC5LP`
 
 1. [Install PSOC programmer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.psocprogrammer) (update firmware), then close it.
 2. [Install PSOC creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/)
-3. Open `Trigger_PSOC5.cywrk` inside `psoc5/firmware/Psoc_creator_project` with PSOC Creator. Program the board via **Debug → Program**.
+3. Open the workspace under `psoc5/firmware/PSOC_trigger_firmware_Trigger_Polarity_Low` with PSOC Creator. Program the board via **Debug → Program**.
+
+### Serial protocol (firmware v1.0)
+
+Lines use CRLF (`\r\n`). Sets reply `OK` or `ERROR: <n>`; queries reply a value.
+
+| Command | Meaning |
+|---------|---------|
+| `*IDN?` | Identify (`FW` + `DATE`) |
+| `SIG:TRIG:DIV <n>` / `SIG:TRIG:DIV?` | Set/get camera trigger divider (default `2`) |
+| `SIG:TRIG:EVENTS:COUNT?` | Last sweep trigger count |
+| `SIG:TRIG:EVENTS:FREQ?` | Last trigger frequency [Hz] |
+| `LASER:SWE:TIME?` | Last sweep duration [us] |
+| `SYS:TRIG:NOT OFF\|TIME\|COUNT\|FREQ\|ALL` | End-of-sweep UART notify (or `0..4`) |
+| `SYS:TRIG:NOT?` | Current notify mode |
+
+Errors: `ERROR: 0` unsupported/invalid; `ERROR: 1` laser sweeping.
 
 ## Python interface
 
@@ -41,6 +57,10 @@ from pySSTri import SSTriggerInterferometer
 board = SSTriggerInterferometer(COM="COM6")
 board.discoverMethods()
 board.ID()
+board.SetFreqDivision(4)          # -> OK
+board.SetModeCount()              # SYS:TRIG:NOT COUNT
+board.flushSerialBuffer()
+print(board.waitForSignal())      # unsolicited line each sweep
 ```
 
 ## Installation
