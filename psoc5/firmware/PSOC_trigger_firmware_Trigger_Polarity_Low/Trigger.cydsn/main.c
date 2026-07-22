@@ -10,7 +10,7 @@
 #include <string.h>
 
 /* ---- Firmware identity (bump when releasing new FW) ---- */
-#define FW_VERSION "1.1.0"
+#define FW_VERSION "1.1.10"
 #define FW_DATE    "2026-07-22"
 #define FW_IDN     "PSOC 5LP Trigger; FW:" FW_VERSION "; DATE:" FW_DATE
 
@@ -27,11 +27,11 @@
 static char line_buf[LINE_MAX];
 static uint8 line_len = 0;
 
-static uint count = 2;                 /* SIG:TRIG:DIV default */
-static int time_count = 0;
-static int time = 0;                   /* last sweep duration [us] */
-static float frequency = 0.0f;         /* last trigger frequency [Hz] */
-static uint total_count = 0;           /* last sweep trigger count */
+static unsigned trigger_divider = 2u;   /* SIG:TRIG:DIV */
+
+static int laser_sweep_eTime = 0;      /* last sweep duration [us] */
+static float trigger_frequency = 0.0f;  /* last trigger frequency [Hz] */
+static unsigned trigger_events_count = 0u; /* last sweep trigger count */
 
 /* SYS:TRIG:NOT: 0=OFF 1=TIME 2=COUNT 3=FREQ 4=ALL */
 static int notify_mode = 0;
@@ -58,49 +58,48 @@ static void str_toupper(char *s)
     }
 }
 
-static void apply_divider(unsigned n)
-{   
-    // Attemping to divice by 1 or 0, use direct ouput from comparator
-    if (n == 1u || n == 0u) {
+static void apply_divider(uint16_t n)
+{
+    /* n==1: bypass Counter, route comparator straight to output via mux.
+     * n>=2: divide with Counter (period=n, ~50% duty via compare). */
+    if (n <= 1u) {
         muxSel_Write(MUX_CH_RAW);
-    }
-    else {
+    } else {
         muxSel_Write(MUX_CH_DIV);
-        count = n;
-        Counter_WritePeriod(count);
-        Counter_WriteCompare((int)(n / 2u) - 1); //Duty Cycle 50%
+        Counter_WritePeriod((uint16)n);
+        Counter_WriteCompare((uint16)((n / 2u) - 1u)); /* ~50% duty */
     }
-
 }
 
 /* End of laser sweep */
 CY_ISR(INT_SW)
 {
-    int last_time_count = time_count;
-    int time_current_counter = Timer_ReadCounter();
+    /* Timer @ 24 MHz: 24 ticks = 1 us (enable/reset by sw) */
+    uint32 cnt = Timer_ReadCounter();
+    uint32 ticks = Timer_ReadPeriod() - cnt;
+    laser_sweep_eTime = (int)(ticks / 24u); // In us
+    Timer_WriteCounter(Timer_ReadPeriod());  /* Reset the timer and prepare next sweep */
+    trigger_events_count = freqcounter_ReadCounter();
 
-    time = last_time_count + (time_current_counter / 24);
-    total_count = freqcounter_ReadCounter();
-
-    if (time > 0) {
-        frequency = (float)total_count / ((float)time * 1e-6f);
+    if (laser_sweep_eTime > 0) {
+        trigger_frequency = (float)trigger_events_count / ((float)laser_sweep_eTime * 1e-6f); // In Hz
     } else {
-        frequency = 0.0f;
+        trigger_frequency = 0.0f;
     }
 
     if (notify_mode != 0) {
         switch (notify_mode) {
             case 1:
-                sprintf(tx, "%d\r\n", time);
+                sprintf(tx, "%d\r\n", laser_sweep_eTime);
                 break;
             case 2:
-                sprintf(tx, "%u\r\n", total_count);
+                sprintf(tx, "%u\r\n", trigger_events_count);
                 break;
             case 3:
-                sprintf(tx, "%f\r\n", frequency);
+                sprintf(tx, "%f\r\n", trigger_frequency);
                 break;
             case 4:
-                sprintf(tx, "%d %u %f\r\n", time, total_count, frequency);
+                sprintf(tx, "%d %u %f\r\n", laser_sweep_eTime, trigger_events_count, trigger_frequency);
                 break;
             default:
                 tx[0] = '\0';
@@ -111,13 +110,7 @@ CY_ISR(INT_SW)
         }
     }
 
-    freqcounter_WriteCounter(0); // Once it is read we can reset (This is why we do not reset by hardware)
-    time_count = 0;
-}
-
-CY_ISR(INT_TIMER)
-{
-    time_count = time_count + 1;
+    freqcounter_WriteCounter(0); /* reset after read (no HW reset on this block) */
 }
 
 /* ---- Command handlers ---- */
@@ -137,16 +130,17 @@ static void cmd_sig_trig_div(int is_query, const char *arg)
     unsigned n = 0;
 
     if (is_query) {
-        sprintf(tx, "%u\r\n", count);
+        sprintf(tx, "%u\r\n", trigger_divider);
         UART_PutString(tx);
         return;
     }
 
-    if (sscanf(arg, "%u", &n) != 1 || n == 0u || n > 9999999u) {
+    if (sscanf(arg, "%u", &n) != 1 || n == 0u || n > 65535u) {
         reply_err(ERR_UNSUPPORTED);
         return;
     }
     apply_divider(n);
+    trigger_divider = n;
     reply_ok();
 }
 
@@ -157,7 +151,7 @@ static void cmd_sig_trig_events_count(int is_query, const char *arg)
         reply_err(ERR_UNSUPPORTED);
         return;
     }
-    sprintf(tx, "%u\r\n", total_count);
+    sprintf(tx, "%u\r\n", trigger_events_count);
     UART_PutString(tx);
 }
 
@@ -168,7 +162,7 @@ static void cmd_sig_trig_events_freq(int is_query, const char *arg)
         reply_err(ERR_UNSUPPORTED);
         return;
     }
-    sprintf(tx, "%f\r\n", frequency);
+    sprintf(tx, "%f\r\n", trigger_frequency);
     UART_PutString(tx);
 }
 
@@ -179,7 +173,7 @@ static void cmd_laser_swe_time(int is_query, const char *arg)
         reply_err(ERR_UNSUPPORTED);
         return;
     }
-    sprintf(tx, "%d\r\n", time);
+    sprintf(tx, "%d\r\n", laser_sweep_eTime);
     UART_PutString(tx);
 }
 
@@ -292,17 +286,14 @@ int main(void)
     Timer_Start();
     freqcounter_Start();
 
-    //Currently 2 interrupts:
-    isr_timer_Start();
-    isr_timer_StartEx(INT_TIMER);
 
     isr_sw_Start();
     isr_sw_StartEx(INT_SW);
+
+    apply_divider(trigger_divider);
     
     UART_Start();
     UART_PutString("Trigger ready\r\n");
-
-    apply_divider(count);
 
     for (;;) {
         if (UART_GetRxBufferSize() != 0u && sw_Read() == 1u) {

@@ -117,8 +117,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\UART_BOOT.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\UART_IntClock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\UART_IntClock.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_count.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_count.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\BPD_in_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\BPD_in.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\BPD_in.h</File>
@@ -133,13 +131,9 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Timer_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_timer.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_timer.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\freqcounter.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\freqcounter.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\freqcounter_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_swStart.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_swStart.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\muxSel.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\muxSel.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\muxSel_PM.c</File>

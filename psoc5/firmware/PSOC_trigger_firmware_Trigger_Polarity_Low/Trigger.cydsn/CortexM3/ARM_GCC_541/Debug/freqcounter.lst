@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
   28:Generated_Source\PSoC5/freqcounter.c **** *     Initialize to the schematic state
   29:Generated_Source\PSoC5/freqcounter.c **** * 
   30:Generated_Source\PSoC5/freqcounter.c **** * Parameters:  
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 2
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 2
 
 
   31:Generated_Source\PSoC5/freqcounter.c **** *  void  
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
   85:Generated_Source\PSoC5/freqcounter.c ****             #if( 0 != freqcounter_CAPTURE_MODE_CONF)
   86:Generated_Source\PSoC5/freqcounter.c ****                 freqcounter_CONTROL = ctrl | freqcounter_DEFAULT_CAPTURE_MODE;
   87:Generated_Source\PSoC5/freqcounter.c ****             #else
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 3
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 3
 
 
   88:Generated_Source\PSoC5/freqcounter.c ****                 freqcounter_CONTROL = ctrl;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  142:Generated_Source\PSoC5/freqcounter.c **** *******************************************************************************/
  143:Generated_Source\PSoC5/freqcounter.c **** void freqcounter_Enable(void) 
  144:Generated_Source\PSoC5/freqcounter.c **** {
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 4
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 4
 
 
   28              		.loc 1 144 0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  182:Generated_Source\PSoC5/freqcounter.c ****         freqcounter_Init();
  183:Generated_Source\PSoC5/freqcounter.c ****         
  184:Generated_Source\PSoC5/freqcounter.c ****         freqcounter_initVar = 1u; /* Clear this bit for Initialization */        
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 5
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 5
 
 
  185:Generated_Source\PSoC5/freqcounter.c ****     }
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  222:Generated_Source\PSoC5/freqcounter.c **** 
  223:Generated_Source\PSoC5/freqcounter.c **** /*******************************************************************************
  224:Generated_Source\PSoC5/freqcounter.c **** * Function Name: freqcounter_SetInterruptMode
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 6
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 6
 
 
  225:Generated_Source\PSoC5/freqcounter.c **** ********************************************************************************
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  254:Generated_Source\PSoC5/freqcounter.c **** * Return: 
  255:Generated_Source\PSoC5/freqcounter.c **** *  (uint8) The contents of the status register
  256:Generated_Source\PSoC5/freqcounter.c **** *
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 7
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 7
 
 
  257:Generated_Source\PSoC5/freqcounter.c **** * Side Effects:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  286:Generated_Source\PSoC5/freqcounter.c **** }
  287:Generated_Source\PSoC5/freqcounter.c **** 
  288:Generated_Source\PSoC5/freqcounter.c **** 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 8
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 8
 
 
  289:Generated_Source\PSoC5/freqcounter.c **** /*******************************************************************************
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  337:Generated_Source\PSoC5/freqcounter.c ****         CY_SET_REG32(freqcounter_COUNTER_LSB_PTR, counter);
  118              		.loc 1 337 0
  119 0000 014B     		ldr	r3, .L10
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 9
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 9
 
 
  120 0002 1860     		str	r0, [r3]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  367:Generated_Source\PSoC5/freqcounter.c ****     
  368:Generated_Source\PSoC5/freqcounter.c ****     /* Read the data from the FIFO (or capture register for Fixed Function)*/
  369:Generated_Source\PSoC5/freqcounter.c ****     #if(freqcounter_UsingFixedFunction)
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 10
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 10
 
 
  370:Generated_Source\PSoC5/freqcounter.c ****         return ((uint32)CY_GET_REG16(freqcounter_STATICCOUNT_LSB_PTR));
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  173 0002 1868     		ldr	r0, [r3]
  396:Generated_Source\PSoC5/freqcounter.c ****     #endif /* (freqcounter_UsingFixedFunction) */
  397:Generated_Source\PSoC5/freqcounter.c **** }
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 11
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 11
 
 
  174              		.loc 1 397 0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  205              		.cfi_endproc
  206              	.LFE9:
  207              		.size	freqcounter_WritePeriod, .-freqcounter_WritePeriod
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 12
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 12
 
 
  208              		.section	.text.freqcounter_ReadPeriod,"ax",%progbits
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  237              		.thumb_func
  238              		.type	freqcounter_WriteCompare, %function
  239              	freqcounter_WriteCompare:
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 13
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 13
 
 
  240              	.LFB11:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  474:Generated_Source\PSoC5/freqcounter.c **** 
  475:Generated_Source\PSoC5/freqcounter.c **** 
  476:Generated_Source\PSoC5/freqcounter.c **** /*******************************************************************************
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 14
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 14
 
 
  477:Generated_Source\PSoC5/freqcounter.c **** * Function Name: freqcounter_ReadCompare
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  506:Generated_Source\PSoC5/freqcounter.c **** *  void
  507:Generated_Source\PSoC5/freqcounter.c **** *
  508:Generated_Source\PSoC5/freqcounter.c **** *******************************************************************************/
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 15
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 15
 
 
  509:Generated_Source\PSoC5/freqcounter.c **** void freqcounter_SetCompareMode(uint8 compareMode) 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  294              		@ frame_needed = 0, uses_anonymous_args = 0
  295 0000 08B5     		push	{r3, lr}
  296              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 16
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 16
 
 
  297              		.cfi_offset 3, -8
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  339              		.loc 1 102 0
  340 000e 0020     		movs	r0, #0
  341 0010 FFF7FEFF 		bl	freqcounter_WriteCounter
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 17
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 17
 
 
  342              	.LVL8:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  180:Generated_Source\PSoC5/freqcounter.c ****     {
  389              		.loc 1 180 0
  390 0002 044B     		ldr	r3, .L41
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 18
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 18
 
 
  391 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  443 0034 02       		.byte	0x2
  444 0035 05       		.byte	0x5
  445 0036 10030000 		.4byte	.LASF2
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 19
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 19
 
 
  446 003a 02       		.uleb128 0x2
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  500 00a0 A4000000 		.4byte	0xa4
  501 00a4 05       		.uleb128 0x5
  502 00a5 6B000000 		.4byte	0x6b
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 20
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 20
 
 
  503 00a9 04       		.uleb128 0x4
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  557 011d 0C000000 		.4byte	.LFE5-.LFB5
  558 0121 01       		.uleb128 0x1
  559 0122 9C       		.byte	0x9c
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 21
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 21
 
 
  560 0123 0A       		.uleb128 0xa
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  614 019e 01       		.byte	0x1
  615 019f B601     		.2byte	0x1b6
  616 01a1 77000000 		.4byte	0x77
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 22
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 22
 
 
  617 01a5 00000000 		.4byte	.LFB10
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  671 0224 AA020000 		.4byte	0x2aa
  672 0228 0D       		.uleb128 0xd
  673 0229 69000000 		.4byte	.LASF41
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 23
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 23
 
 
  674 022d 01       		.byte	0x1
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  728 029c DA020000 		.4byte	0x2da
  729 02a0 0C       		.uleb128 0xc
  730 02a1 38000000 		.4byte	.LVL13
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 24
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 24
 
 
  731 02a5 E5020000 		.4byte	0x2e5
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  785 0012 00       		.byte	0
  786 0013 02       		.uleb128 0x2
  787 0014 24       		.uleb128 0x24
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 25
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 25
 
 
  788 0015 00       		.byte	0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  842 004b 01       		.uleb128 0x1
  843 004c 12       		.uleb128 0x12
  844 004d 06       		.uleb128 0x6
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 26
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 26
 
 
  845 004e 40       		.uleb128 0x40
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  899 0086 0B       		.uleb128 0xb
  900 0087 3B       		.uleb128 0x3b
  901 0088 05       		.uleb128 0x5
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 27
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 27
 
 
  902 0089 27       		.uleb128 0x27
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  956 00c1 0C       		.uleb128 0xc
  957 00c2 898201   		.uleb128 0x4109
  958 00c5 00       		.byte	0
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 28
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 28
 
 
  959 00c6 11       		.uleb128 0x11
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  1013 0101 02       		.uleb128 0x2
  1014 0102 18       		.uleb128 0x18
  1015 0103 00       		.byte	0
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 29
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 29
 
 
  1016 0104 00       		.byte	0
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  1070 0058 00000000 		.4byte	.LFB11
  1071 005c 0C000000 		.4byte	.LFE11-.LFB11
  1072 0060 00000000 		.4byte	.LFB12
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 30
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 30
 
 
  1073 0064 0C000000 		.4byte	.LFE12-.LFB12
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  1120      7465725F 
  1120      57726974 
  1120      65436F6D 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 31
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 31
 
 
  1121              	.LASF14:
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  1144      31203230 
  1144      31363036 
  1145 00f8 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 32
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 32
 
 
  1145      20726576 
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  1162      6F6C6172 
  1162      6974795F 
  1162      4C6F775C 
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 33
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 33
 
 
  1162      54726967 
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 1
  1184      206C6F6E 
  1184      6720696E 
  1184      7400
-ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\cc8Zj80I.s 			page 34
+ARM GAS  C:\Users\MODELA~1\AppData\Local\Temp\ccgwkJTN.s 			page 34
 
 
  1185              	.LASF13:
