@@ -1,189 +1,26 @@
-# SWEPT SOURCE INTERFEROMETER CAMERA TRIGGER
+# Swept-source interferometer camera trigger
 
-![alt text](images/swept_source_trigger_white.png)
+![Board](images/swept_source_trigger_white.png)
 
-## Package layout
+PSoC 5LP board that gates on the laser sweep, divides BPD/camera triggers, and (on the Polarity Low firmware) timestamps each trigger edge in microseconds. Hosts talk over UART (115200 baud, CRLF). The Python package **pySSTri** wraps that protocol.
 
-```
-.
-├── pySSTri/                Python serial package
-│   ├── __init__.py         exports SSTriggerInterferometer
-│   └── serialInterface.py  SSTriggerInterferometer serial API
-├── psoc5/
-│   └── firmware/           PSoC Creator firmware projects (polarity / laser variants)
-├── pcb/                    Eagle schematics / board
-├── trigger_example.ipynb   usage example
-├── images/
-├── scripts/release.py      git-tag release helper
-├── pyproject.toml          package version + deps
-└── CHANGELOG.md
-```
+---
 
-## PCB schematics
+## Installation (Python)
 
-Schematics available in Autodesk Eagle: `pcb/Eagle_project/Trigger_PSOC5LP`
-
-## Firmware
-
-Firmware is **variant-specific**: trigger polarity, laser wiring, and feature set differ per PSoC Creator project under `psoc5/firmware/`. More variants will be added over time (other polarities, laser trigger styles, etc.). Pick the project that matches your hardware.
-
-| Project folder | Notes |
-|----------------|--------|
-| `PSOC_trigger_firmware_Trigger_Polarity_Low` | **Current production (FW 1.3.1)** — **active-low LEVEL** sweep gate, timestamps |
-| `PSOC_trigger_firmware_DEBUG` | Debug / experimental |
-
-### Sweep gate (Polarity Low) — LEVEL, not edge
-
-This production image treats the laser sweep input (`sw`) as **active-low LEVEL**:
-
-- **Sweeping** while `sw` is held **low** (`sw_Read() == 0`) for the whole sweep window.
-- **Idle** when `sw` is high.
-- It is **not** a falling-edge one-shot; the entire low interval is the acquisition window.
-
-`LASER:SWE:STATUS?` returns `1` while low / `0` while idle. Other host commands during a sweep reply `ERROR: 1` (except `STATUS?`).
-
-Program with [PSoC Programmer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.psocprogrammer) / [PSoC Creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/): open the matching workspace, then **Debug → Program**.
-
-Identity string (`*IDN?`) reports `FW` version and `DATE` for the programmed image.
-
-### Serial protocol
-
-Lines use CRLF (`\r\n`). Sets reply `OK` or `OK - WARNING: …` or `ERROR: <n>`; queries reply a value.
-
-| Command | Meaning |
-|---------|---------|
-| `*IDN?` | Identify (`FW` + `DATE`) |
-| `SIG:TRIG:DIV <n>` / `SIG:TRIG:DIV?` | Set/get camera trigger divider (default `2`) |
-| `SIG:TRIG:EVENTS:COUNT?` | Last sweep trigger count |
-| `SIG:TRIG:EVENTS:FREQ?` | Last trigger frequency [Hz] (from first→last timestamp span) |
-| `SIG:TRIG:TIMESTAMP?` | Last sweep timestamps (see below); not allowed while sweeping |
-| `LASER:SWE:TIME?` | Last sweep duration [µs] |
-| `LASER:SWE:COUNT?` | Cumulative laser sweep count since reset |
-| `LASER:SWE:COUNT 0` / `RESET` | Clear sweep count (`OK`; other args → `ERROR: 0`) |
-| `LASER:SWE:STATUS?` | `1` = sweeping, `0` = idle (allowed during sweep) |
-| `SYS:TIMESTAMP:DELTAENC OFF\|UINT8\|UINT16` | Timestamp UART encoding (`0`/`1`/`2` or `8`/`16` also accepted) |
-| `SYS:TIMESTAMP:DELTAENC?` | Current encoding + limit warning (see below) |
-| `SYS:TRIG:NOT OFF\|TIME\|COUNT\|FREQ\|ALL\|TIMESTAMP` | End-of-sweep UART notify (or `0..5`) |
-| `SYS:TRIG:NOT?` | Current notify mode |
-
-Errors: `ERROR: 0` unsupported/invalid; `ERROR: 1` laser sweeping.
-
-### Timestamps (Polarity Low / timestamp-capable FW)
-
-**Capture path:** each camera trigger edge is captured into a free-running 32-bit Timer (24 MHz). ISR `isr_timeStamp` drains the Timer capture FIFO into RAM during the sweep. At sweep end (`INT_SW`):
-
-1. Finalize remaining FIFO samples.
-2. Convert each raw capture to **µs from sweep start**: `(period − capture) / 24`.
-3. Compute trigger frequency from the **first and last** stamps: `(n − 1) / (t_last − t_first)` [Hz].
-4. Send via UART if queried or if `SYS:TRIG:NOT TIMESTAMP` (encoding from `SYS:TIMESTAMP:DELTAENC`).
-
-**Capacity:** up to **4000** timestamps per sweep (`TS_MAX`). Extra edges set `ov` and are dropped.
-
-**False triggers / interferogram noise:** comparator edges on a noisy BPD / interferogram can produce **spurious camera triggers** (extra timestamps, inflated count/frequency, irregular Δt). A hardware **deglitching** (debounce) filter on the trigger path is the intended fix; it is **not in the current Polarity Low image** and needs to be added in a future firmware/schematic revision. Until then, raise comparator threshold / improve front-end SNR, or post-filter pathological gaps in software.
-
-#### Wire frame (raw serial — no Python required)
-
-ASCII header line, then a binary payload. Field order is fixed:
-
-```
-TSU <n> <ov> <fc> <t0> <enc>\r\n
-<payload bytes>
-```
-
-| Field | Meaning |
-|-------|---------|
-| `n` | Number of absolute timestamps represented |
-| `ov` | `1` if buffer overflowed and/or a delta was clamped |
-| `fc` | Hardware frequency-counter event count for the sweep |
-| `t0` | First sample time [µs] (always present; `0` if `n==0`) |
-| `enc` | **Last field:** `0` = absolute uint32; `1` = uint8 deltas; `2` = uint16 LE deltas |
-
-| `enc` | Payload |
-|-------|---------|
-| `0` | `n × uint32` little-endian absolute µs |
-| `1` | `(n − 1) × uint8` deltas; reconstruct `t[0]=t0`, `t[i]=t[i−1]+d[i−1]` |
-| `2` | `(n − 1) × uint16` little-endian deltas; same reconstruction |
-
-If `n ≤ 1` and `enc ≠ 0`, payload is empty (use header `t0` when `n == 1`).
-
-**Oversized deltas:** gaps larger than 255 µs (UINT8) or 65535 µs (UINT16) are **clamped** and `ov` is set to `1`. Prefer a wider encoding or `OFF`.
-
-#### `SYS:TIMESTAMP:DELTAENC`
-
-Aliases are handled **in firmware** (`OFF|0`, `UINT8|1|8`, `UINT16|2|16`).
-
-| Set arg | Reply |
-|---------|--------|
-| `OFF` / `0` | `OK` |
-| `UINT8` / `1` / `8` | `OK - WARNING: max_dt_us=255 min_freq_hz=3922` |
-| `UINT16` / `2` / `16` | `OK - WARNING: max_dt_us=65535 min_freq_hz=15` |
-
-| Query | Reply |
-|-------|--------|
-| OFF | `OFF` |
-| UINT8 | `UINT8 WARNING max_dt_us=255 min_freq_hz=3922` |
-| UINT16 | `UINT16 WARNING max_dt_us=65535 min_freq_hz=15` |
-
-Limits are **maximum gap / minimum rate** for lossless deltas: UINT8 needs consecutive gaps ≤ 255 µs (trigger **≥ ~3.9 kHz**); UINT16 ≤ 65535 µs (**≥ ~15 Hz**). Faster trains always fit; slower ones clamp.
-
-#### Raw-serial pull example
-
-```
-SYS:TIMESTAMP:DELTAENC 1\r\n
-→ OK - WARNING: max_dt_us=255 min_freq_hz=3922
-
-(wait until LASER:SWE:STATUS? → 0)
-
-SIG:TRIG:TIMESTAMP?\r\n
-→ TSU 512 0 512 1234 1\r\n
-→ then 511 bytes of uint8 deltas
-```
-
-Decode from the header alone (`enc` last): `t[0]=t0`; for each delta `d`, `t.append(t[-1]+d)`.
-
-Python (`GetTimestamps` / `waitTimestamps`) does the same; `SetTimestampsEncoding` only configures the device (no local encode state).
-
-## Python interface
-
-Use `SSTriggerInterferometer` to talk to the board over serial and change trigger settings. Example notebook: `trigger_example.ipynb`.
-
-Baudrate defaults to 115200. Pass a COM port to connect immediately, or omit it and call `connect()` (autodiscovers via `*IDN?`):
-
-```python
-from pySSTri import SSTriggerInterferometer
-
-board = SSTriggerInterferometer()   # or COM="COM6" to skip scan
-board.connect()                     # finds PSOC, stores board.COM, opens port
-board.discoverMethods()
-board.ID()
-board.SetFreqDivision(4)          # -> OK
-print(board.SetTimestampsEncoding(1))  # -> OK - WARNING: … (aliases in FW)
-board.SetModeCount()              # SYS:TRIG:NOT COUNT
-board.flushSerialBuffer()
-print(board.waitForSignal())      # unsolicited line each sweep
-print(board.GetSweepStatus())     # "0" idle / "1" sweeping
-
-# Absolute times in us (decoded from TSU header enc; max 4000 / sweep):
-# board.SetModeTimestamp()
-# ts_us, ov, fc = board.waitTimestamps()
-ts_us, ov, fc = board.GetTimestamps()
-```
-
-## Installation
-
-### From GitHub (tagged release)
+**Tagged release:**
 
 ```bash
-pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.0.0"
+pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.1.0"
 ```
 
-With the example notebook extras:
+With notebook extras:
 
 ```bash
-pip install "pySSTri[notebooks] @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.0.0"
+pip install "pySSTri[notebooks] @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.1.0"
 ```
 
-### Local development (editable install)
+**Editable (dev):**
 
 ```bash
 git clone git@github.com:MarKo7s/swept-source-trigger-interferometer.git
@@ -191,21 +28,179 @@ cd swept-source-trigger-interferometer
 pip install -e ".[notebooks]"
 ```
 
-### Conda environment
+**Conda:**
 
 ```bash
 conda create -n pySSTri_env python=3.11 -y
 conda activate pySSTri_env
 pip install -e ".[notebooks]"
-```
-
-Register the Jupyter kernel (once):
-
-```bash
 python -m ipykernel install --user --name pySSTri_env --display-name "Python (pySSTri_env)"
 ```
 
-`requirements.txt` remains available for legacy workflows; prefer `pip install -e ".[notebooks]"`.
+---
+
+## How to operate
+
+There are two layers:
+
+| Layer | Use when |
+|-------|----------|
+| **Firmware (UART / SCPI)** | Any host language, raw serial, or writing your own driver |
+| **Python (`pySSTri`)** | Lab scripts / notebooks — preferred for day-to-day use |
+
+Same baudrate (115200) and same commands either way. Python methods map 1:1 onto SCPI (e.g. `SetFreqDivision(4)` → `SIG:TRIG:DIV 4`).
+
+---
+
+## Firmware
+
+### Which project to flash
+
+Firmware is **variant-specific** (polarity / laser). Pick the folder under `psoc5/firmware/` that matches your hardware:
+
+| Project | Role |
+|---------|------|
+| `PSOC_trigger_firmware_Trigger_Polarity_Low` | **Production** (FW 1.3.1) — active-low LEVEL sweep gate + timestamps |
+| `PSOC_trigger_firmware_DEBUG` | Experimental |
+
+Tools: [PSoC Programmer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.psocprogrammer) / [PSoC Creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/) → open project → **Debug → Program**.
+
+`*IDN?` returns firmware version and date.
+
+### Sweep gate (Polarity Low)
+
+The sweep input `sw` is **active-low LEVEL**, not a falling-edge pulse:
+
+- **Sweeping** while `sw` is held low
+- **Idle** while `sw` is high
+
+While sweeping, most commands return `ERROR: 1`. Exception: `LASER:SWE:STATUS?` (`1` = sweeping, `0` = idle).
+
+### Command reference
+
+Lines end with `\r\n`. Sets reply `OK` (or `OK - WARNING: …`). Queries reply a value. Errors: `ERROR: 0` (bad command), `ERROR: 1` (busy / sweeping).
+
+| Command | Meaning |
+|---------|---------|
+| `*IDN?` | Identify |
+| `SIG:TRIG:DIV <n>` / `?` | Camera trigger divider (default `2`) |
+| `SIG:TRIG:EVENTS:COUNT?` | Trigger count last sweep |
+| `SIG:TRIG:EVENTS:FREQ?` | Mean trigger rate [Hz] (first→last timestamp) |
+| `SIG:TRIG:TIMESTAMP?` | Pull timestamp buffer (idle only) |
+| `LASER:SWE:TIME?` | Sweep duration [µs] |
+| `LASER:SWE:COUNT?` / `0` / `RESET` | Cumulative sweeps / clear |
+| `LASER:SWE:STATUS?` | `1` sweeping / `0` idle |
+| `SYS:TRIG:NOT OFF\|TIME\|COUNT\|FREQ\|ALL\|TIMESTAMP` | End-of-sweep notify (`0`…`5`) |
+| `SYS:TIMESTAMP:DELTAENC OFF\|UINT8\|UINT16` | How timestamps are packed on the wire (`0`/`1`/`2` also OK) |
+| `SYS:TIMESTAMP:DELTAENC?` | Current encoding + rate limit warning |
+
+### Timestamps
+
+Each camera-trigger edge is stamped by a 24 MHz Timer during the sweep (ISR fill, up to **4000** samples). Values are **µs from sweep start**.
+
+**Typical flow**
+
+1. Optionally set packing: `SYS:TIMESTAMP:DELTAENC UINT16` (see delta encoding below).
+2. Run a sweep (or enable `SYS:TRIG:NOT TIMESTAMP` for an automatic dump each sweep).
+3. When idle: `SIG:TRIG:TIMESTAMP?` → one ASCII header line + binary payload.
+
+**Wire header** (always the same fields):
+
+```
+TSU <n> <ov> <fc> <t0> <enc>\r\n
+```
+
+| Field | Meaning |
+|-------|---------|
+| `n` | Number of timestamps |
+| `ov` | `1` if buffer overflowed or a delta was clamped |
+| `fc` | Hardware event count for the sweep |
+| `t0` | First sample [µs] |
+| `enc` | Packing mode (`0` / `1` / `2`) — always last |
+
+Then the **payload** depends on `enc`:
+
+| `enc` | Name | Payload | Host reconstruct |
+|-------|------|---------|------------------|
+| `0` | OFF (absolute) | `n × uint32` LE absolute µs | use as-is |
+| `1` | UINT8 deltas | `(n−1) × uint8` gaps | `t[0]=t0`, then accumulate |
+| `2` | UINT16 deltas | `(n−1) × uint16` LE gaps | same accumulate |
+
+Delta encoding shrinks UART traffic when consecutive gaps are small. Choose a mode whose **max gap** fits your laser:
+
+| Mode | Max gap | Safe if trigger rate |
+|------|---------|----------------------|
+| UINT8 | 255 µs | **≥ ~3.9 kHz** |
+| UINT16 | 65535 µs | **≥ ~15 Hz** |
+| OFF | (full uint32) | any |
+
+If a gap is too large for the mode, firmware **clamps** it and sets `ov=1` (lossy). For ~3 kHz SS sources, prefer **UINT16** or **OFF**, not UINT8.
+
+Setting the mode returns a warning with those limits, e.g.:
+
+```
+SYS:TIMESTAMP:DELTAENC 2
+→ OK - WARNING: max_dt_us=65535 min_freq_hz=15
+```
+
+**False triggers:** noisy interferogram / BPD edges can create extra timestamps. A hardware **deglitch** filter is planned but not in this firmware yet — raise comparator threshold / SNR, or filter bad gaps in software for now.
+
+PCB: Eagle project under `pcb/Eagle_project/Trigger_PSOC5LP`.
+
+---
+
+## Python interface (`pySSTri`)
+
+Example notebook: `trigger_example.ipynb`.
+
+### Connect
+
+```python
+from pySSTri import SSTriggerInterferometer
+
+board = SSTriggerInterferometer()   # or COM="COM6"
+board.connect()                     # autodiscovers via *IDN? if needed
+board.discoverMethods()             # list wrappers
+print(board.ID())
+```
+
+### Everyday control
+
+```python
+board.SetFreqDivision(2)
+board.SetModeCount()                # notify: trigger count each sweep
+board.flushSerialBuffer()
+print(board.waitForSignal())        # blocks for next notify line
+print(board.GetSweepStatus())       # "0" / "1"
+print(board.GetFrequency(), board.GetSweepTime())
+```
+
+### Timestamps (decoded to absolute µs for you)
+
+```python
+board.SetTimestampsEncoding(2)      # UINT16 deltas on the wire (FW aliases OK)
+# board.SetModeTimestamp()          # optional: auto-dump each sweep
+# ts, ov, fc = board.waitTimestamps()
+
+ts, ov, fc = board.GetTimestamps()  # after a sweep, while idle
+# ts: uint32 array [µs], regardless of enc in the header
+```
+
+`GetTimestamps` / `waitTimestamps` read the `TSU` header’s `enc` field and unpack the payload — you always get absolute times.
+
+---
+
+## Repository layout
+
+```
+pySSTri/          Python package
+psoc5/firmware/   PSoC Creator projects
+pcb/              Eagle schematics
+trigger_example.ipynb
+scripts/release.py
+```
+
+---
 
 ## Developer notes
 
@@ -224,24 +219,22 @@ python -c "import pySSTri; print(pySSTri.__version__)"
 
 Use [semantic versioning](https://semver.org/): `MAJOR.MINOR.PATCH`.
 
+Firmware has its own identity (`FW_VERSION` / `FW_DATE` in `main.c`, reported by `*IDN?`). Bump that when you change the PSoC image; it is independent of the pySSTri package version.
+
+Default git branch is **`main`**.
+
 ### Releasing a new version
 
-1. Add an entry for the new version at the top of `CHANGELOG.md`.
-2. Bump `version` in `pyproject.toml`.
-3. Commit all changes (including the changelog).
-4. Run the release script from the repo root (default branch is `main`):
+1. Add a `## [X.Y.Z] - YYYY-MM-DD` section at the top of `CHANGELOG.md` (keep `## [Unreleased]` above it for WIP notes).
+2. Set `version = "X.Y.Z"` in `pyproject.toml`.
+3. Commit everything (clean working tree).
+4. From the repo root:
 
 ```bash
 python scripts/release.py --from-changelog
 ```
 
-The script reads the version from `pyproject.toml`, pushes `main`, creates annotated git tag `vX.Y.Z`, and pushes the tag. With `--from-changelog`, the tag message is taken from the matching `CHANGELOG.md` section. You can also pass a custom message with `--message "..."` (overrides `--from-changelog`).
-
-After that, others can install with:
-
-```bash
-pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@vX.Y.Z"
-```
+The script reads the version from `pyproject.toml`, pushes `main`, creates annotated git tag `vX.Y.Z`, and pushes the tag. With `--from-changelog`, the tag message is taken from the matching `CHANGELOG.md` section. Override with `--message "..."` if needed.
 
 Dry run (no git changes):
 
@@ -249,10 +242,16 @@ Dry run (no git changes):
 python scripts/release.py --from-changelog --dry-run
 ```
 
-Optional: create a GitHub Release page with the same notes (`gh` CLI required):
+Optional GitHub Release page (`gh` CLI):
 
 ```bash
 gh release create vX.Y.Z --title "pySSTri X.Y.Z" --notes-file CHANGELOG.md
 ```
 
-**Requirements before release:** clean working tree (all changes committed); tag `vX.Y.Z` must not already exist on GitHub.
+After release, others install with:
+
+```bash
+pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@vX.Y.Z"
+```
+
+**Requirements:** clean working tree; tag `vX.Y.Z` must not already exist on GitHub.
