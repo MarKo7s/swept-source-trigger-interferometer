@@ -1,98 +1,134 @@
 import serial
+from serial.tools import list_ports
 
-# SYS:TRIG:NOT payload / enable (0=OFF means no UART notify at end of sweep)
-notifymode = {"OFF": 0, "TIME": 1, "COUNT": 2, "FREQ": 3, "ALL": 4}
+from .commands import COMMANDS
+from .utilities import _unpack, attach_methods, decode, encode
 
-# Backwards-friendly alias for older imports
-feedbackmode = notifymode
+import re
+import numpy as np
+
+_IDN_MARK = "PSOC"
 
 
 class SSTriggerInterferometer:
-    def __init__(self, COM, BR=115200, timeout=1):
+    def __init__(self, COM=None, BR=115200, timeout=1):
         self.COM = COM
         self.BR = BR
+        self.timeout = timeout
+        self.ser = None
+        self.PSOC5_serial_COM = None
+
+        self.commands = COMMANDS
+        attach_methods(self, self.commands)
+
+        if COM is not None:
+            self.connect()
+
+    def _probe(self, port: str) -> str | None:
+        """Return *IDN? reply if this port looks like the PSoC trigger."""
         try:
-            self.ser = serial.Serial(self.COM, self.BR, timeout=timeout)
-        except serial.serialutil.SerialException as exc:
-            raise ConnectionError(f"Connection to {COM} port failed") from exc
+            with serial.Serial(port, self.BR, timeout=self.timeout) as ser:
+                ser.reset_input_buffer()
+                ser.write(encode("*IDN?"))
+                idn = decode(ser.readline())
+        except (serial.SerialException, OSError):
+            return None
+        if _IDN_MARK in idn.upper():
+            return idn
+        return None
 
-        # Keep old attribute name used by some notebooks
+    def discover(self) -> str:
+        """Scan serial ports for a PSoC trigger; set and return self.COM."""
+        for info in list_ports.comports():
+            idn = self._probe(info.device)
+            if idn is None:
+                continue
+            self.COM = info.device
+            print(f"PSOC trigger with ID '{idn}' found in port {self.COM}")
+            return self.COM
+        raise ConnectionError("No PSOC trigger found on any serial port")
+
+    def connect(self):
+        """Open serial. If COM is None, autodiscover first."""
+        if self.ser is not None and self.ser.is_open:
+            return self
+
+        if self.COM is None:
+            self.discover()
+
+        try:
+            self.ser = serial.Serial(self.COM, self.BR, timeout=self.timeout)
+        except serial.SerialException as exc:
+            raise ConnectionError(f"Connection to {self.COM} failed") from exc
+
         self.PSOC5_serial_COM = self.ser
-
-        # method_name -> (wire_command, note)
-        self.commands = {
-            "ID": ("*IDN?", ""),
-            "GetFrequency": ("SIG:TRIG:EVENTS:FREQ?", "Hz"),
-            "GetTriggeredFrames": ("SIG:TRIG:EVENTS:COUNT?", ""),
-            "GetSweepTime": ("LASER:SWE:TIME?", "us"),
-            "GetMode": ("SYS:TRIG:NOT?", notifymode),
-            "SetModeNormal": ("SYS:TRIG:NOT OFF", "notify off"),
-            "SetModeTime": ("SYS:TRIG:NOT TIME", ""),
-            "SetModeCount": ("SYS:TRIG:NOT COUNT", ""),
-            "SetModeFrequency": ("SYS:TRIG:NOT FREQ", ""),
-            "SetModeAll": ("SYS:TRIG:NOT ALL", ""),
-        }
-        self._generate_methods()
-
-    @staticmethod
-    def encode(cmd: str) -> bytes:
-        return f"{cmd}\r\n".encode("utf-8")
-
-    @staticmethod
-    def decode(msg: bytes) -> str:
-        return msg.decode("utf-8").strip()
+        return self
 
     def ask(self, cmd: str) -> str:
         """Send a command and wait for one reply line (OK / ERROR: n / value)."""
-        self.ser.write(self.encode(cmd))
-        return self.decode(self.ser.readline())
+        if self.ser is None or not self.ser.is_open:
+            raise ConnectionError("Not connected — call connect() first")
+        self.ser.write(encode(cmd))
+        return decode(self.ser.readline())
 
     def scpi(self, cmd: str) -> str:
         return self.ask(cmd)
 
-    @staticmethod
-    def is_error(reply: str) -> bool:
-        return reply.startswith("ERROR:")
-
-    def SetFreqDivision(self, n: int) -> str:
-        return self.ask(f"SIG:TRIG:DIV {n}")
-
-    def GetFreqDivision(self) -> str:
-        return self.ask("SIG:TRIG:DIV?")
-
     def waitForSignal(self) -> str:
         """Block until next unsolicited sweep notify line (SYS:TRIG:NOT != OFF)."""
-        return self.decode(self.ser.readline())
+        if self.ser is None or not self.ser.is_open:
+            raise ConnectionError("Not connected — call connect() first")
+        return decode(self.ser.readline())
+
+    def waitTimestamps(self, timeout_s=5.0):
+        """
+        Wait for one sweep dump:
+        header: TS <n> <overflow>\\r\\n
+        payload: n * uint32 little-endian (raw Timer captures)
+        Returns (ts: np.ndarray dtype uint32, overflow: int)
+        """
+        if self.ser is None or not self.ser.is_open:
+            raise ConnectionError("Not connected")
+        old = self.ser.timeout
+        self.ser.timeout = timeout_s
+        try:
+            line = self.ser.readline().decode("utf-8", errors="replace").strip()
+            m = re.match(r"TS\s+(\d+)\s+(\d+)", line)
+            if not m:
+                raise RuntimeError(f"Bad TS header: {line!r}")
+            n = int(m.group(1))
+            overflow = int(m.group(2))
+            raw = self.ser.read(n * 4)
+            if len(raw) != n * 4:
+                raise RuntimeError(f"Short read: got {len(raw)}, expected {n * 4}")
+            ts = np.frombuffer(raw, dtype="<u4").copy()
+            return ts, overflow
+        finally:
+            self.ser.timeout = old
 
     def pullbuffer(self):
         return self.ser.readline()
 
     def SetSerialTimeOut(self, t):
-        self.ser.timeout = t
+        self.timeout = t
+        if self.ser is not None:
+            self.ser.timeout = t
 
     def GetSerialTimeOut(self):
-        return self.ser.timeout
+        return self.ser.timeout if self.ser is not None else self.timeout
 
     def flushSerialBuffer(self):
         self.ser.reset_input_buffer()
 
     def CloseSerialConnection(self):
-        self.ser.close()
+        if self.ser is not None:
+            self.ser.close()
+            self.ser = None
+            self.PSOC5_serial_COM = None
         print("Serial communication with PSOC closed")
 
     def discoverMethods(self):
-        for idx, (name, (cmd, note)) in enumerate(self.commands.items()):
-            print(f"{idx} - {name} - {cmd} - {note}")
-        print(f"{len(self.commands)} - SetFreqDivision - SIG:TRIG:DIV <n>")
-        print(f"{len(self.commands) + 1} - GetFreqDivision - SIG:TRIG:DIV?")
-
-    def _generate_methods(self):
-        for name, (cmd, _note) in self.commands.items():
-
-            def make(cmd=cmd):
-                def method(self):
-                    return self.ask(cmd)
-
-                return method
-
-            setattr(self, name, make().__get__(self, self.__class__))
+        for idx, (name, spec) in enumerate(self.commands.items()):
+            scpi, note, takes_arg = _unpack(spec)
+            wire = f"{scpi} <value>" if takes_arg else scpi
+            print(f"{idx} - {name} - {wire} - {note}")

@@ -40,6 +40,8 @@ Lines use CRLF (`\r\n`). Sets reply `OK` or `ERROR: <n>`; queries reply a value.
 | `SIG:TRIG:EVENTS:COUNT?` | Last sweep trigger count |
 | `SIG:TRIG:EVENTS:FREQ?` | Last trigger frequency [Hz] |
 | `LASER:SWE:TIME?` | Last sweep duration [us] |
+| `LASER:SWE:COUNT?` | Cumulative laser sweep count since reset |
+| `LASER:SWE:COUNT 0` / `RESET` | Clear sweep count (`OK`; other args → `ERROR: 0`) |
 | `SYS:TRIG:NOT OFF\|TIME\|COUNT\|FREQ\|ALL` | End-of-sweep UART notify (or `0..4`) |
 | `SYS:TRIG:NOT?` | Current notify mode |
 
@@ -49,12 +51,13 @@ Errors: `ERROR: 0` unsupported/invalid; `ERROR: 1` laser sweeping.
 
 Use `SSTriggerInterferometer` to talk to the board over serial and change trigger settings. Example notebook: `trigger_example.ipynb`.
 
-Baudrate defaults to 115200; pass the COM port when creating the object:
+Baudrate defaults to 115200. Pass a COM port to connect immediately, or omit it and call `connect()` (autodiscovers via `*IDN?`):
 
 ```python
 from pySSTri import SSTriggerInterferometer
 
-board = SSTriggerInterferometer(COM="COM6")
+board = SSTriggerInterferometer()   # or COM="COM6" to skip scan
+board.connect()                     # finds PSOC, stores board.COM, opens port
 board.discoverMethods()
 board.ID()
 board.SetFreqDivision(4)          # -> OK

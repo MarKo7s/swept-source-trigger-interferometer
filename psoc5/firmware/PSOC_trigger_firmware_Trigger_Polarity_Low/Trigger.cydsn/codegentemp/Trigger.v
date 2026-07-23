@@ -1,6 +1,6 @@
 // ======================================================================
 // Trigger.v generated from TopDesign.cysch
-// 07/22/2026 at 18:47
+// 07/23/2026 at 13:12
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -802,6 +802,8 @@ endmodule
 // top
 module top ;
 
+          wire  Net_562;
+          wire  Net_563;
           wire  Net_532;
           wire  Net_530;
           wire  Net_529;
@@ -814,8 +816,6 @@ module top ;
           wire  Net_471;
           wire  Net_479;
           wire  Net_469;
-          wire  Net_473;
-          wire  Net_472;
           wire  Net_478;
           wire  Net_490;
           wire  Net_492;
@@ -857,6 +857,7 @@ module top ;
           wire  Net_142;
           wire  Net_140;
           wire  Net_148;
+          wire  Net_561;
           wire  Net_10;
           wire  Net_559;
           wire  Net_358;
@@ -1556,8 +1557,8 @@ module top ;
 
 
     Timer_v2_80_5 Timer (
-        .capture(1'b0),
-        .capture_out(Net_473),
+        .capture(Net_520),
+        .capture_out(Net_561),
         .clock(Net_10),
         .enable(Net_546),
         .interrupt(Net_469),
@@ -1612,6 +1613,15 @@ module top ;
     defparam muxSel.NumOutputs = 1;
 
     assign Net_559 = 1'h0;
+
+
+	cy_dma_v1_0
+		#(.drq_type(2'b00))
+		DMA
+		 (.drq(Net_561),
+		  .nrq(Net_563),
+		  .trq(1'b0));
+
 
 
 

@@ -4,6 +4,18 @@ All notable changes to pySSTri are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- `LASER:SWE:COUNT?` / `LASER:SWE:COUNT 0|RESET` — cumulative laser sweep counter; Python `GetSweepCount` / `ResetSweepCount`.
+- Optional `COM=None` with `discover()` / `connect()` — autodetect PSoC trigger via `*IDN?`.
+- `pySSTri.commands` command table and `pySSTri.utilities` helpers; arg-aware auto-methods (e.g. `SetFreqDivision(n)`).
+
+### Changed
+
+- Command dictionary and `encode` / `decode` / `is_error` / method attachment moved out of `serialInterface.py`.
+
 ## [1.0.0] - 2026-07-22
 
 ### Added

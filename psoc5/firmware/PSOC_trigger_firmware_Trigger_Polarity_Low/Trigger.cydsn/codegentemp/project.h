@@ -39,6 +39,7 @@
 #include "freqcounter.h"
 #include "Timer.h"
 #include "muxSel.h"
+#include "DMA_dma.h"
 #include "UART_IntClock.h"
 #include "core_cm3_psoc5.h"
 #include "CyDmac.h"
