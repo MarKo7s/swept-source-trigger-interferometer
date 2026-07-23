@@ -1,6 +1,6 @@
 // ======================================================================
 // Trigger.v generated from TopDesign.cysch
-// 07/23/2026 at 13:12
+// 07/23/2026 at 16:22
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -802,8 +802,6 @@ endmodule
 // top
 module top ;
 
-          wire  Net_562;
-          wire  Net_563;
           wire  Net_532;
           wire  Net_530;
           wire  Net_529;
@@ -857,7 +855,7 @@ module top ;
           wire  Net_142;
           wire  Net_140;
           wire  Net_148;
-          wire  Net_561;
+          wire  Net_565;
           wire  Net_10;
           wire  Net_559;
           wire  Net_358;
@@ -1558,7 +1556,7 @@ module top ;
 
     Timer_v2_80_5 Timer (
         .capture(Net_520),
-        .capture_out(Net_561),
+        .capture_out(Net_565),
         .clock(Net_10),
         .enable(Net_546),
         .interrupt(Net_469),
@@ -1615,12 +1613,10 @@ module top ;
     assign Net_559 = 1'h0;
 
 
-	cy_dma_v1_0
-		#(.drq_type(2'b00))
-		DMA
-		 (.drq(Net_561),
-		  .nrq(Net_563),
-		  .trq(1'b0));
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		isr_timeStamp
+		 (.int_signal(Net_565));
 
 
 

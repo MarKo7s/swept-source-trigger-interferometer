@@ -62,6 +62,8 @@
   <file name="C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\codegentemp\muxSel.h" value="HEADER;;;;;muxSel" />
   <file name="C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\codegentemp\muxSel.c" value="SOURCE_C;CortexM3;;;;muxSel" />
   <file name="C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\codegentemp\muxSel_PM.c" value="SOURCE_C;CortexM3;;;;muxSel" />
+  <file name="C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\codegentemp\isr_timeStamp.c" value="SOURCE_C;CortexM3;;;;isr_timeStamp" />
+  <file name="C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\codegentemp\isr_timeStamp.h" value="HEADER;;;;;isr_timeStamp" />
   <file name="C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\codegentemp\UART_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_IntClock" />
   <file name="C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\codegentemp\UART_IntClock.h" value="HEADER;;;;;UART_IntClock" />
   <file name="C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />

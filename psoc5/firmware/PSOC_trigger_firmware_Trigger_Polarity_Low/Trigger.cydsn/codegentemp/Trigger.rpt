@@ -4,10 +4,10 @@ cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabd
 </CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 0s.684ms
+Elaboration phase: Elapsed time ==> 0s.667ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
-HDL generation phase: Elapsed time ==> 0s.018ms
+HDL generation phase: Elapsed time ==> 0s.022ms
 <CYPRESSTAG name="Synthesis results...">
 
      | | | | | | |
@@ -41,7 +41,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\ModeL
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Wed Jul 22 18:47:39 2026
+Thu Jul 23 16:22:05 2026
 
 
 ======================================================================
@@ -51,7 +51,7 @@ Options  :    -yv2 -q10 Trigger.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Wed Jul 22 18:47:39 2026
+Thu Jul 23 16:22:05 2026
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v'
@@ -112,7 +112,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\ModeL
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Wed Jul 22 18:47:40 2026
+Thu Jul 23 16:22:05 2026
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -154,7 +154,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\ModeL
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Wed Jul 22 18:47:40 2026
+Thu Jul 23 16:22:06 2026
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -399,12 +399,10 @@ Detecting unused logic.
 	Net_479
 	\Timer:Net_53\
 	\Timer:TimerUDB:ctrl_ten\
-	\Timer:TimerUDB:ctrl_cmode_0\
 	\Timer:TimerUDB:ctrl_tmode_1\
 	\Timer:TimerUDB:ctrl_tmode_0\
 	\Timer:TimerUDB:ctrl_ic_1\
 	\Timer:TimerUDB:ctrl_ic_0\
-	Net_473
 	\Timer:Net_102\
 	\Timer:Net_266\
 	Net_523
@@ -447,7 +445,7 @@ Detecting unused logic.
 	\PWM:PWMUDB:add_vi_vv_MODGEN_1_3\
 	\PWM:PWMUDB:add_vi_vv_MODGEN_1_2\
 
-Deleted 223 User equations/components.
+Deleted 221 User equations/components.
 Deleted 30 Synthesized equations/components.
 
 ------------------------------------------------------
@@ -556,6 +554,7 @@ Aliasing \freqcounter:CounterUDB:final_enable\ to \Counter:CounterUDB:final_enab
 Aliasing \freqcounter:CounterUDB:reset\ to zero
 Aliasing \freqcounter:CounterUDB:tc_i\ to \freqcounter:CounterUDB:reload_tc\
 Aliasing \Timer:TimerUDB:ctrl_cmode_1\ to zero
+Aliasing \Timer:TimerUDB:ctrl_cmode_0\ to tmpOE__ref_net_0
 Aliasing \Timer:TimerUDB:trigger_enable\ to tmpOE__ref_net_0
 Aliasing \Timer:TimerUDB:status_6\ to zero
 Aliasing \Timer:TimerUDB:status_5\ to zero
@@ -575,7 +574,7 @@ Aliasing \PWM:PWMUDB:tc_i_reg\\D\ to \PWM:PWMUDB:status_2\
 Aliasing \UART:BUART:rx_break_status\\D\ to zero
 Aliasing \freqcounter:CounterUDB:prevCapture\\D\ to zero
 Aliasing \freqcounter:CounterUDB:cmp_out_reg_i\\D\ to \freqcounter:CounterUDB:prevCompare\\D\
-Aliasing \Timer:TimerUDB:capture_last\\D\ to zero
+Aliasing \Timer:TimerUDB:capture_last\\D\ to \freqcounter:CounterUDB:count_stored_i\\D\
 Aliasing \Timer:TimerUDB:hwEnable_reg\\D\ to \Timer:TimerUDB:run_mode\
 Aliasing \Timer:TimerUDB:capture_out_reg_i\\D\ to \Timer:TimerUDB:capt_fifo_load_int\
 Removing Lhs of wire one[7] = tmpOE__ref_net_0[1]
@@ -793,10 +792,12 @@ Removing Lhs of wire \freqcounter:CounterUDB:cs_addr_1\[933] = \freqcounter:Coun
 Removing Lhs of wire \freqcounter:CounterUDB:cs_addr_0\[934] = \freqcounter:CounterUDB:reload\[898]
 Removing Lhs of wire \Timer:TimerUDB:ctrl_enable\[1128] = \Timer:TimerUDB:control_7\[1120]
 Removing Lhs of wire \Timer:TimerUDB:ctrl_cmode_1\[1130] = zero[2]
+Removing Lhs of wire \Timer:TimerUDB:ctrl_cmode_0\[1131] = tmpOE__ref_net_0[1]
 Removing Rhs of wire \Timer:TimerUDB:timer_enable\[1139] = \Timer:TimerUDB:runmode_enable\[1151]
 Removing Rhs of wire \Timer:TimerUDB:run_mode\[1140] = \Timer:TimerUDB:hwEnable\[1141]
 Removing Lhs of wire \Timer:TimerUDB:trigger_enable\[1143] = tmpOE__ref_net_0[1]
 Removing Lhs of wire \Timer:TimerUDB:tc_i\[1145] = \Timer:TimerUDB:status_tc\[1142]
+Removing Rhs of wire Net_565[1149] = \Timer:TimerUDB:capture_out_reg_i\[1148]
 Removing Lhs of wire \Timer:TimerUDB:capt_fifo_load_int\[1150] = \Timer:TimerUDB:capt_fifo_load\[1138]
 Removing Lhs of wire \Timer:TimerUDB:status_6\[1153] = zero[2]
 Removing Lhs of wire \Timer:TimerUDB:status_5\[1154] = zero[2]
@@ -813,43 +814,43 @@ Removing Rhs of wire Net_519[1344] = \muxSel:control_out_0\[1347]
 Removing Rhs of wire Net_519[1344] = \muxSel:control_0\[1370]
 Removing Lhs of wire \muxSel:clk\[1345] = zero[2]
 Removing Lhs of wire \muxSel:rst\[1346] = zero[2]
-Removing Lhs of wire \Counter:CounterUDB:prevCapture\\D\[1371] = zero[2]
-Removing Lhs of wire \Counter:CounterUDB:overflow_reg_i\\D\[1372] = \Counter:CounterUDB:overflow\[84]
-Removing Lhs of wire \Counter:CounterUDB:underflow_reg_i\\D\[1373] = \Counter:CounterUDB:underflow\[87]
-Removing Lhs of wire \Counter:CounterUDB:tc_reg_i\\D\[1374] = \Counter:CounterUDB:reload_tc\[66]
-Removing Lhs of wire \Counter:CounterUDB:prevCompare\\D\[1375] = \Counter:CounterUDB:cmp_out_i\[92]
-Removing Lhs of wire \Counter:CounterUDB:cmp_out_reg_i\\D\[1376] = \Counter:CounterUDB:cmp_out_i\[92]
-Removing Lhs of wire \Counter:CounterUDB:count_stored_i\\D\[1377] = Net_512[19]
-Removing Lhs of wire \PWM:PWMUDB:min_kill_reg\\D\[1378] = tmpOE__ref_net_0[1]
-Removing Lhs of wire \PWM:PWMUDB:prevCapture\\D\[1379] = zero[2]
-Removing Lhs of wire \PWM:PWMUDB:trig_last\\D\[1380] = zero[2]
-Removing Lhs of wire \PWM:PWMUDB:ltch_kill_reg\\D\[1383] = tmpOE__ref_net_0[1]
-Removing Lhs of wire \PWM:PWMUDB:prevCompare1\\D\[1386] = \PWM:PWMUDB:cmp1\[251]
-Removing Lhs of wire \PWM:PWMUDB:cmp1_status_reg\\D\[1387] = \PWM:PWMUDB:cmp1_status\[252]
-Removing Lhs of wire \PWM:PWMUDB:cmp2_status_reg\\D\[1388] = zero[2]
-Removing Lhs of wire \PWM:PWMUDB:pwm_i_reg\\D\[1390] = \PWM:PWMUDB:pwm_i\[351]
-Removing Lhs of wire \PWM:PWMUDB:pwm1_i_reg\\D\[1391] = zero[2]
-Removing Lhs of wire \PWM:PWMUDB:pwm2_i_reg\\D\[1392] = zero[2]
-Removing Lhs of wire \PWM:PWMUDB:tc_i_reg\\D\[1393] = \PWM:PWMUDB:status_2\[246]
-Removing Lhs of wire \UART:BUART:reset_reg\\D\[1394] = zero[2]
-Removing Lhs of wire \UART:BUART:rx_bitclk\\D\[1409] = \UART:BUART:rx_bitclk_pre\[702]
-Removing Lhs of wire \UART:BUART:rx_parity_error_pre\\D\[1418] = \UART:BUART:rx_parity_error_pre\[779]
-Removing Lhs of wire \UART:BUART:rx_break_status\\D\[1419] = zero[2]
-Removing Lhs of wire \freqcounter:CounterUDB:prevCapture\\D\[1423] = zero[2]
-Removing Lhs of wire \freqcounter:CounterUDB:overflow_reg_i\\D\[1424] = \freqcounter:CounterUDB:overflow\[917]
-Removing Lhs of wire \freqcounter:CounterUDB:underflow_reg_i\\D\[1425] = \freqcounter:CounterUDB:underflow\[920]
-Removing Lhs of wire \freqcounter:CounterUDB:tc_reg_i\\D\[1426] = \freqcounter:CounterUDB:reload_tc\[899]
-Removing Lhs of wire \freqcounter:CounterUDB:prevCompare\\D\[1427] = \freqcounter:CounterUDB:cmp_out_i\[925]
-Removing Lhs of wire \freqcounter:CounterUDB:cmp_out_reg_i\\D\[1428] = \freqcounter:CounterUDB:cmp_out_i\[925]
-Removing Lhs of wire \freqcounter:CounterUDB:count_stored_i\\D\[1429] = Net_520[180]
-Removing Lhs of wire cydff_1D[1430] = Net_557[29]
-Removing Lhs of wire \Timer:TimerUDB:capture_last\\D\[1431] = zero[2]
-Removing Lhs of wire \Timer:TimerUDB:tc_reg_i\\D\[1432] = \Timer:TimerUDB:status_tc\[1142]
-Removing Lhs of wire \Timer:TimerUDB:hwEnable_reg\\D\[1433] = \Timer:TimerUDB:run_mode\[1140]
-Removing Lhs of wire \Timer:TimerUDB:capture_out_reg_i\\D\[1434] = \Timer:TimerUDB:capt_fifo_load\[1138]
+Removing Lhs of wire \Counter:CounterUDB:prevCapture\\D\[1372] = zero[2]
+Removing Lhs of wire \Counter:CounterUDB:overflow_reg_i\\D\[1373] = \Counter:CounterUDB:overflow\[84]
+Removing Lhs of wire \Counter:CounterUDB:underflow_reg_i\\D\[1374] = \Counter:CounterUDB:underflow\[87]
+Removing Lhs of wire \Counter:CounterUDB:tc_reg_i\\D\[1375] = \Counter:CounterUDB:reload_tc\[66]
+Removing Lhs of wire \Counter:CounterUDB:prevCompare\\D\[1376] = \Counter:CounterUDB:cmp_out_i\[92]
+Removing Lhs of wire \Counter:CounterUDB:cmp_out_reg_i\\D\[1377] = \Counter:CounterUDB:cmp_out_i\[92]
+Removing Lhs of wire \Counter:CounterUDB:count_stored_i\\D\[1378] = Net_512[19]
+Removing Lhs of wire \PWM:PWMUDB:min_kill_reg\\D\[1379] = tmpOE__ref_net_0[1]
+Removing Lhs of wire \PWM:PWMUDB:prevCapture\\D\[1380] = zero[2]
+Removing Lhs of wire \PWM:PWMUDB:trig_last\\D\[1381] = zero[2]
+Removing Lhs of wire \PWM:PWMUDB:ltch_kill_reg\\D\[1384] = tmpOE__ref_net_0[1]
+Removing Lhs of wire \PWM:PWMUDB:prevCompare1\\D\[1387] = \PWM:PWMUDB:cmp1\[251]
+Removing Lhs of wire \PWM:PWMUDB:cmp1_status_reg\\D\[1388] = \PWM:PWMUDB:cmp1_status\[252]
+Removing Lhs of wire \PWM:PWMUDB:cmp2_status_reg\\D\[1389] = zero[2]
+Removing Lhs of wire \PWM:PWMUDB:pwm_i_reg\\D\[1391] = \PWM:PWMUDB:pwm_i\[351]
+Removing Lhs of wire \PWM:PWMUDB:pwm1_i_reg\\D\[1392] = zero[2]
+Removing Lhs of wire \PWM:PWMUDB:pwm2_i_reg\\D\[1393] = zero[2]
+Removing Lhs of wire \PWM:PWMUDB:tc_i_reg\\D\[1394] = \PWM:PWMUDB:status_2\[246]
+Removing Lhs of wire \UART:BUART:reset_reg\\D\[1395] = zero[2]
+Removing Lhs of wire \UART:BUART:rx_bitclk\\D\[1410] = \UART:BUART:rx_bitclk_pre\[702]
+Removing Lhs of wire \UART:BUART:rx_parity_error_pre\\D\[1419] = \UART:BUART:rx_parity_error_pre\[779]
+Removing Lhs of wire \UART:BUART:rx_break_status\\D\[1420] = zero[2]
+Removing Lhs of wire \freqcounter:CounterUDB:prevCapture\\D\[1424] = zero[2]
+Removing Lhs of wire \freqcounter:CounterUDB:overflow_reg_i\\D\[1425] = \freqcounter:CounterUDB:overflow\[917]
+Removing Lhs of wire \freqcounter:CounterUDB:underflow_reg_i\\D\[1426] = \freqcounter:CounterUDB:underflow\[920]
+Removing Lhs of wire \freqcounter:CounterUDB:tc_reg_i\\D\[1427] = \freqcounter:CounterUDB:reload_tc\[899]
+Removing Lhs of wire \freqcounter:CounterUDB:prevCompare\\D\[1428] = \freqcounter:CounterUDB:cmp_out_i\[925]
+Removing Lhs of wire \freqcounter:CounterUDB:cmp_out_reg_i\\D\[1429] = \freqcounter:CounterUDB:cmp_out_i\[925]
+Removing Lhs of wire \freqcounter:CounterUDB:count_stored_i\\D\[1430] = Net_520[180]
+Removing Lhs of wire cydff_1D[1431] = Net_557[29]
+Removing Lhs of wire \Timer:TimerUDB:capture_last\\D\[1432] = Net_520[180]
+Removing Lhs of wire \Timer:TimerUDB:tc_reg_i\\D\[1433] = \Timer:TimerUDB:status_tc\[1142]
+Removing Lhs of wire \Timer:TimerUDB:hwEnable_reg\\D\[1434] = \Timer:TimerUDB:run_mode\[1140]
+Removing Lhs of wire \Timer:TimerUDB:capture_out_reg_i\\D\[1435] = \Timer:TimerUDB:capt_fifo_load\[1138]
 
 ------------------------------------------------------
-Aliased 0 equations, 269 wires.
+Aliased 0 equations, 271 wires.
 ------------------------------------------------------
 
 ----------------------------------------------------------
@@ -882,7 +883,7 @@ Net_546 <= (not Net_557);
 Note:  Expanding virtual equation for '\Counter:CounterUDB:cmp_out_i\' (cost = 1):
 \Counter:CounterUDB:cmp_out_i\ <= ((not \Counter:CounterUDB:cmp_less\ and not \Counter:CounterUDB:cmp_equal\));
 
-Note:  Expanding virtual equation for 'Net_520' (cost = 2):
+Note:  Expanding virtual equation for 'Net_520' (cost = 4):
 Net_520 <= ((not Net_519 and Net_512)
 	OR (Net_505 and Net_519));
 
@@ -994,8 +995,9 @@ Note:  Expanding virtual equation for '\freqcounter:CounterUDB:overflow\' (cost 
 Note:  Expanding virtual equation for '\freqcounter:CounterUDB:underflow\' (cost = 0):
 \freqcounter:CounterUDB:underflow\ <=  ('0') ;
 
-Note:  Expanding virtual equation for '\Timer:TimerUDB:fifo_load_polarized\' (cost = 0):
-\Timer:TimerUDB:fifo_load_polarized\ <=  ('0') ;
+Note:  Expanding virtual equation for '\Timer:TimerUDB:fifo_load_polarized\' (cost = 2):
+\Timer:TimerUDB:fifo_load_polarized\ <= ((not \Timer:TimerUDB:capture_last\ and not Net_519 and Net_512)
+	OR (not \Timer:TimerUDB:capture_last\ and Net_505 and Net_519));
 
 Note:  Expanding virtual equation for '\Timer:TimerUDB:run_mode\' (cost = 2):
 \Timer:TimerUDB:run_mode\ <= ((not Net_557 and \Timer:TimerUDB:control_7\));
@@ -1032,7 +1034,7 @@ Note:  Expanding virtual equation for '\UART:BUART:sRX:s23Poll:MODULE_2:g2:a0:s_
 Note:  Expanding virtual equation for '\freqcounter:CounterUDB:reload_tc\' (cost = 0):
 \freqcounter:CounterUDB:reload_tc\ <= (\freqcounter:CounterUDB:per_equal\);
 
-Note:  Expanding virtual equation for '\Timer:TimerUDB:timer_enable\' (cost = 1):
+Note:  Expanding virtual equation for '\Timer:TimerUDB:timer_enable\' (cost = 3):
 \Timer:TimerUDB:timer_enable\ <= ((not Net_557 and \Timer:TimerUDB:control_7\));
 
 
@@ -1135,7 +1137,6 @@ Aliasing \UART:BUART:rx_status_6\ to zero
 Aliasing \freqcounter:CounterUDB:hwCapture\ to zero
 Aliasing \freqcounter:CounterUDB:status_3\ to zero
 Aliasing \freqcounter:CounterUDB:underflow\ to zero
-Aliasing \Timer:TimerUDB:capt_fifo_load\ to zero
 Aliasing \Timer:TimerUDB:trig_reg\ to \Timer:TimerUDB:run_mode\
 Aliasing \PWM:PWMUDB:final_kill_reg\\D\ to zero
 Aliasing \UART:BUART:rx_markspace_status\\D\ to zero
@@ -1155,19 +1156,18 @@ Removing Lhs of wire \freqcounter:CounterUDB:hwCapture\[897] = zero[2]
 Removing Rhs of wire \freqcounter:CounterUDB:reload\[898] = \freqcounter:CounterUDB:per_equal\[919]
 Removing Lhs of wire \freqcounter:CounterUDB:status_3\[908] = zero[2]
 Removing Lhs of wire \freqcounter:CounterUDB:underflow\[920] = zero[2]
-Removing Lhs of wire \Timer:TimerUDB:capt_fifo_load\[1138] = zero[2]
 Removing Lhs of wire \Timer:TimerUDB:trig_reg\[1152] = \Timer:TimerUDB:run_mode\[1140]
-Removing Lhs of wire \PWM:PWMUDB:runmode_enable\\D\[1381] = \PWM:PWMUDB:control_7\[191]
-Removing Lhs of wire \PWM:PWMUDB:final_kill_reg\\D\[1389] = zero[2]
-Removing Lhs of wire \UART:BUART:tx_ctrl_mark_last\\D\[1401] = \UART:BUART:tx_ctrl_mark_last\[657]
-Removing Lhs of wire \UART:BUART:rx_markspace_status\\D\[1413] = zero[2]
-Removing Lhs of wire \UART:BUART:rx_parity_error_status\\D\[1414] = zero[2]
-Removing Lhs of wire \UART:BUART:rx_addr_match_status\\D\[1416] = zero[2]
-Removing Lhs of wire \UART:BUART:rx_markspace_pre\\D\[1417] = \UART:BUART:rx_markspace_pre\[778]
-Removing Lhs of wire \UART:BUART:rx_parity_bit\\D\[1422] = \UART:BUART:rx_parity_bit\[784]
+Removing Lhs of wire \PWM:PWMUDB:runmode_enable\\D\[1382] = \PWM:PWMUDB:control_7\[191]
+Removing Lhs of wire \PWM:PWMUDB:final_kill_reg\\D\[1390] = zero[2]
+Removing Lhs of wire \UART:BUART:tx_ctrl_mark_last\\D\[1402] = \UART:BUART:tx_ctrl_mark_last\[657]
+Removing Lhs of wire \UART:BUART:rx_markspace_status\\D\[1414] = zero[2]
+Removing Lhs of wire \UART:BUART:rx_parity_error_status\\D\[1415] = zero[2]
+Removing Lhs of wire \UART:BUART:rx_addr_match_status\\D\[1417] = zero[2]
+Removing Lhs of wire \UART:BUART:rx_markspace_pre\\D\[1418] = \UART:BUART:rx_markspace_pre\[778]
+Removing Lhs of wire \UART:BUART:rx_parity_bit\\D\[1423] = \UART:BUART:rx_parity_bit\[784]
 
 ------------------------------------------------------
-Aliased 0 equations, 24 wires.
+Aliased 0 equations, 23 wires.
 ------------------------------------------------------
 
 ----------------------------------------------------------
@@ -1203,14 +1203,14 @@ CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\wa
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\warp\bin\warp.exe
 Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\Trigger.cyprj -dcpsoc3 Trigger.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 0s.892ms
+Warp synthesis phase: Elapsed time ==> 0s.918ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.4.0.80, Family: PSoC3, Started at: Wednesday, 22 July 2026 18:47:40
+cyp3fit: V4.4.0.80, Family: PSoC3, Started at: Thursday, 23 July 2026 16:22:06
 Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\Trigger.cyprj -d CY8C5888LTI-LP097 Trigger.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.010ms
+Design parsing phase: Elapsed time ==> 0s.009ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech Mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -1232,8 +1232,6 @@ Design parsing phase: Elapsed time ==> 0s.010ms
     Converted constant MacroCell: \UART:BUART:rx_break_status\ from registered to combinatorial
     Converted constant MacroCell: \freqcounter:CounterUDB:prevCapture\ from registered to combinatorial
     Converted constant MacroCell: \freqcounter:CounterUDB:underflow_reg_i\ from registered to combinatorial
-    Converted constant MacroCell: \Timer:TimerUDB:capture_last\ from registered to combinatorial
-    Converted constant MacroCell: \Timer:TimerUDB:capture_out_reg_i\ from registered to combinatorial
 Assigning clock timer_clock to clock BUS_CLK because it is a pass-through
 <CYPRESSTAG name="Global Clock Selection" icon="FILE_RPT_TECHM">
     Digital Clock 0: Automatic-assigning  clock 'Clock_1'. Fanout=4, Signal=Net_149
@@ -1287,7 +1285,7 @@ Removing duplicate macrocells
               !\Counter:CounterUDB:cmp_less\ * 
               !\Counter:CounterUDB:cmp_equal\
         );
-        Output = Net_505 (fanout=3)
+        Output = Net_505 (fanout=6)
 
 End removing duplicate macrocells: used 1 pass
 </CYPRESSTAG>
@@ -1863,6 +1861,20 @@ Design Equations
         );
         Output = \freqcounter:CounterUDB:count_enable\ (fanout=4)
 
+    MacroCell: Name=\Timer:TimerUDB:capt_fifo_load\, Mode=(Combinatorial)
+        Total # of inputs        : 6
+        Total # of product terms : 2
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              Net_512 * !Net_557 * \Timer:TimerUDB:control_7\ * 
+              !\Timer:TimerUDB:capture_last\ * !Net_519
+            + !Net_557 * \Counter:CounterUDB:prevCompare\ * 
+              \Timer:TimerUDB:control_7\ * !\Timer:TimerUDB:capture_last\ * 
+              Net_519
+        );
+        Output = \Timer:TimerUDB:capt_fifo_load\ (fanout=5)
+
     MacroCell: Name=\Timer:TimerUDB:run_mode\, Mode=(Combinatorial)
         Total # of inputs        : 2
         Total # of product terms : 1
@@ -1928,7 +1940,7 @@ Design Equations
               !\Counter:CounterUDB:cmp_less\ * 
               !\Counter:CounterUDB:cmp_equal\
         );
-        Output = \Counter:CounterUDB:prevCompare\ (fanout=4)
+        Output = \Counter:CounterUDB:prevCompare\ (fanout=7)
 
     MacroCell: Name=\Counter:CounterUDB:count_stored_i\, Mode=(D-Register)
         Total # of inputs        : 1
@@ -2305,6 +2317,35 @@ Design Equations
               Net_557
         );
         Output = Net_553 (fanout=2)
+
+    MacroCell: Name=\Timer:TimerUDB:capture_last\, Mode=(D-Register)
+        Total # of inputs        : 3
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (ClockBlock_BUS_CLK) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              Net_512 * !Net_519
+            + \Counter:CounterUDB:prevCompare\ * Net_519
+        );
+        Output = \Timer:TimerUDB:capture_last\ (fanout=2)
+
+    MacroCell: Name=Net_565, Mode=(D-Register)
+        Total # of inputs        : 6
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (ClockBlock_BUS_CLK) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              Net_512 * !Net_557 * \Timer:TimerUDB:control_7\ * 
+              !\Timer:TimerUDB:capture_last\ * !Net_519
+            + !Net_557 * \Counter:CounterUDB:prevCompare\ * 
+              \Timer:TimerUDB:control_7\ * !\Timer:TimerUDB:capture_last\ * 
+              Net_519
+        );
+        Output = Net_565 (fanout=1)
     </CYPRESSTAG>
     <CYPRESSTAG name="Datapath listing">
 
@@ -2719,6 +2760,7 @@ Design Equations
             clock => ClockBlock_BUS_CLK ,
             cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
             cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
+            f0_load => \Timer:TimerUDB:capt_fifo_load\ ,
             chain_out => \Timer:TimerUDB:sT32:timerdp:carry0\ );
         Properties:
         {
@@ -2753,6 +2795,7 @@ Design Equations
             clock => ClockBlock_BUS_CLK ,
             cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
             cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
+            f0_load => \Timer:TimerUDB:capt_fifo_load\ ,
             chain_in => \Timer:TimerUDB:sT32:timerdp:carry0\ ,
             chain_out => \Timer:TimerUDB:sT32:timerdp:carry1\ );
         Properties:
@@ -2789,6 +2832,7 @@ Design Equations
             clock => ClockBlock_BUS_CLK ,
             cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
             cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
+            f0_load => \Timer:TimerUDB:capt_fifo_load\ ,
             chain_in => \Timer:TimerUDB:sT32:timerdp:carry1\ ,
             chain_out => \Timer:TimerUDB:sT32:timerdp:carry2\ );
         Properties:
@@ -2825,6 +2869,7 @@ Design Equations
             clock => ClockBlock_BUS_CLK ,
             cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
             cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
+            f0_load => \Timer:TimerUDB:capt_fifo_load\ ,
             z0_comb => \Timer:TimerUDB:per_zero\ ,
             f0_bus_stat_comb => \Timer:TimerUDB:status_3\ ,
             f0_blk_stat_comb => \Timer:TimerUDB:status_2\ ,
@@ -2951,6 +2996,7 @@ Design Equations
             clock => ClockBlock_BUS_CLK ,
             status_3 => \Timer:TimerUDB:status_3\ ,
             status_2 => \Timer:TimerUDB:status_2\ ,
+            status_1 => \Timer:TimerUDB:capt_fifo_load\ ,
             status_0 => \Timer:TimerUDB:status_tc\ );
         Properties:
         {
@@ -3078,6 +3124,15 @@ Design Equations
             int_type = "00"
             is_nmi = 0
         }
+
+    interrupt: Name =isr_timeStamp
+        PORT MAP (
+            interrupt => Net_565 );
+        Properties:
+        {
+            int_type = "10"
+            is_nmi = 0
+        }
     </CYPRESSTAG>
 </CYPRESSTAG>
 <CYPRESSTAG name="Technology mapping summary" expanded>
@@ -3092,7 +3147,7 @@ Digital Clocks                :    3 :    5 :    8 : 37.50 %
 Analog Clocks                 :    0 :    4 :    4 :  0.00 %
 CapSense Buffers              :    0 :    2 :    2 :  0.00 %
 Digital Filter Block          :    0 :    1 :    1 :  0.00 %
-Interrupts                    :    1 :   31 :   32 :  3.13 %
+Interrupts                    :    2 :   30 :   32 :  6.25 %
 IO                            :   10 :   38 :   48 : 20.83 %
 Segment LCD                   :    0 :    1 :    1 :  0.00 %
 CAN 2.0b                      :    0 :    1 :    1 :  0.00 %
@@ -3101,9 +3156,9 @@ USB                           :    0 :    1 :    1 :  0.00 %
 DMA Channels                  :    0 :   24 :   24 :  0.00 %
 Timer                         :    0 :    4 :    4 :  0.00 %
 UDB                           :      :      :      :        
-  Macrocells                  :   46 :  146 :  192 : 23.96 %
-  Unique P-terms              :   66 :  318 :  384 : 17.19 %
-  Total P-terms               :   77 :      :      :        
+  Macrocells                  :   49 :  143 :  192 : 25.52 %
+  Unique P-terms              :   68 :  316 :  384 : 17.71 %
+  Total P-terms               :   83 :      :      :        
   Datapath Cells              :   15 :    9 :   24 : 62.50 %
   Status Cells                :    7 :   17 :   24 : 29.17 %
     StatusI Registers         :    6 :      :      :        
@@ -3120,8 +3175,8 @@ Analog (SC/CT) Blocks         :    0 :    4 :    4 :  0.00 %
 DAC                           :      :      :      :        
   VIDAC                       :    0 :    4 :    4 :  0.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.059ms
-Tech Mapping phase: Elapsed time ==> 0s.093ms
+Technology Mapping: Elapsed time ==> 0s.065ms
+Tech Mapping phase: Elapsed time ==> 0s.097ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 Initial Analog Placement Results:
@@ -3145,7 +3200,7 @@ IO_6@[IOP=(3)][IoId=(6)] : ref(0) (fixed)
 IO_2@[IOP=(2)][IoId=(2)] : sw(0) (fixed)
 Comparator[2]@[FFB(Comparator,2)] : \Comp:ctComp\
 
-Analog Placement phase: Elapsed time ==> 0s.250ms
+Analog Placement phase: Elapsed time ==> 0s.246ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 Analog Routing phase: Elapsed time ==> 0s.000ms
@@ -3195,11 +3250,11 @@ Dump of CyP35AnalogRoutingResultsDB
 IsVddaHalfUsedForComp = False
 IsVddaHalfUsedForSar0 = False
 IsVddaHalfUsedForSar1 = False
-Analog Code Generation phase: Elapsed time ==> 0s.098ms
+Analog Code Generation phase: Elapsed time ==> 0s.089ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
-I2076: Total run-time: 0.5 sec.
+I2076: Total run-time: 0.6 sec.
 
 </CYPRESSTAG>
 <CYPRESSTAG name="PLD Packing">
@@ -3210,27 +3265,27 @@ PLD Packing Summary
 ------------------------------------------------------------
             Resource Type : Used : Free :  Max :  % Used
     ====================================================
-                     PLDs :   20 :   28 :   48 :  41.67%
+                     PLDs :   23 :   25 :   48 :  47.92%
 
 <CYPRESSTAG name="PLD Statistics">
 
         PLD Resource Type :     Average/LAB
     =======================================
-                   Inputs :            5.05
-                   Pterms :            3.65
-               Macrocells :            2.30
+                   Inputs :            4.78
+                   Pterms :            3.35
+               Macrocells :            2.13
 </CYPRESSTAG>
 <CYPRESSTAG name="Packed PLD Contents">
 Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
 </CYPRESSTAG>
-PLD Packing: Elapsed time ==> 0s.002ms
+PLD Packing: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Partitioning">
 <CYPRESSTAG name="Initial Partitioning Summary">
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.023ms
+Partitioning: Elapsed time ==> 0s.027ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -3240,7 +3295,7 @@ Final Placement Summary
 
        Resource Type :      Count : Avg Inputs : Avg Outputs
     ========================================================
-                 UDB :         16 :       4.50 :       2.88
+                 UDB :         16 :       4.88 :       3.06
 <CYPRESSTAG name="Final Placement Details">
 <CYPRESSTAG name="Component Details">
 
@@ -3248,7 +3303,7 @@ Final Placement Summary
 Component Placement Details
 ------------------------------------------------------------
 UDB [UDB=(0,0)] contents:
-LAB@[UDB=(0,0)][LB=0] #macrocells=4, #inputs=11, #pterms=8
+LAB@[UDB=(0,0)][LB=0] #macrocells=4, #inputs=11, #pterms=7
 {
     [McSlotId=0]:     MacroCell: Name=\UART:BUART:rx_state_0\, Mode=(T-Register) @ [UDB=(0,0)][LB=0][MC=0]
         Total # of inputs        : 11
@@ -3277,21 +3332,7 @@ LAB@[UDB=(0,0)][LB=0] #macrocells=4, #inputs=11, #pterms=8
         {
         }
 
-    [McSlotId=1]:     MacroCell: Name=\UART:BUART:rx_postpoll\, Mode=(Combinatorial) @ [UDB=(0,0)][LB=0][MC=1]
-        Total # of inputs        : 3
-        Total # of product terms : 2
-            Clock Enable: True
-        Main Equation            : 2 pterms
-        (
-              \UART:BUART:pollcount_1\
-            + Net_359 * \UART:BUART:pollcount_0\
-        );
-        Output = \UART:BUART:rx_postpoll\ (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=2]:     MacroCell: Name=\UART:BUART:rx_state_3\, Mode=(T-Register) @ [UDB=(0,0)][LB=0][MC=2]
+    [McSlotId=1]:     MacroCell: Name=\UART:BUART:rx_load_fifo\, Mode=(D-Register) @ [UDB=(0,0)][LB=0][MC=1]
         Total # of inputs        : 8
         Total # of product terms : 3
         List of special equations: 
@@ -3301,7 +3342,7 @@ LAB@[UDB=(0,0)][LB=0] #macrocells=4, #inputs=11, #pterms=8
         (
               !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
               \UART:BUART:rx_bitclk_enable\ * \UART:BUART:rx_state_3\ * 
-              \UART:BUART:rx_state_2\
+              !\UART:BUART:rx_state_2\
             + !\UART:BUART:tx_ctrl_mark_last\ * \UART:BUART:rx_state_0\ * 
               !\UART:BUART:rx_state_3\ * !\UART:BUART:rx_state_2\ * 
               !\UART:BUART:rx_count_6\ * !\UART:BUART:rx_count_5\
@@ -3309,28 +3350,49 @@ LAB@[UDB=(0,0)][LB=0] #macrocells=4, #inputs=11, #pterms=8
               !\UART:BUART:rx_state_3\ * !\UART:BUART:rx_state_2\ * 
               !\UART:BUART:rx_count_6\ * !\UART:BUART:rx_count_4\
         );
-        Output = \UART:BUART:rx_state_3\ (fanout=7)
+        Output = \UART:BUART:rx_load_fifo\ (fanout=2)
         Properties               : 
         {
         }
 
-    [McSlotId=3]:     MacroCell: Name=\UART:BUART:rx_last\, Mode=(D-Register) @ [UDB=(0,0)][LB=0][MC=3]
-        Total # of inputs        : 1
-        Total # of product terms : 1
+    [McSlotId=2]:     MacroCell: Name=\UART:BUART:rx_status_3\, Mode=(D-Register) @ [UDB=(0,0)][LB=0][MC=2]
+        Total # of inputs        : 8
+        Total # of product terms : 2
         List of special equations: 
             Clock  = (\UART:Net_9\) => Global
             Clock Enable: True
-        Main Equation            : 1 pterm
+        Main Equation            : 2 pterms
         (
-              Net_359
+              !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
+              \UART:BUART:rx_bitclk_enable\ * \UART:BUART:rx_state_3\ * 
+              \UART:BUART:rx_state_2\ * !\UART:BUART:pollcount_1\ * !Net_359
+            + !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
+              \UART:BUART:rx_bitclk_enable\ * \UART:BUART:rx_state_3\ * 
+              \UART:BUART:rx_state_2\ * !\UART:BUART:pollcount_1\ * 
+              !\UART:BUART:pollcount_0\
         );
-        Output = \UART:BUART:rx_last\ (fanout=1)
+        Output = \UART:BUART:rx_status_3\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]:     MacroCell: Name=\UART:BUART:tx_ctrl_mark_last\, Mode=(T-Register) @ [UDB=(0,0)][LB=0][MC=3]
+        Total # of inputs        : 0
+        Total # of product terms : 0
+        List of special equations: 
+            Clock  = (\UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 0 pterms
+        (
+            0
+        );
+        Output = \UART:BUART:tx_ctrl_mark_last\ (fanout=8)
         Properties               : 
         {
         }
 }
 
-LAB@[UDB=(0,0)][LB=1] #macrocells=3, #inputs=12, #pterms=8
+LAB@[UDB=(0,0)][LB=1] #macrocells=4, #inputs=10, #pterms=8
 {
     [McSlotId=0]:     MacroCell: Name=\UART:BUART:rx_state_2\, Mode=(T-Register) @ [UDB=(0,0)][LB=1][MC=0]
         Total # of inputs        : 10
@@ -3359,7 +3421,21 @@ LAB@[UDB=(0,0)][LB=1] #macrocells=3, #inputs=12, #pterms=8
         {
         }
 
-    [McSlotId=1]:     MacroCell: Name=\UART:BUART:rx_load_fifo\, Mode=(D-Register) @ [UDB=(0,0)][LB=1][MC=1]
+    [McSlotId=1]:     MacroCell: Name=\UART:BUART:rx_counter_load\, Mode=(Combinatorial) @ [UDB=(0,0)][LB=1][MC=1]
+        Total # of inputs        : 4
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
+              !\UART:BUART:rx_state_3\ * !\UART:BUART:rx_state_2\
+        );
+        Output = \UART:BUART:rx_counter_load\ (fanout=2)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]:     MacroCell: Name=\UART:BUART:rx_state_3\, Mode=(T-Register) @ [UDB=(0,0)][LB=1][MC=2]
         Total # of inputs        : 8
         Total # of product terms : 3
         List of special equations: 
@@ -3369,7 +3445,7 @@ LAB@[UDB=(0,0)][LB=1] #macrocells=3, #inputs=12, #pterms=8
         (
               !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
               \UART:BUART:rx_bitclk_enable\ * \UART:BUART:rx_state_3\ * 
-              !\UART:BUART:rx_state_2\
+              \UART:BUART:rx_state_2\
             + !\UART:BUART:tx_ctrl_mark_last\ * \UART:BUART:rx_state_0\ * 
               !\UART:BUART:rx_state_3\ * !\UART:BUART:rx_state_2\ * 
               !\UART:BUART:rx_count_6\ * !\UART:BUART:rx_count_5\
@@ -3377,33 +3453,26 @@ LAB@[UDB=(0,0)][LB=1] #macrocells=3, #inputs=12, #pterms=8
               !\UART:BUART:rx_state_3\ * !\UART:BUART:rx_state_2\ * 
               !\UART:BUART:rx_count_6\ * !\UART:BUART:rx_count_4\
         );
-        Output = \UART:BUART:rx_load_fifo\ (fanout=2)
+        Output = \UART:BUART:rx_state_3\ (fanout=7)
         Properties               : 
         {
         }
 
-    [McSlotId=2]:     MacroCell: Name=\UART:BUART:rx_status_3\, Mode=(D-Register) @ [UDB=(0,0)][LB=1][MC=2]
-        Total # of inputs        : 8
-        Total # of product terms : 2
+    [McSlotId=3]:     MacroCell: Name=\UART:BUART:rx_state_stop1_reg\, Mode=(D-Register) @ [UDB=(0,0)][LB=1][MC=3]
+        Total # of inputs        : 4
+        Total # of product terms : 1
         List of special equations: 
             Clock  = (\UART:Net_9\) => Global
             Clock Enable: True
-        Main Equation            : 2 pterms
-        (
+        Main Equation            : 1 pterm
+        !(
               !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
-              \UART:BUART:rx_bitclk_enable\ * \UART:BUART:rx_state_3\ * 
-              \UART:BUART:rx_state_2\ * !\UART:BUART:pollcount_1\ * !Net_359
-            + !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
-              \UART:BUART:rx_bitclk_enable\ * \UART:BUART:rx_state_3\ * 
-              \UART:BUART:rx_state_2\ * !\UART:BUART:pollcount_1\ * 
-              !\UART:BUART:pollcount_0\
+              \UART:BUART:rx_state_3\ * \UART:BUART:rx_state_2\
         );
-        Output = \UART:BUART:rx_status_3\ (fanout=1)
+        Output = \UART:BUART:rx_state_stop1_reg\ (fanout=1)
         Properties               : 
         {
         }
-
-    [McSlotId=3]: (empty)
 }
 
 datapathcell: Name =\UART:BUART:sRX:RxShifter:u0\
@@ -3467,7 +3536,7 @@ count7cell: Name =\UART:BUART:sRX:RxBitCounter\
     Clock Enable: True
 
 UDB [UDB=(0,1)] contents:
-LAB@[UDB=(0,1)][LB=0] #macrocells=3, #inputs=10, #pterms=8
+LAB@[UDB=(0,1)][LB=0] #macrocells=4, #inputs=9, #pterms=8
 {
     [McSlotId=0]:     MacroCell: Name=\UART:BUART:tx_state_2\, Mode=(T-Register) @ [UDB=(0,1)][LB=0][MC=0]
         Total # of inputs        : 6
@@ -3507,28 +3576,44 @@ LAB@[UDB=(0,1)][LB=0] #macrocells=3, #inputs=10, #pterms=8
         {
         }
 
-    [McSlotId=2]:     MacroCell: Name=\UART:BUART:pollcount_0\, Mode=(D-Register) @ [UDB=(0,1)][LB=0][MC=2]
-        Total # of inputs        : 4
-        Total # of product terms : 2
+    [McSlotId=2]:     MacroCell: Name=\UART:BUART:rx_bitclk_enable\, Mode=(D-Register) @ [UDB=(0,1)][LB=0][MC=2]
+        Total # of inputs        : 3
+        Total # of product terms : 1
         List of special equations: 
             Clock  = (\UART:Net_9\) => Global
             Clock Enable: True
-        Main Equation            : 2 pterms
+        Main Equation            : 1 pterm
         (
-              !\UART:BUART:rx_count_2\ * !\UART:BUART:rx_count_1\ * !Net_359 * 
-              \UART:BUART:pollcount_0\
-            + !\UART:BUART:rx_count_2\ * !\UART:BUART:rx_count_1\ * Net_359 * 
-              !\UART:BUART:pollcount_0\
+              !\UART:BUART:rx_count_2\ * !\UART:BUART:rx_count_1\ * 
+              !\UART:BUART:rx_count_0\
         );
-        Output = \UART:BUART:pollcount_0\ (fanout=5)
+        Output = \UART:BUART:rx_bitclk_enable\ (fanout=6)
         Properties               : 
         {
         }
 
-    [McSlotId=3]: (empty)
+    [McSlotId=3]:     MacroCell: Name=\UART:BUART:tx_state_1\, Mode=(T-Register) @ [UDB=(0,1)][LB=0][MC=3]
+        Total # of inputs        : 6
+        Total # of product terms : 3
+        List of special equations: 
+            Clock  = (\UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 3 pterms
+        (
+              \UART:BUART:tx_state_1\ * \UART:BUART:tx_state_0\ * 
+              \UART:BUART:tx_bitclk_enable_pre\ * \UART:BUART:tx_state_2\
+            + \UART:BUART:tx_state_1\ * !\UART:BUART:tx_state_2\ * 
+              \UART:BUART:tx_counter_dp\ * \UART:BUART:tx_bitclk\
+            + \UART:BUART:tx_state_0\ * !\UART:BUART:tx_state_2\ * 
+              \UART:BUART:tx_bitclk\
+        );
+        Output = \UART:BUART:tx_state_1\ (fanout=8)
+        Properties               : 
+        {
+        }
 }
 
-LAB@[UDB=(0,1)][LB=1] #macrocells=4, #inputs=9, #pterms=6
+LAB@[UDB=(0,1)][LB=1] #macrocells=4, #inputs=5, #pterms=8
 {
     [McSlotId=0]:     MacroCell: Name=\UART:BUART:pollcount_1\, Mode=(D-Register) @ [UDB=(0,1)][LB=1][MC=0]
         Total # of inputs        : 5
@@ -3550,44 +3635,49 @@ LAB@[UDB=(0,1)][LB=1] #macrocells=4, #inputs=9, #pterms=6
         {
         }
 
-    [McSlotId=1]:     MacroCell: Name=\UART:BUART:rx_status_4\, Mode=(Combinatorial) @ [UDB=(0,1)][LB=1][MC=1]
-        Total # of inputs        : 2
-        Total # of product terms : 1
+    [McSlotId=1]:     MacroCell: Name=\UART:BUART:rx_postpoll\, Mode=(Combinatorial) @ [UDB=(0,1)][LB=1][MC=1]
+        Total # of inputs        : 3
+        Total # of product terms : 2
             Clock Enable: True
-        Main Equation            : 1 pterm
+        Main Equation            : 2 pterms
         (
-              \UART:BUART:rx_load_fifo\ * \UART:BUART:rx_fifofull\
+              \UART:BUART:pollcount_1\
+            + Net_359 * \UART:BUART:pollcount_0\
         );
-        Output = \UART:BUART:rx_status_4\ (fanout=1)
+        Output = \UART:BUART:rx_postpoll\ (fanout=1)
         Properties               : 
         {
         }
 
-    [McSlotId=2]:     MacroCell: Name=\UART:BUART:rx_bitclk_enable\, Mode=(D-Register) @ [UDB=(0,1)][LB=1][MC=2]
-        Total # of inputs        : 3
+    [McSlotId=2]:     MacroCell: Name=\UART:BUART:pollcount_0\, Mode=(D-Register) @ [UDB=(0,1)][LB=1][MC=2]
+        Total # of inputs        : 4
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (\UART:Net_9\) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              !\UART:BUART:rx_count_2\ * !\UART:BUART:rx_count_1\ * !Net_359 * 
+              \UART:BUART:pollcount_0\
+            + !\UART:BUART:rx_count_2\ * !\UART:BUART:rx_count_1\ * Net_359 * 
+              !\UART:BUART:pollcount_0\
+        );
+        Output = \UART:BUART:pollcount_0\ (fanout=5)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]:     MacroCell: Name=\UART:BUART:rx_last\, Mode=(D-Register) @ [UDB=(0,1)][LB=1][MC=3]
+        Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
             Clock  = (\UART:Net_9\) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
-              !\UART:BUART:rx_count_2\ * !\UART:BUART:rx_count_1\ * 
-              !\UART:BUART:rx_count_0\
+              Net_359
         );
-        Output = \UART:BUART:rx_bitclk_enable\ (fanout=6)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=3]:     MacroCell: Name=Net_354, Mode=(Combinatorial) @ [UDB=(0,1)][LB=1][MC=3]
-        Total # of inputs        : 1
-        Total # of product terms : 1
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              !\UART:BUART:txn\
-        );
-        Output = Net_354 (fanout=1)
+        Output = \UART:BUART:rx_last\ (fanout=1)
         Properties               : 
         {
         }
@@ -3627,100 +3717,306 @@ datapathcell: Name =\UART:BUART:sTX:sCLOCK:TxBitClkGen\
     Clock Enable: True
 
 UDB [UDB=(0,2)] is empty.
-UDB [UDB=(0,3)] is empty.
-UDB [UDB=(0,4)] contents:
-datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u1\
-    PORT MAP (
-        clock => ClockBlock_BUS_CLK ,
-        cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
-        cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
-        chain_in => \Timer:TimerUDB:sT32:timerdp:carry0\ ,
-        chain_out => \Timer:TimerUDB:sT32:timerdp:carry1\ );
-    Properties:
-    {
-        a0_init = "00000000"
-        a1_init = "00000000"
-        ce0_sync = 1
-        ce1_sync = 1
-        cl0_sync = 1
-        cl1_sync = 1
-        cmsb_sync = 1
-        co_msb_sync = 1
-        cy_dpconfig = "0000000001000000000000000100000001000000010000000000000010000000000000001000000000000000100000000000000010000000000000001000000011111111000000001111111111111111100000110000000000000001000000110000000000011000"
-        d0_init = "00000000"
-        d1_init = "00000000"
-        f0_blk_sync = 1
-        f0_bus_sync = 1
-        f1_blk_sync = 1
-        f1_bus_sync = 1
-        ff0_sync = 1
-        ff1_sync = 1
-        ov_msb_sync = 1
-        so_sync = 1
-        z0_sync = 1
-        z1_sync = 1
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-    Previous in chain : \Timer:TimerUDB:sT32:timerdp:u0\
-    Next in chain : \Timer:TimerUDB:sT32:timerdp:u2\
-
-UDB [UDB=(0,5)] contents:
-datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u2\
-    PORT MAP (
-        clock => ClockBlock_BUS_CLK ,
-        cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
-        cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
-        chain_in => \Timer:TimerUDB:sT32:timerdp:carry1\ ,
-        chain_out => \Timer:TimerUDB:sT32:timerdp:carry2\ );
-    Properties:
-    {
-        a0_init = "00000000"
-        a1_init = "00000000"
-        ce0_sync = 1
-        ce1_sync = 1
-        cl0_sync = 1
-        cl1_sync = 1
-        cmsb_sync = 1
-        co_msb_sync = 1
-        cy_dpconfig = "0000000001000000000000000100000001000000010000000000000010000000000000001000000000000000100000000000000010000000000000001000000011111111000000001111111111111111100000110000000000000001000000110000000000011000"
-        d0_init = "00000000"
-        d1_init = "00000000"
-        f0_blk_sync = 1
-        f0_bus_sync = 1
-        f1_blk_sync = 1
-        f1_bus_sync = 1
-        ff0_sync = 1
-        ff1_sync = 1
-        ov_msb_sync = 1
-        so_sync = 1
-        z0_sync = 1
-        z1_sync = 1
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-    Previous in chain : \Timer:TimerUDB:sT32:timerdp:u1\
-    Next in chain : \Timer:TimerUDB:sT32:timerdp:u3\
-
-UDB [UDB=(1,0)] contents:
-LAB@[UDB=(1,0)][LB=0] #macrocells=3, #inputs=6, #pterms=3
+UDB [UDB=(0,3)] contents:
+LAB@[UDB=(0,3)][LB=0] #macrocells=1, #inputs=2, #pterms=1
 {
-    [McSlotId=0]:     MacroCell: Name=\UART:BUART:rx_state_stop1_reg\, Mode=(D-Register) @ [UDB=(1,0)][LB=0][MC=0]
-        Total # of inputs        : 4
+    [McSlotId=0]: (empty)
+    [McSlotId=1]:     MacroCell: Name=\Timer:TimerUDB:run_mode\, Mode=(Combinatorial) @ [UDB=(0,3)][LB=0][MC=1]
+        Total # of inputs        : 2
         Total # of product terms : 1
-        List of special equations: 
-            Clock  = (\UART:Net_9\) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
-        !(
-              !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
-              \UART:BUART:rx_state_3\ * \UART:BUART:rx_state_2\
+        (
+              !Net_557 * \Timer:TimerUDB:control_7\
         );
-        Output = \UART:BUART:rx_state_stop1_reg\ (fanout=1)
+        Output = \Timer:TimerUDB:run_mode\ (fanout=4)
         Properties               : 
         {
         }
 
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+LAB@[UDB=(0,3)][LB=1] #macrocells=1, #inputs=6, #pterms=2
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]:     MacroCell: Name=Net_565, Mode=(D-Register) @ [UDB=(0,3)][LB=1][MC=1]
+        Total # of inputs        : 6
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (ClockBlock_BUS_CLK) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              Net_512 * !Net_557 * \Timer:TimerUDB:control_7\ * 
+              !\Timer:TimerUDB:capture_last\ * !Net_519
+            + !Net_557 * \Counter:CounterUDB:prevCompare\ * 
+              \Timer:TimerUDB:control_7\ * !\Timer:TimerUDB:capture_last\ * 
+              Net_519
+        );
+        Output = Net_565 (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u0\
+    PORT MAP (
+        clock => ClockBlock_BUS_CLK ,
+        cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
+        cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
+        f0_load => \Timer:TimerUDB:capt_fifo_load\ ,
+        chain_out => \Timer:TimerUDB:sT32:timerdp:carry0\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000001000000000000000100000001000000010000000000000010000000000000001000000000000000100000000000000010000000000000001000000011111111000000001111111111111111000000000000000000000001000000000000000000011000"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+    Next in chain : \Timer:TimerUDB:sT32:timerdp:u1\
+
+controlcell: Name =\Timer:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\
+    PORT MAP (
+        clock => ClockBlock_BUS_CLK ,
+        control_7 => \Timer:TimerUDB:control_7\ ,
+        control_6 => \Timer:TimerUDB:control_6\ ,
+        control_5 => \Timer:TimerUDB:control_5\ ,
+        control_4 => \Timer:TimerUDB:control_4\ ,
+        control_3 => \Timer:TimerUDB:control_3\ ,
+        control_2 => \Timer:TimerUDB:control_2\ ,
+        control_1 => \Timer:TimerUDB:control_1\ ,
+        control_0 => \Timer:TimerUDB:control_0\ );
+    Properties:
+    {
+        cy_ctrl_mode_0 = "11111111"
+        cy_ctrl_mode_1 = "00000000"
+        cy_ext_reset = 0
+        cy_force_order = 1
+        cy_init_value = "00000000"
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+UDB [UDB=(0,4)] contents:
+LAB@[UDB=(0,4)][LB=0] #macrocells=2, #inputs=6, #pterms=3
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]: (empty)
+    [McSlotId=2]:     MacroCell: Name=\Timer:TimerUDB:status_tc\, Mode=(Combinatorial) @ [UDB=(0,4)][LB=0][MC=2]
+        Total # of inputs        : 3
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !Net_557 * \Timer:TimerUDB:control_7\ * 
+              \Timer:TimerUDB:per_zero\
+        );
+        Output = \Timer:TimerUDB:status_tc\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]:     MacroCell: Name=\Timer:TimerUDB:capture_last\, Mode=(D-Register) @ [UDB=(0,4)][LB=0][MC=3]
+        Total # of inputs        : 3
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (ClockBlock_BUS_CLK) => Global
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              Net_512 * !Net_519
+            + \Counter:CounterUDB:prevCompare\ * Net_519
+        );
+        Output = \Timer:TimerUDB:capture_last\ (fanout=2)
+        Properties               : 
+        {
+        }
+}
+
+LAB@[UDB=(0,4)][LB=1] #macrocells=1, #inputs=6, #pterms=2
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]:     MacroCell: Name=\Timer:TimerUDB:capt_fifo_load\, Mode=(Combinatorial) @ [UDB=(0,4)][LB=1][MC=1]
+        Total # of inputs        : 6
+        Total # of product terms : 2
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              Net_512 * !Net_557 * \Timer:TimerUDB:control_7\ * 
+              !\Timer:TimerUDB:capture_last\ * !Net_519
+            + !Net_557 * \Counter:CounterUDB:prevCompare\ * 
+              \Timer:TimerUDB:control_7\ * !\Timer:TimerUDB:capture_last\ * 
+              Net_519
+        );
+        Output = \Timer:TimerUDB:capt_fifo_load\ (fanout=5)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u3\
+    PORT MAP (
+        clock => ClockBlock_BUS_CLK ,
+        cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
+        cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
+        f0_load => \Timer:TimerUDB:capt_fifo_load\ ,
+        z0_comb => \Timer:TimerUDB:per_zero\ ,
+        f0_bus_stat_comb => \Timer:TimerUDB:status_3\ ,
+        f0_blk_stat_comb => \Timer:TimerUDB:status_2\ ,
+        chain_in => \Timer:TimerUDB:sT32:timerdp:carry2\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000001000000000000000100000001000000010000000000000010000000000000001000000000000000100000000000000010000000000000001000000011111111000000001111111111111111100000110000000000000001000000110000000000011000"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+    Previous in chain : \Timer:TimerUDB:sT32:timerdp:u2\
+
+statusicell: Name =\Timer:TimerUDB:rstSts:stsreg\
+    PORT MAP (
+        clock => ClockBlock_BUS_CLK ,
+        status_3 => \Timer:TimerUDB:status_3\ ,
+        status_2 => \Timer:TimerUDB:status_2\ ,
+        status_1 => \Timer:TimerUDB:capt_fifo_load\ ,
+        status_0 => \Timer:TimerUDB:status_tc\ );
+    Properties:
+    {
+        cy_force_order = 1
+        cy_int_mask = "1111111"
+        cy_md_select = "0000011"
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+UDB [UDB=(0,5)] contents:
+LAB@[UDB=(0,5)][LB=0] #macrocells=1, #inputs=3, #pterms=1
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]:     MacroCell: Name=\Counter:CounterUDB:count_enable\, Mode=(Combinatorial) @ [UDB=(0,5)][LB=0][MC=1]
+        Total # of inputs        : 3
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              Net_512 * !Net_557 * !\Counter:CounterUDB:count_stored_i\
+        );
+        Output = \Counter:CounterUDB:count_enable\ (fanout=2)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+LAB@[UDB=(0,5)][LB=1] #macrocells=1, #inputs=1, #pterms=1
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]: (empty)
+    [McSlotId=2]:     MacroCell: Name=\Counter:CounterUDB:count_stored_i\, Mode=(D-Register) @ [UDB=(0,5)][LB=1][MC=2]
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (Net_149) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              Net_512
+        );
+        Output = \Counter:CounterUDB:count_stored_i\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=3]: (empty)
+}
+
+datapathcell: Name =\Counter:CounterUDB:sC16:counterdp:u0\
+    PORT MAP (
+        clock => Net_149 ,
+        cs_addr_2 => __ONE__ ,
+        cs_addr_1 => \Counter:CounterUDB:count_enable\ ,
+        cs_addr_0 => \Counter:CounterUDB:reload\ ,
+        chain_out => \Counter:CounterUDB:sC16:counterdp:carry\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000001000000000000001000000001000000010000000000000010000000000000000100000010101000010100000010000001000000101010000101000011111111000000001111111111111111101000000000000000000001000000000000000000011000"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+    Next in chain : \Counter:CounterUDB:sC16:counterdp:u1\
+
+UDB [UDB=(1,0)] contents:
+LAB@[UDB=(1,0)][LB=0] #macrocells=2, #inputs=4, #pterms=2
+{
+    [McSlotId=0]: (empty)
     [McSlotId=1]:     MacroCell: Name=\UART:BUART:rx_status_5\, Mode=(Combinatorial) @ [UDB=(1,0)][LB=0][MC=1]
         Total # of inputs        : 2
         Total # of product terms : 1
@@ -3734,38 +4030,15 @@ LAB@[UDB=(1,0)][LB=0] #macrocells=3, #inputs=6, #pterms=3
         {
         }
 
-    [McSlotId=2]:     MacroCell: Name=\UART:BUART:rx_counter_load\, Mode=(Combinatorial) @ [UDB=(1,0)][LB=0][MC=2]
-        Total # of inputs        : 4
+    [McSlotId=2]:     MacroCell: Name=\UART:BUART:rx_status_4\, Mode=(Combinatorial) @ [UDB=(1,0)][LB=0][MC=2]
+        Total # of inputs        : 2
         Total # of product terms : 1
             Clock Enable: True
         Main Equation            : 1 pterm
         (
-              !\UART:BUART:tx_ctrl_mark_last\ * !\UART:BUART:rx_state_0\ * 
-              !\UART:BUART:rx_state_3\ * !\UART:BUART:rx_state_2\
+              \UART:BUART:rx_load_fifo\ * \UART:BUART:rx_fifofull\
         );
-        Output = \UART:BUART:rx_counter_load\ (fanout=2)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=3]: (empty)
-}
-
-LAB@[UDB=(1,0)][LB=1] #macrocells=1, #inputs=0, #pterms=0
-{
-    [McSlotId=0]: (empty)
-    [McSlotId=1]: (empty)
-    [McSlotId=2]:     MacroCell: Name=\UART:BUART:tx_ctrl_mark_last\, Mode=(T-Register) @ [UDB=(1,0)][LB=1][MC=2]
-        Total # of inputs        : 0
-        Total # of product terms : 0
-        List of special equations: 
-            Clock  = (\UART:Net_9\) => Global
-            Clock Enable: True
-        Main Equation            : 0 pterms
-        (
-            0
-        );
-        Output = \UART:BUART:tx_ctrl_mark_last\ (fanout=8)
+        Output = \UART:BUART:rx_status_4\ (fanout=1)
         Properties               : 
         {
         }
@@ -3789,7 +4062,7 @@ statusicell: Name =\UART:BUART:sRX:RxSts\
     Clock Enable: True
 
 UDB [UDB=(1,1)] contents:
-LAB@[UDB=(1,1)][LB=0] #macrocells=2, #inputs=8, #pterms=8
+LAB@[UDB=(1,1)][LB=0] #macrocells=3, #inputs=8, #pterms=8
 {
     [McSlotId=0]:     MacroCell: Name=\UART:BUART:txn\, Mode=(D-Register) @ [UDB=(1,1)][LB=0][MC=0]
         Total # of inputs        : 7
@@ -3815,31 +4088,40 @@ LAB@[UDB=(1,1)][LB=0] #macrocells=2, #inputs=8, #pterms=8
         {
         }
 
-    [McSlotId=1]:     MacroCell: Name=\UART:BUART:tx_state_1\, Mode=(T-Register) @ [UDB=(1,1)][LB=0][MC=1]
-        Total # of inputs        : 6
-        Total # of product terms : 3
+    [McSlotId=1]:     MacroCell: Name=\UART:BUART:tx_bitclk\, Mode=(D-Register) @ [UDB=(1,1)][LB=0][MC=1]
+        Total # of inputs        : 4
+        Total # of product terms : 2
         List of special equations: 
             Clock  = (\UART:Net_9\) => Global
             Clock Enable: True
-        Main Equation            : 3 pterms
-        (
-              \UART:BUART:tx_state_1\ * \UART:BUART:tx_state_0\ * 
-              \UART:BUART:tx_bitclk_enable_pre\ * \UART:BUART:tx_state_2\
-            + \UART:BUART:tx_state_1\ * !\UART:BUART:tx_state_2\ * 
-              \UART:BUART:tx_counter_dp\ * \UART:BUART:tx_bitclk\
-            + \UART:BUART:tx_state_0\ * !\UART:BUART:tx_state_2\ * 
-              \UART:BUART:tx_bitclk\
+        Main Equation            : 2 pterms
+        !(
+              !\UART:BUART:tx_state_1\ * !\UART:BUART:tx_state_0\ * 
+              \UART:BUART:tx_state_2\
+            + !\UART:BUART:tx_bitclk_enable_pre\
         );
-        Output = \UART:BUART:tx_state_1\ (fanout=8)
+        Output = \UART:BUART:tx_bitclk\ (fanout=4)
         Properties               : 
         {
         }
 
-    [McSlotId=2]: (empty)
+    [McSlotId=2]:     MacroCell: Name=Net_354, Mode=(Combinatorial) @ [UDB=(1,1)][LB=0][MC=2]
+        Total # of inputs        : 1
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              !\UART:BUART:txn\
+        );
+        Output = Net_354 (fanout=1)
+        Properties               : 
+        {
+        }
+
     [McSlotId=3]: (empty)
 }
 
-LAB@[UDB=(1,1)][LB=1] #macrocells=4, #inputs=7, #pterms=8
+LAB@[UDB=(1,1)][LB=1] #macrocells=3, #inputs=7, #pterms=6
 {
     [McSlotId=0]:     MacroCell: Name=\UART:BUART:tx_state_0\, Mode=(T-Register) @ [UDB=(1,1)][LB=1][MC=0]
         Total # of inputs        : 6
@@ -3864,23 +4146,7 @@ LAB@[UDB=(1,1)][LB=1] #macrocells=4, #inputs=7, #pterms=8
         {
         }
 
-    [McSlotId=1]:     MacroCell: Name=\UART:BUART:tx_bitclk\, Mode=(D-Register) @ [UDB=(1,1)][LB=1][MC=1]
-        Total # of inputs        : 4
-        Total # of product terms : 2
-        List of special equations: 
-            Clock  = (\UART:Net_9\) => Global
-            Clock Enable: True
-        Main Equation            : 2 pterms
-        !(
-              !\UART:BUART:tx_state_1\ * !\UART:BUART:tx_state_0\ * 
-              \UART:BUART:tx_state_2\
-            + !\UART:BUART:tx_bitclk_enable_pre\
-        );
-        Output = \UART:BUART:tx_bitclk\ (fanout=4)
-        Properties               : 
-        {
-        }
-
+    [McSlotId=1]: (empty)
     [McSlotId=2]:     MacroCell: Name=\UART:BUART:tx_status_0\, Mode=(Combinatorial) @ [UDB=(1,1)][LB=1][MC=2]
         Total # of inputs        : 5
         Total # of product terms : 1
@@ -3963,119 +4229,46 @@ statusicell: Name =\UART:BUART:sTX:TxSts\
     Clock Enable: True
 
 UDB [UDB=(1,2)] is empty.
-UDB [UDB=(1,3)] is empty.
-UDB [UDB=(1,4)] contents:
-LAB@[UDB=(1,4)][LB=0] #macrocells=1, #inputs=2, #pterms=1
+UDB [UDB=(1,3)] contents:
+LAB@[UDB=(1,3)][LB=0] #macrocells=1, #inputs=3, #pterms=2
 {
     [McSlotId=0]: (empty)
     [McSlotId=1]: (empty)
-    [McSlotId=2]:     MacroCell: Name=\Timer:TimerUDB:run_mode\, Mode=(Combinatorial) @ [UDB=(1,4)][LB=0][MC=2]
-        Total # of inputs        : 2
-        Total # of product terms : 1
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              !Net_557 * \Timer:TimerUDB:control_7\
-        );
-        Output = \Timer:TimerUDB:run_mode\ (fanout=4)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=3]: (empty)
-}
-
-LAB@[UDB=(1,4)][LB=1] #macrocells=1, #inputs=3, #pterms=1
-{
-    [McSlotId=0]: (empty)
-    [McSlotId=1]:     MacroCell: Name=\Timer:TimerUDB:status_tc\, Mode=(Combinatorial) @ [UDB=(1,4)][LB=1][MC=1]
+    [McSlotId=2]:     MacroCell: Name=\freqcounter:CounterUDB:count_stored_i\, Mode=(D-Register) @ [UDB=(1,3)][LB=0][MC=2]
         Total # of inputs        : 3
-        Total # of product terms : 1
+        Total # of product terms : 2
+        List of special equations: 
+            Clock  = (Net_149) => Global
             Clock Enable: True
-        Main Equation            : 1 pterm
+        Main Equation            : 2 pterms
         (
-              !Net_557 * \Timer:TimerUDB:control_7\ * 
-              \Timer:TimerUDB:per_zero\
+              Net_512 * !Net_519
+            + \Counter:CounterUDB:prevCompare\ * Net_519
         );
-        Output = \Timer:TimerUDB:status_tc\ (fanout=1)
+        Output = \freqcounter:CounterUDB:count_stored_i\ (fanout=1)
         Properties               : 
         {
         }
 
-    [McSlotId=2]: (empty)
     [McSlotId=3]: (empty)
 }
 
-datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u0\
-    PORT MAP (
-        clock => ClockBlock_BUS_CLK ,
-        cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
-        cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
-        chain_out => \Timer:TimerUDB:sT32:timerdp:carry0\ );
-    Properties:
-    {
-        a0_init = "00000000"
-        a1_init = "00000000"
-        ce0_sync = 1
-        ce1_sync = 1
-        cl0_sync = 1
-        cl1_sync = 1
-        cmsb_sync = 1
-        co_msb_sync = 1
-        cy_dpconfig = "0000000001000000000000000100000001000000010000000000000010000000000000001000000000000000100000000000000010000000000000001000000011111111000000001111111111111111000000000000000000000001000000000000000000011000"
-        d0_init = "00000000"
-        d1_init = "00000000"
-        f0_blk_sync = 1
-        f0_bus_sync = 1
-        f1_blk_sync = 1
-        f1_bus_sync = 1
-        ff0_sync = 1
-        ff1_sync = 1
-        ov_msb_sync = 1
-        so_sync = 1
-        z0_sync = 1
-        z1_sync = 1
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-    Next in chain : \Timer:TimerUDB:sT32:timerdp:u1\
-
-controlcell: Name =\Timer:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\
-    PORT MAP (
-        clock => ClockBlock_BUS_CLK ,
-        control_7 => \Timer:TimerUDB:control_7\ ,
-        control_6 => \Timer:TimerUDB:control_6\ ,
-        control_5 => \Timer:TimerUDB:control_5\ ,
-        control_4 => \Timer:TimerUDB:control_4\ ,
-        control_3 => \Timer:TimerUDB:control_3\ ,
-        control_2 => \Timer:TimerUDB:control_2\ ,
-        control_1 => \Timer:TimerUDB:control_1\ ,
-        control_0 => \Timer:TimerUDB:control_0\ );
-    Properties:
-    {
-        cy_ctrl_mode_0 = "11111111"
-        cy_ctrl_mode_1 = "00000000"
-        cy_ext_reset = 0
-        cy_force_order = 1
-        cy_init_value = "00000000"
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-
-UDB [UDB=(1,5)] contents:
-LAB@[UDB=(1,5)][LB=1] #macrocells=1, #inputs=0, #pterms=0
+LAB@[UDB=(1,3)][LB=1] #macrocells=1, #inputs=5, #pterms=2
 {
     [McSlotId=0]: (empty)
     [McSlotId=1]: (empty)
-    [McSlotId=2]:     MacroCell: Name=__ONE__, Mode=(Combinatorial) @ [UDB=(1,5)][LB=1][MC=2]
-        Total # of inputs        : 0
-        Total # of product terms : 0
+    [McSlotId=2]:     MacroCell: Name=\freqcounter:CounterUDB:count_enable\, Mode=(Combinatorial) @ [UDB=(1,3)][LB=1][MC=2]
+        Total # of inputs        : 5
+        Total # of product terms : 2
             Clock Enable: True
-        Main Equation            : 0 pterms
-        !(
-            0
+        Main Equation            : 2 pterms
+        (
+              Net_512 * !Net_557 * !\freqcounter:CounterUDB:count_stored_i\ * 
+              !Net_519
+            + !Net_557 * \Counter:CounterUDB:prevCompare\ * 
+              !\freqcounter:CounterUDB:count_stored_i\ * Net_519
         );
-        Output = __ONE__ (fanout=6)
+        Output = \freqcounter:CounterUDB:count_enable\ (fanout=4)
         Properties               : 
         {
         }
@@ -4083,15 +4276,14 @@ LAB@[UDB=(1,5)][LB=1] #macrocells=1, #inputs=0, #pterms=0
     [McSlotId=3]: (empty)
 }
 
-datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u3\
+datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u1\
     PORT MAP (
         clock => ClockBlock_BUS_CLK ,
         cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
         cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
-        z0_comb => \Timer:TimerUDB:per_zero\ ,
-        f0_bus_stat_comb => \Timer:TimerUDB:status_3\ ,
-        f0_blk_stat_comb => \Timer:TimerUDB:status_2\ ,
-        chain_in => \Timer:TimerUDB:sT32:timerdp:carry2\ );
+        f0_load => \Timer:TimerUDB:capt_fifo_load\ ,
+        chain_in => \Timer:TimerUDB:sT32:timerdp:carry0\ ,
+        chain_out => \Timer:TimerUDB:sT32:timerdp:carry1\ );
     Properties:
     {
         a0_init = "00000000"
@@ -4118,280 +4310,8 @@ datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u3\
     }
     Clock Polarity: Active High
     Clock Enable: True
-    Previous in chain : \Timer:TimerUDB:sT32:timerdp:u2\
-
-statusicell: Name =\Timer:TimerUDB:rstSts:stsreg\
-    PORT MAP (
-        clock => ClockBlock_BUS_CLK ,
-        status_3 => \Timer:TimerUDB:status_3\ ,
-        status_2 => \Timer:TimerUDB:status_2\ ,
-        status_0 => \Timer:TimerUDB:status_tc\ );
-    Properties:
-    {
-        cy_force_order = 1
-        cy_int_mask = "1111111"
-        cy_md_select = "0000011"
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-
-UDB [UDB=(2,0)] contents:
-datapathcell: Name =\PWM:PWMUDB:sP16:pwmdp:u0\
-    PORT MAP (
-        clock => Net_147 ,
-        cs_addr_2 => \PWM:PWMUDB:tc_i\ ,
-        cs_addr_1 => \PWM:PWMUDB:runmode_enable\ ,
-        chain_out => \PWM:PWMUDB:sP16:pwmdp:carry\ );
-    Properties:
-    {
-        a0_init = "00000000"
-        a1_init = "00000000"
-        ce0_sync = 1
-        ce1_sync = 1
-        cl0_sync = 1
-        cl1_sync = 1
-        cmsb_sync = 1
-        co_msb_sync = 1
-        cy_dpconfig = "0000000001000000000000001100000001000000010000000000000011000000000000001100000000000000110000000000000011000000000000001100000011111111000000001111111111111111101000000000000000000100000000000000000000011000"
-        d0_init = "00000000"
-        d1_init = "00000000"
-        f0_blk_sync = 1
-        f0_bus_sync = 1
-        f1_blk_sync = 1
-        f1_bus_sync = 1
-        ff0_sync = 1
-        ff1_sync = 1
-        ov_msb_sync = 1
-        so_sync = 1
-        z0_sync = 1
-        z1_sync = 1
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-    Next in chain : \PWM:PWMUDB:sP16:pwmdp:u1\
-
-UDB [UDB=(2,1)] is empty.
-UDB [UDB=(2,2)] contents:
-LAB@[UDB=(2,2)][LB=0] #macrocells=3, #inputs=3, #pterms=3
-{
-    [McSlotId=0]:     MacroCell: Name=\freqcounter:CounterUDB:status_0\, Mode=(Combinatorial) @ [UDB=(2,2)][LB=0][MC=0]
-        Total # of inputs        : 2
-        Total # of product terms : 1
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \freqcounter:CounterUDB:cmp_out_i\ * 
-              !\freqcounter:CounterUDB:prevCompare\
-        );
-        Output = \freqcounter:CounterUDB:status_0\ (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=1]:     MacroCell: Name=\freqcounter:CounterUDB:prevCompare\, Mode=(D-Register) @ [UDB=(2,2)][LB=0][MC=1]
-        Total # of inputs        : 1
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_149) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \freqcounter:CounterUDB:cmp_out_i\
-        );
-        Output = \freqcounter:CounterUDB:prevCompare\ (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=2]: (empty)
-    [McSlotId=3]:     MacroCell: Name=\freqcounter:CounterUDB:overflow_reg_i\, Mode=(D-Register) @ [UDB=(2,2)][LB=0][MC=3]
-        Total # of inputs        : 1
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_149) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \freqcounter:CounterUDB:reload\
-        );
-        Output = \freqcounter:CounterUDB:overflow_reg_i\ (fanout=1)
-        Properties               : 
-        {
-        }
-}
-
-LAB@[UDB=(2,2)][LB=1] #macrocells=1, #inputs=2, #pterms=1
-{
-    [McSlotId=0]: (empty)
-    [McSlotId=1]:     MacroCell: Name=\freqcounter:CounterUDB:status_2\, Mode=(Combinatorial) @ [UDB=(2,2)][LB=1][MC=1]
-        Total # of inputs        : 2
-        Total # of product terms : 1
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              \freqcounter:CounterUDB:reload\ * 
-              !\freqcounter:CounterUDB:overflow_reg_i\
-        );
-        Output = \freqcounter:CounterUDB:status_2\ (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=2]: (empty)
-    [McSlotId=3]: (empty)
-}
-
-datapathcell: Name =\freqcounter:CounterUDB:sC32:counterdp:u3\
-    PORT MAP (
-        clock => Net_149 ,
-        cs_addr_2 => __ONE__ ,
-        cs_addr_1 => \freqcounter:CounterUDB:count_enable\ ,
-        cs_addr_0 => \freqcounter:CounterUDB:reload\ ,
-        ce0_comb => \freqcounter:CounterUDB:reload\ ,
-        z0_comb => \freqcounter:CounterUDB:status_1\ ,
-        ce1_comb => \freqcounter:CounterUDB:cmp_out_i\ ,
-        f0_bus_stat_comb => \freqcounter:CounterUDB:status_6\ ,
-        f0_blk_stat_comb => \freqcounter:CounterUDB:status_5\ ,
-        chain_in => \freqcounter:CounterUDB:sC32:counterdp:carry2\ );
-    Properties:
-    {
-        a0_init = "00000000"
-        a1_init = "00000000"
-        ce0_sync = 1
-        ce1_sync = 1
-        cl0_sync = 1
-        cl1_sync = 1
-        cmsb_sync = 1
-        co_msb_sync = 1
-        cy_dpconfig = "0000000001000000000000001000000001000000010000000000000010000000000000000100000010101000010100000010000001000000101010000101000011111111000000001111111111111111101011110000000000000001000001110000000000011000"
-        d0_init = "00000000"
-        d1_init = "00000000"
-        f0_blk_sync = 1
-        f0_bus_sync = 1
-        f1_blk_sync = 1
-        f1_bus_sync = 1
-        ff0_sync = 1
-        ff1_sync = 1
-        ov_msb_sync = 1
-        so_sync = 1
-        z0_sync = 1
-        z1_sync = 1
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-    Previous in chain : \freqcounter:CounterUDB:sC32:counterdp:u2\
-
-statusicell: Name =\freqcounter:CounterUDB:sSTSReg:stsreg\
-    PORT MAP (
-        clock => Net_149 ,
-        status_6 => \freqcounter:CounterUDB:status_6\ ,
-        status_5 => \freqcounter:CounterUDB:status_5\ ,
-        status_2 => \freqcounter:CounterUDB:status_2\ ,
-        status_1 => \freqcounter:CounterUDB:status_1\ ,
-        status_0 => \freqcounter:CounterUDB:status_0\ );
-    Properties:
-    {
-        cy_force_order = 1
-        cy_int_mask = "1111111"
-        cy_md_select = "0011111"
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-
-UDB [UDB=(2,3)] contents:
-LAB@[UDB=(2,3)][LB=0] #macrocells=2, #inputs=5, #pterms=3
-{
-    [McSlotId=0]:     MacroCell: Name=\freqcounter:CounterUDB:count_enable\, Mode=(Combinatorial) @ [UDB=(2,3)][LB=0][MC=0]
-        Total # of inputs        : 5
-        Total # of product terms : 2
-            Clock Enable: True
-        Main Equation            : 2 pterms
-        (
-              Net_512 * !Net_557 * !\freqcounter:CounterUDB:count_stored_i\ * 
-              !Net_519
-            + !Net_557 * \Counter:CounterUDB:prevCompare\ * 
-              !\freqcounter:CounterUDB:count_stored_i\ * Net_519
-        );
-        Output = \freqcounter:CounterUDB:count_enable\ (fanout=4)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=1]: (empty)
-    [McSlotId=2]: (empty)
-    [McSlotId=3]:     MacroCell: Name=Net_553, Mode=(D-Register) @ [UDB=(2,3)][LB=0][MC=3]
-        Total # of inputs        : 1
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_149) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              Net_557
-        );
-        Output = Net_553 (fanout=2)
-        Properties               : 
-        {
-        }
-}
-
-LAB@[UDB=(2,3)][LB=1] #macrocells=1, #inputs=3, #pterms=2
-{
-    [McSlotId=0]: (empty)
-    [McSlotId=1]:     MacroCell: Name=\freqcounter:CounterUDB:count_stored_i\, Mode=(D-Register) @ [UDB=(2,3)][LB=1][MC=1]
-        Total # of inputs        : 3
-        Total # of product terms : 2
-        List of special equations: 
-            Clock  = (Net_149) => Global
-            Clock Enable: True
-        Main Equation            : 2 pterms
-        (
-              Net_512 * !Net_519
-            + \Counter:CounterUDB:prevCompare\ * Net_519
-        );
-        Output = \freqcounter:CounterUDB:count_stored_i\ (fanout=1)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=2]: (empty)
-    [McSlotId=3]: (empty)
-}
-
-datapathcell: Name =\freqcounter:CounterUDB:sC32:counterdp:u0\
-    PORT MAP (
-        clock => Net_149 ,
-        cs_addr_2 => __ONE__ ,
-        cs_addr_1 => \freqcounter:CounterUDB:count_enable\ ,
-        cs_addr_0 => \freqcounter:CounterUDB:reload\ ,
-        chain_out => \freqcounter:CounterUDB:sC32:counterdp:carry0\ );
-    Properties:
-    {
-        a0_init = "00000000"
-        a1_init = "00000000"
-        ce0_sync = 1
-        ce1_sync = 1
-        cl0_sync = 1
-        cl1_sync = 1
-        cmsb_sync = 1
-        co_msb_sync = 1
-        cy_dpconfig = "0000000001000000000000001000000001000000010000000000000010000000000000000100000010101000010100000010000001000000101010000101000011111111000000001111111111111111101000000000000000000001000000000000000000011000"
-        d0_init = "00000000"
-        d1_init = "00000000"
-        f0_blk_sync = 1
-        f0_bus_sync = 1
-        f1_blk_sync = 1
-        f1_bus_sync = 1
-        ff0_sync = 1
-        ff1_sync = 1
-        ov_msb_sync = 1
-        so_sync = 1
-        z0_sync = 1
-        z1_sync = 1
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-    Next in chain : \freqcounter:CounterUDB:sC32:counterdp:u1\
+    Previous in chain : \Timer:TimerUDB:sT32:timerdp:u0\
+    Next in chain : \Timer:TimerUDB:sT32:timerdp:u2\
 
 controlcell: Name =\muxSel:Sync:ctrl_reg\
     PORT MAP (
@@ -4413,10 +4333,68 @@ controlcell: Name =\muxSel:Sync:ctrl_reg\
     }
     Clock Enable: True
 
-UDB [UDB=(2,4)] contents:
-LAB@[UDB=(2,4)][LB=0] #macrocells=4, #inputs=7, #pterms=4
+UDB [UDB=(1,4)] contents:
+LAB@[UDB=(1,4)][LB=1] #macrocells=1, #inputs=3, #pterms=2
 {
-    [McSlotId=0]:     MacroCell: Name=\Counter:CounterUDB:reload\, Mode=(Combinatorial) @ [UDB=(2,4)][LB=0][MC=0]
+    [McSlotId=0]: (empty)
+    [McSlotId=1]: (empty)
+    [McSlotId=2]: (empty)
+    [McSlotId=3]:     MacroCell: Name=Net_520, Mode=(Combinatorial) @ [UDB=(1,4)][LB=1][MC=3]
+        Total # of inputs        : 3
+        Total # of product terms : 2
+            Clock Enable: True
+        Main Equation            : 2 pterms
+        (
+              Net_512 * !Net_519
+            + \Counter:CounterUDB:prevCompare\ * Net_519
+        );
+        Output = Net_520 (fanout=1)
+        Properties               : 
+        {
+        }
+}
+
+datapathcell: Name =\Timer:TimerUDB:sT32:timerdp:u2\
+    PORT MAP (
+        clock => ClockBlock_BUS_CLK ,
+        cs_addr_1 => \Timer:TimerUDB:run_mode\ ,
+        cs_addr_0 => \Timer:TimerUDB:per_zero\ ,
+        f0_load => \Timer:TimerUDB:capt_fifo_load\ ,
+        chain_in => \Timer:TimerUDB:sT32:timerdp:carry1\ ,
+        chain_out => \Timer:TimerUDB:sT32:timerdp:carry2\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000001000000000000000100000001000000010000000000000010000000000000001000000000000000100000000000000010000000000000001000000011111111000000001111111111111111100000110000000000000001000000110000000000011000"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+    Previous in chain : \Timer:TimerUDB:sT32:timerdp:u1\
+    Next in chain : \Timer:TimerUDB:sT32:timerdp:u3\
+
+UDB [UDB=(1,5)] contents:
+LAB@[UDB=(1,5)][LB=0] #macrocells=3, #inputs=5, #pterms=3
+{
+    [McSlotId=0]:     MacroCell: Name=\Counter:CounterUDB:reload\, Mode=(Combinatorial) @ [UDB=(1,5)][LB=0][MC=0]
         Total # of inputs        : 2
         Total # of product terms : 1
             Clock Enable: True
@@ -4429,7 +4407,23 @@ LAB@[UDB=(2,4)][LB=0] #macrocells=4, #inputs=7, #pterms=4
         {
         }
 
-    [McSlotId=1]:     MacroCell: Name=\Counter:CounterUDB:prevCompare\, Mode=(D-Register) @ [UDB=(2,4)][LB=0][MC=1]
+    [McSlotId=1]:     MacroCell: Name=Net_553, Mode=(D-Register) @ [UDB=(1,5)][LB=0][MC=1]
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (Net_149) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              Net_557
+        );
+        Output = Net_553 (fanout=2)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]:     MacroCell: Name=\Counter:CounterUDB:prevCompare\, Mode=(D-Register) @ [UDB=(1,5)][LB=0][MC=3]
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
@@ -4440,43 +4434,15 @@ LAB@[UDB=(2,4)][LB=0] #macrocells=4, #inputs=7, #pterms=4
               !\Counter:CounterUDB:cmp_less\ * 
               !\Counter:CounterUDB:cmp_equal\
         );
-        Output = \Counter:CounterUDB:prevCompare\ (fanout=4)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=2]:     MacroCell: Name=\Counter:CounterUDB:count_enable\, Mode=(Combinatorial) @ [UDB=(2,4)][LB=0][MC=2]
-        Total # of inputs        : 3
-        Total # of product terms : 1
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              Net_512 * !Net_557 * !\Counter:CounterUDB:count_stored_i\
-        );
-        Output = \Counter:CounterUDB:count_enable\ (fanout=2)
-        Properties               : 
-        {
-        }
-
-    [McSlotId=3]:     MacroCell: Name=\Counter:CounterUDB:count_stored_i\, Mode=(D-Register) @ [UDB=(2,4)][LB=0][MC=3]
-        Total # of inputs        : 1
-        Total # of product terms : 1
-        List of special equations: 
-            Clock  = (Net_149) => Global
-            Clock Enable: True
-        Main Equation            : 1 pterm
-        (
-              Net_512
-        );
-        Output = \Counter:CounterUDB:count_stored_i\ (fanout=1)
+        Output = \Counter:CounterUDB:prevCompare\ (fanout=7)
         Properties               : 
         {
         }
 }
 
-LAB@[UDB=(2,4)][LB=1] #macrocells=3, #inputs=5, #pterms=3
+LAB@[UDB=(1,5)][LB=1] #macrocells=3, #inputs=5, #pterms=3
 {
-    [McSlotId=0]:     MacroCell: Name=\Counter:CounterUDB:overflow_reg_i\, Mode=(D-Register) @ [UDB=(2,4)][LB=1][MC=0]
+    [McSlotId=0]:     MacroCell: Name=\Counter:CounterUDB:overflow_reg_i\, Mode=(D-Register) @ [UDB=(1,5)][LB=1][MC=0]
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
@@ -4491,7 +4457,7 @@ LAB@[UDB=(2,4)][LB=1] #macrocells=3, #inputs=5, #pterms=3
         {
         }
 
-    [McSlotId=1]:     MacroCell: Name=\Counter:CounterUDB:status_2\, Mode=(Combinatorial) @ [UDB=(2,4)][LB=1][MC=1]
+    [McSlotId=1]:     MacroCell: Name=\Counter:CounterUDB:status_2\, Mode=(Combinatorial) @ [UDB=(1,5)][LB=1][MC=1]
         Total # of inputs        : 2
         Total # of product terms : 1
             Clock Enable: True
@@ -4506,7 +4472,7 @@ LAB@[UDB=(2,4)][LB=1] #macrocells=3, #inputs=5, #pterms=3
         }
 
     [McSlotId=2]: (empty)
-    [McSlotId=3]:     MacroCell: Name=\Counter:CounterUDB:status_0\, Mode=(Combinatorial) @ [UDB=(2,4)][LB=1][MC=3]
+    [McSlotId=3]:     MacroCell: Name=\Counter:CounterUDB:status_0\, Mode=(Combinatorial) @ [UDB=(1,5)][LB=1][MC=3]
         Total # of inputs        : 3
         Total # of product terms : 1
             Clock Enable: True
@@ -4581,21 +4547,221 @@ statusicell: Name =\Counter:CounterUDB:sSTSReg:stsreg\
     Clock Polarity: Active High
     Clock Enable: True
 
+UDB [UDB=(2,0)] contents:
+datapathcell: Name =\PWM:PWMUDB:sP16:pwmdp:u0\
+    PORT MAP (
+        clock => Net_147 ,
+        cs_addr_2 => \PWM:PWMUDB:tc_i\ ,
+        cs_addr_1 => \PWM:PWMUDB:runmode_enable\ ,
+        chain_out => \PWM:PWMUDB:sP16:pwmdp:carry\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000001000000000000001100000001000000010000000000000011000000000000001100000000000000110000000000000011000000000000001100000011111111000000001111111111111111101000000000000000000100000000000000000000011000"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+    Next in chain : \PWM:PWMUDB:sP16:pwmdp:u1\
+
+UDB [UDB=(2,1)] is empty.
+UDB [UDB=(2,2)] contents:
+LAB@[UDB=(2,2)][LB=0] #macrocells=1, #inputs=2, #pterms=1
+{
+    [McSlotId=0]: (empty)
+    [McSlotId=1]:     MacroCell: Name=\freqcounter:CounterUDB:status_2\, Mode=(Combinatorial) @ [UDB=(2,2)][LB=0][MC=1]
+        Total # of inputs        : 2
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              \freqcounter:CounterUDB:reload\ * 
+              !\freqcounter:CounterUDB:overflow_reg_i\
+        );
+        Output = \freqcounter:CounterUDB:status_2\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
+}
+
+LAB@[UDB=(2,2)][LB=1] #macrocells=3, #inputs=3, #pterms=3
+{
+    [McSlotId=0]:     MacroCell: Name=\freqcounter:CounterUDB:status_0\, Mode=(Combinatorial) @ [UDB=(2,2)][LB=1][MC=0]
+        Total # of inputs        : 2
+        Total # of product terms : 1
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              \freqcounter:CounterUDB:cmp_out_i\ * 
+              !\freqcounter:CounterUDB:prevCompare\
+        );
+        Output = \freqcounter:CounterUDB:status_0\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=1]:     MacroCell: Name=\freqcounter:CounterUDB:prevCompare\, Mode=(D-Register) @ [UDB=(2,2)][LB=1][MC=1]
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (Net_149) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              \freqcounter:CounterUDB:cmp_out_i\
+        );
+        Output = \freqcounter:CounterUDB:prevCompare\ (fanout=1)
+        Properties               : 
+        {
+        }
+
+    [McSlotId=2]: (empty)
+    [McSlotId=3]:     MacroCell: Name=\freqcounter:CounterUDB:overflow_reg_i\, Mode=(D-Register) @ [UDB=(2,2)][LB=1][MC=3]
+        Total # of inputs        : 1
+        Total # of product terms : 1
+        List of special equations: 
+            Clock  = (Net_149) => Global
+            Clock Enable: True
+        Main Equation            : 1 pterm
+        (
+              \freqcounter:CounterUDB:reload\
+        );
+        Output = \freqcounter:CounterUDB:overflow_reg_i\ (fanout=1)
+        Properties               : 
+        {
+        }
+}
+
+datapathcell: Name =\freqcounter:CounterUDB:sC32:counterdp:u3\
+    PORT MAP (
+        clock => Net_149 ,
+        cs_addr_2 => __ONE__ ,
+        cs_addr_1 => \freqcounter:CounterUDB:count_enable\ ,
+        cs_addr_0 => \freqcounter:CounterUDB:reload\ ,
+        ce0_comb => \freqcounter:CounterUDB:reload\ ,
+        z0_comb => \freqcounter:CounterUDB:status_1\ ,
+        ce1_comb => \freqcounter:CounterUDB:cmp_out_i\ ,
+        f0_bus_stat_comb => \freqcounter:CounterUDB:status_6\ ,
+        f0_blk_stat_comb => \freqcounter:CounterUDB:status_5\ ,
+        chain_in => \freqcounter:CounterUDB:sC32:counterdp:carry2\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000001000000000000001000000001000000010000000000000010000000000000000100000010101000010100000010000001000000101010000101000011111111000000001111111111111111101011110000000000000001000001110000000000011000"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+    Previous in chain : \freqcounter:CounterUDB:sC32:counterdp:u2\
+
+statusicell: Name =\freqcounter:CounterUDB:sSTSReg:stsreg\
+    PORT MAP (
+        clock => Net_149 ,
+        status_6 => \freqcounter:CounterUDB:status_6\ ,
+        status_5 => \freqcounter:CounterUDB:status_5\ ,
+        status_2 => \freqcounter:CounterUDB:status_2\ ,
+        status_1 => \freqcounter:CounterUDB:status_1\ ,
+        status_0 => \freqcounter:CounterUDB:status_0\ );
+    Properties:
+    {
+        cy_force_order = 1
+        cy_int_mask = "1111111"
+        cy_md_select = "0011111"
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+
+UDB [UDB=(2,3)] contents:
+datapathcell: Name =\freqcounter:CounterUDB:sC32:counterdp:u0\
+    PORT MAP (
+        clock => Net_149 ,
+        cs_addr_2 => __ONE__ ,
+        cs_addr_1 => \freqcounter:CounterUDB:count_enable\ ,
+        cs_addr_0 => \freqcounter:CounterUDB:reload\ ,
+        chain_out => \freqcounter:CounterUDB:sC32:counterdp:carry0\ );
+    Properties:
+    {
+        a0_init = "00000000"
+        a1_init = "00000000"
+        ce0_sync = 1
+        ce1_sync = 1
+        cl0_sync = 1
+        cl1_sync = 1
+        cmsb_sync = 1
+        co_msb_sync = 1
+        cy_dpconfig = "0000000001000000000000001000000001000000010000000000000010000000000000000100000010101000010100000010000001000000101010000101000011111111000000001111111111111111101000000000000000000001000000000000000000011000"
+        d0_init = "00000000"
+        d1_init = "00000000"
+        f0_blk_sync = 1
+        f0_bus_sync = 1
+        f1_blk_sync = 1
+        f1_bus_sync = 1
+        ff0_sync = 1
+        ff1_sync = 1
+        ov_msb_sync = 1
+        so_sync = 1
+        z0_sync = 1
+        z1_sync = 1
+    }
+    Clock Polarity: Active High
+    Clock Enable: True
+    Next in chain : \freqcounter:CounterUDB:sC32:counterdp:u1\
+
+UDB [UDB=(2,4)] is empty.
 UDB [UDB=(2,5)] is empty.
 UDB [UDB=(3,0)] contents:
-LAB@[UDB=(3,0)][LB=0] #macrocells=2, #inputs=3, #pterms=2
+LAB@[UDB=(3,0)][LB=0] #macrocells=2, #inputs=4, #pterms=2
 {
-    [McSlotId=0]:     MacroCell: Name=\PWM:PWMUDB:runmode_enable\, Mode=(D-Register) @ [UDB=(3,0)][LB=0][MC=0]
-        Total # of inputs        : 1
+    [McSlotId=0]:     MacroCell: Name=\PWM:PWMUDB:status_0\, Mode=(D-Register) @ [UDB=(3,0)][LB=0][MC=0]
+        Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
             Clock  = (Net_147) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
-              \PWM:PWMUDB:control_7\
+              !\PWM:PWMUDB:prevCompare1\ * \PWM:PWMUDB:cmp1_less\
         );
-        Output = \PWM:PWMUDB:runmode_enable\ (fanout=3)
+        Output = \PWM:PWMUDB:status_0\ (fanout=1)
         Properties               : 
         {
         }
@@ -4619,23 +4785,24 @@ LAB@[UDB=(3,0)][LB=0] #macrocells=2, #inputs=3, #pterms=2
 
 LAB@[UDB=(3,0)][LB=1] #macrocells=2, #inputs=2, #pterms=2
 {
-    [McSlotId=0]:     MacroCell: Name=\PWM:PWMUDB:status_0\, Mode=(D-Register) @ [UDB=(3,0)][LB=1][MC=0]
-        Total # of inputs        : 2
+    [McSlotId=0]:     MacroCell: Name=\PWM:PWMUDB:runmode_enable\, Mode=(D-Register) @ [UDB=(3,0)][LB=1][MC=0]
+        Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
             Clock  = (Net_147) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
-              !\PWM:PWMUDB:prevCompare1\ * \PWM:PWMUDB:cmp1_less\
+              \PWM:PWMUDB:control_7\
         );
-        Output = \PWM:PWMUDB:status_0\ (fanout=1)
+        Output = \PWM:PWMUDB:runmode_enable\ (fanout=3)
         Properties               : 
         {
         }
 
     [McSlotId=1]: (empty)
-    [McSlotId=2]:     MacroCell: Name=\PWM:PWMUDB:prevCompare1\, Mode=(D-Register) @ [UDB=(3,0)][LB=1][MC=2]
+    [McSlotId=2]: (empty)
+    [McSlotId=3]:     MacroCell: Name=\PWM:PWMUDB:prevCompare1\, Mode=(D-Register) @ [UDB=(3,0)][LB=1][MC=3]
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
@@ -4649,8 +4816,6 @@ LAB@[UDB=(3,0)][LB=1] #macrocells=2, #inputs=2, #pterms=2
         Properties               : 
         {
         }
-
-    [McSlotId=3]: (empty)
 }
 
 datapathcell: Name =\PWM:PWMUDB:sP16:pwmdp:u1\
@@ -4767,24 +4932,24 @@ datapathcell: Name =\freqcounter:CounterUDB:sC32:counterdp:u2\
     Next in chain : \freqcounter:CounterUDB:sC32:counterdp:u3\
 
 UDB [UDB=(3,3)] contents:
-LAB@[UDB=(3,3)][LB=0] #macrocells=1, #inputs=3, #pterms=2
+LAB@[UDB=(3,3)][LB=0] #macrocells=1, #inputs=0, #pterms=0
 {
-    [McSlotId=0]: (empty)
-    [McSlotId=1]: (empty)
-    [McSlotId=2]: (empty)
-    [McSlotId=3]:     MacroCell: Name=Net_520, Mode=(Combinatorial) @ [UDB=(3,3)][LB=0][MC=3]
-        Total # of inputs        : 3
-        Total # of product terms : 2
+    [McSlotId=0]:     MacroCell: Name=__ONE__, Mode=(Combinatorial) @ [UDB=(3,3)][LB=0][MC=0]
+        Total # of inputs        : 0
+        Total # of product terms : 0
             Clock Enable: True
-        Main Equation            : 2 pterms
-        (
-              Net_512 * !Net_519
-            + \Counter:CounterUDB:prevCompare\ * Net_519
+        Main Equation            : 0 pterms
+        !(
+            0
         );
-        Output = Net_520 (fanout=1)
+        Output = __ONE__ (fanout=6)
         Properties               : 
         {
         }
+
+    [McSlotId=1]: (empty)
+    [McSlotId=2]: (empty)
+    [McSlotId=3]: (empty)
 }
 
 datapathcell: Name =\freqcounter:CounterUDB:sC32:counterdp:u1\
@@ -4824,42 +4989,7 @@ datapathcell: Name =\freqcounter:CounterUDB:sC32:counterdp:u1\
     Previous in chain : \freqcounter:CounterUDB:sC32:counterdp:u0\
     Next in chain : \freqcounter:CounterUDB:sC32:counterdp:u2\
 
-UDB [UDB=(3,4)] contents:
-datapathcell: Name =\Counter:CounterUDB:sC16:counterdp:u0\
-    PORT MAP (
-        clock => Net_149 ,
-        cs_addr_2 => __ONE__ ,
-        cs_addr_1 => \Counter:CounterUDB:count_enable\ ,
-        cs_addr_0 => \Counter:CounterUDB:reload\ ,
-        chain_out => \Counter:CounterUDB:sC16:counterdp:carry\ );
-    Properties:
-    {
-        a0_init = "00000000"
-        a1_init = "00000000"
-        ce0_sync = 1
-        ce1_sync = 1
-        cl0_sync = 1
-        cl1_sync = 1
-        cmsb_sync = 1
-        co_msb_sync = 1
-        cy_dpconfig = "0000000001000000000000001000000001000000010000000000000010000000000000000100000010101000010100000010000001000000101010000101000011111111000000001111111111111111101000000000000000000001000000000000000000011000"
-        d0_init = "00000000"
-        d1_init = "00000000"
-        f0_blk_sync = 1
-        f0_bus_sync = 1
-        f1_blk_sync = 1
-        f1_bus_sync = 1
-        ff0_sync = 1
-        ff1_sync = 1
-        ov_msb_sync = 1
-        so_sync = 1
-        z0_sync = 1
-        z1_sync = 1
-    }
-    Clock Polarity: Active High
-    Clock Enable: True
-    Next in chain : \Counter:CounterUDB:sC16:counterdp:u1\
-
+UDB [UDB=(3,4)] is empty.
 UDB [UDB=(3,5)] is empty.
 Intr container @ [IntrContainer=(0)]: 
   Intr@ [IntrContainer=(0)][IntrId=(0)] 
@@ -4869,6 +4999,15 @@ Intr container @ [IntrContainer=(0)]:
         Properties:
         {
             int_type = "00"
+            is_nmi = 0
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(1)] 
+    interrupt: Name =isr_timeStamp
+        PORT MAP (
+            interrupt => Net_565 );
+        Properties:
+        {
+            int_type = "10"
             is_nmi = 0
         }
 Drq container @ [DrqContainer=(0)]: empty
@@ -5249,33 +5388,33 @@ Port | Pin | Fixed |      Type |       Drive Mode |                Name | Connec
 </CYPRESSTAG>
 </CYPRESSTAG>
 </CYPRESSTAG>
-Digital component placer commit/Report: Elapsed time ==> 0s.040ms
-Digital Placement phase: Elapsed time ==> 0s.747ms
+Digital component placer commit/Report: Elapsed time ==> 0s.031ms
+Digital Placement phase: Elapsed time ==> 0s.744ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata" --vh2-path "Trigger_r.vh2" --pcf-path "Trigger.pco" --des-name "Trigger" --dsf-path "Trigger.dsf" --sdc-path "Trigger.sdc" --lib-path "Trigger_r.lib"
 Routing successful.
-Digital Routing phase: Elapsed time ==> 0s.731ms
+Digital Routing phase: Elapsed time ==> 0s.749ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
-Bitstream Generation phase: Elapsed time ==> 0s.082ms
+Bitstream Generation phase: Elapsed time ==> 0s.084ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Verification">
-Bitstream Verification phase: Elapsed time ==> 0s.012ms
+Bitstream Verification phase: Elapsed time ==> 0s.020ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in Trigger_timing.html.
-Static timing analysis phase: Elapsed time ==> 0s.228ms
+Static timing analysis phase: Elapsed time ==> 0s.225ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.094ms
+Design database save phase: Elapsed time ==> 0s.102ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 2s.383ms
+cydsfit: Elapsed time ==> 2s.405ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 2s.385ms
-API generation phase: Elapsed time ==> 0s.540ms
+Fitter phase: Elapsed time ==> 2s.406ms
+API generation phase: Elapsed time ==> 0s.565ms
 Dependency generation phase: Elapsed time ==> 0s.005ms
 Cleanup phase: Elapsed time ==> 0s.000ms

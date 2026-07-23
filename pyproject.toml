@@ -1,6 +1,6 @@
 [project]
 name = "pySSTri"
-version = "1.0.0"
+version = "1.1.0"
 description = "Serial interface for the ModeLab swept-source interferometer PSOC5 camera trigger"
 readme = "README.md"
 requires-python = ">=3.10"

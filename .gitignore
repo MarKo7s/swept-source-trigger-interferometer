@@ -21,3 +21,13 @@ Trigger/
 
 # PSoC Creator per-user workspace overlay
 *.cywrk.ModeLabQBI
+
+# PSoC Creator build products (keep Generated_Source / TopDesign / main.c)
+**/CortexM3/**/Debug/
+**/CortexM3/**/Release/
+**/*.elf
+**/*.hex
+**/*.map
+**/*.a
+**/BUILD.log
+**/REBUILD.log

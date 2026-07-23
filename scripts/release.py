@@ -144,8 +144,8 @@ def main() -> None:
     )
     parser.add_argument(
         "--branch",
-        default="release",
-        help="Branch to push before tagging (default: release)",
+        default="main",
+        help="Branch to push before tagging (default: main)",
     )
     parser.add_argument(
         "--message",

@@ -1,6 +1,6 @@
-C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\Trigger.cyprj|750d87a4-f595-4de4-ae38-b785d3978844
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|b2fbdb3d-2903-4911-9393-18b10c0f43e6
-C:\Users\ModeLabQBI\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|1750800f-e5cc-4f1c-865c-e3b6c85270fc
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|fb6862b0-64c2-4635-967c-c03aa35de322
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|9b2e75d1-f606-4816-aa60-3c8f3c4b679d
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|36ccef27-821f-4be5-a5fe-ff012c28035c
+C:\Users\ModeLabQBI\LAB\hardware\SweepSourceTrigger\psoc5\firmware\PSOC_trigger_firmware_Trigger_Polarity_Low\Trigger.cydsn\Trigger.cyprj|969d24eb-7acb-4960-b0b6-c62fce596904
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|f713b2c8-c4f3-42be-97c4-7eaecf789c38
+C:\Users\ModeLabQBI\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|0c224c77-71d6-4c56-8271-afe8c00dacd8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|a59ef959-60a3-4d87-90d4-707edc0e5b19
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|059da4f3-6c0a-4007-a88f-18c0906e4b13
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|bdfe8d21-0fe8-453c-8330-690a4a755b9c

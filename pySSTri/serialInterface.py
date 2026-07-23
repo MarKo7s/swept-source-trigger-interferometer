@@ -4,7 +4,6 @@ from serial.tools import list_ports
 from .commands import COMMANDS
 from .utilities import _unpack, attach_methods, decode, encode
 
-import re
 import numpy as np
 
 _IDN_MARK = "PSOC"
@@ -75,36 +74,75 @@ class SSTriggerInterferometer:
         return self.ask(cmd)
 
     def waitForSignal(self) -> str:
-        """Block until next unsolicited sweep notify line (SYS:TRIG:NOT != OFF)."""
+        """Block until next unsolicited notify line (not for TIMESTAMP mode)."""
         if self.ser is None or not self.ser.is_open:
             raise ConnectionError("Not connected — call connect() first")
         return decode(self.ser.readline())
 
-    def waitTimestamps(self, timeout_s=5.0):
-        """
-        Wait for one sweep dump:
-        header: TS <n> <overflow>\\r\\n
-        payload: n * uint32 little-endian (raw Timer captures)
-        Returns (ts: np.ndarray dtype uint32, overflow: int)
-        """
+    def _read_ts_frame(self, timeout_s=10.0):
+        """TSU <n> <ov> <fc> <t0> <enc> + payload → (ts_us, overflow, fc)."""
         if self.ser is None or not self.ser.is_open:
             raise ConnectionError("Not connected")
         old = self.ser.timeout
         self.ser.timeout = timeout_s
         try:
-            line = self.ser.readline().decode("utf-8", errors="replace").strip()
-            m = re.match(r"TS\s+(\d+)\s+(\d+)", line)
-            if not m:
+            line = self.ser.readline().decode("ascii", errors="replace").strip()
+            if line.startswith("ERROR:"):
+                raise RuntimeError(line)
+            parts = line.split()
+            if len(parts) < 6 or parts[0] != "TSU":
                 raise RuntimeError(f"Bad TS header: {line!r}")
-            n = int(m.group(1))
-            overflow = int(m.group(2))
-            raw = self.ser.read(n * 4)
-            if len(raw) != n * 4:
-                raise RuntimeError(f"Short read: got {len(raw)}, expected {n * 4}")
-            ts = np.frombuffer(raw, dtype="<u4").copy()
-            return ts, overflow
+            n = int(parts[1])
+            overflow = int(parts[2])
+            fc = int(parts[3])
+            t0 = int(parts[4])
+            enc = int(parts[5])
+
+            if enc == 0:
+                nbytes = n * 4
+                raw = self.ser.read(nbytes) if n else b""
+                if len(raw) != nbytes:
+                    raise RuntimeError(f"Short read: {len(raw)}/{nbytes}")
+                return np.frombuffer(raw, dtype="<u4").copy(), overflow, fc
+
+            if n == 0:
+                return np.array([], dtype=np.uint32), overflow, fc
+            if n == 1:
+                return np.array([t0], dtype=np.uint32), overflow, fc
+
+            nd = n - 1
+            if enc == 1:
+                nbytes = nd
+                raw = self.ser.read(nbytes)
+                if len(raw) != nbytes:
+                    raise RuntimeError(f"Short read: {len(raw)}/{nbytes}")
+                deltas = np.frombuffer(raw, dtype=np.uint8)
+            elif enc == 2:
+                nbytes = nd * 2
+                raw = self.ser.read(nbytes)
+                if len(raw) != nbytes:
+                    raise RuntimeError(f"Short read: {len(raw)}/{nbytes}")
+                deltas = np.frombuffer(raw, dtype="<u2")
+            else:
+                raise RuntimeError(f"Unknown enc={enc} in {line!r}")
+
+            ts = np.empty(n, dtype=np.uint32)
+            ts[0] = t0
+            ts[1:] = t0 + np.cumsum(deltas.astype(np.uint32))
+            return ts, overflow, fc
         finally:
             self.ser.timeout = old
+
+    def waitTimestamps(self, timeout_s=10.0):
+        """Next unsolicited TSU frame (SYS:TRIG:NOT TIMESTAMP), values in us."""
+        return self._read_ts_frame(timeout_s)
+
+    def GetTimestamps(self, timeout_s=10.0):
+        """SIG:TRIG:TIMESTAMP? → (ts_us, overflow, fc), absolute us."""
+        if self.ser is None or not self.ser.is_open:
+            raise ConnectionError("Not connected")
+        self.ser.write(encode("SIG:TRIG:TIMESTAMP?"))
+        return self._read_ts_frame(timeout_s)
 
     def pullbuffer(self):
         return self.ser.readline()
@@ -132,3 +170,4 @@ class SSTriggerInterferometer:
             scpi, note, takes_arg = _unpack(spec)
             wire = f"{scpi} <value>" if takes_arg else scpi
             print(f"{idx} - {name} - {wire} - {note}")
+        print("— GetTimestamps() / waitTimestamps() — TSU binary frame")

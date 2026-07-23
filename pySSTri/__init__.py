@@ -7,12 +7,13 @@ try:
 except PackageNotFoundError:
     __version__ = "1.0.0"
 
-from .commands import feedbackmode, notifymode
+from .commands import feedbackmode, notifymode, timestamp_deltaenc
 from .serialInterface import SSTriggerInterferometer
 
 __all__ = [
     "SSTriggerInterferometer",
     "notifymode",
     "feedbackmode",
+    "timestamp_deltaenc",
     "__version__",
 ]
