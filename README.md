@@ -2,7 +2,7 @@
 
 ![Board](images/swept_source_trigger_white.png)
 
-## Project
+## Project: DIY k-clock for laser-sweep synchronization
 
 This repository has what you need to build a **k-clock** for applications such as optical coherence tomography (OCT):
 
@@ -12,11 +12,11 @@ This repository has what you need to build a **k-clock** for applications such a
 
 You still need the external optics and detectors: swept laser, interferometer, and balanced photodiode (BPD).
 
-## What is a k-clock:
+## What is a k-clock?
 
-A **k-clock** (laser-sweep interferometer) produces equally spaced optical-frequency samples across a fixed bandwidth by detecting zero-crossings of the interferogram $V_{\mathrm{BPD}}(\nu)$ and emitting a TTL (~5 V) edge at each crossing. Those edges mark known optical frequencies $\nu$ (or wavelengths) along the sweep.
+A **k-clock** (swept-source interferometer trigger) produces equally spaced optical-frequency samples across a fixed bandwidth by detecting zero-crossings of the interferogram $V_{\mathrm{BPD}}(\nu)$ and emitting a TTL (~5 V) edge at each crossing. Those edges mark known optical frequencies $\nu$ (or wavelengths) along the sweep.
 
-The raw interferogram rate is fixed by the interferogram path length missmatch between arms. The interfometer signal detection is dobe by a **PSoC 5LP** — a programmable SoC with a 32-bit MCU, configurable analog blocks, and programmable digital logic on one chip. This board allow for digitally **frequency division** of the BPD/camera trigger train by an arbitrary integer in hardware (no CPU in the divider path). Hosts talk over UART (115200 baud, CRLF). The Python package **pySSTri** wraps that protocol.
+The raw interferogram rate is set by the optical path-length mismatch between the interferometer arms. Signal conditioning and trigger generation run on a **PSoC 5LP** — a programmable SoC with a 32-bit MCU, configurable analog blocks, and programmable digital logic on one chip. This board digitally **frequency-divides** the BPD/camera trigger train by an arbitrary integer in hardware (no CPU in the divider path). Hosts talk over UART (115200 baud, CRLF). The Python package **pySSTri** wraps that protocol.
 
 ## Interferometer working principle
 
@@ -92,14 +92,12 @@ python -m ipykernel install --user --name pySSTri_env --display-name "Python (py
 
 There are two layers:
 
-
-| Layer                      | Use when                                                  |
-| -------------------------- | --------------------------------------------------------- |
+| Layer | Use when |
+| ----- | -------- |
 | **Firmware (UART / SCPI)** | Any host language, raw serial, or writing your own driver |
-| **Python (**`pySSTri`**)** | Lab scripts / notebooks — preferred for day-to-day use    |
+| **Python (`pySSTri`)** | Lab scripts / notebooks — preferred for day-to-day use |
 
-
-Same baudrate (115200) and same commands either way. Python methods map 1:1 onto SCPI (e.g. `SetFreqDivision(4)` → `SIG:TRIG:DIV 4`).
+Same baud rate (115200) and the same commands either way. Python methods map 1:1 onto SCPI (e.g. `SetFreqDivision(4)` → `SIG:TRIG:DIV 4`).
 
 ---
 
@@ -144,9 +142,8 @@ Lines end with `\r\n`. Sets reply `OK` (or `OK - WARNING: …`). Queries reply a
 | `LASER:SWE:TIME?`                  | Sweep duration [µs]                           |
 | `LASER:SWE:COUNT?` / `0` / `RESET` | Cumulative sweeps / clear                     |
 | `LASER:SWE:STATUS?`                | `1` sweeping / `0` idle                       |
-| `SYS:TRIG:NOT OFF                  | TIME                                          |
-| `SYS:TIMESTAMP:DELTAENC OFF        | UINT8                                         |
-| `SYS:TIMESTAMP:DELTAENC?`          | Current encoding + rate limit warning         |
+| `SYS:TRIG:NOT <mode>` / `?` | Notify mode: `OFF`, `TIME`, `COUNT`, `FREQ`, `ALL`, `TIMESTAMP` |
+| `SYS:TIMESTAMP:DELTAENC <mode>` / `?` | Packing: `OFF`, `UINT8`, `UINT16` (aliases `0`, `1`, `2`) |
 
 
 ### Timestamps
@@ -204,9 +201,11 @@ SYS:TIMESTAMP:DELTAENC 2
 → OK - WARNING: max_dt_us=65535 min_freq_hz=15
 ```
 
-**False triggers:** noisy interferogram / BPD edges can create extra timestamps. A hardware **deglitch** filter is planned but not in this firmware yet — raise comparator threshold / SNR, or filter bad gaps in software for now.
+**False triggers:** noisy interferogram / BPD edges can create extra timestamps. A hardware **deglitch** filter is planned but not in this firmware yet — raise the comparator threshold / SNR, or filter bad gaps in software for now.
 
-PCB: Eagle project under `pcb/Eagle_project/Trigger_PSOC5LP`.
+### Hardware (PCB)
+
+Eagle schematics and board files: `pcb/Eagle_project/Trigger_PSOC5LP`.
 
 ---
 
