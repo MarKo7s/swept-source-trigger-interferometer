@@ -5,7 +5,7 @@ description = "Serial interface for the ModeLab swept-source interferometer PSOC
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
-  { name = "Marcos Maestre Morote" },
+  { name = "Marcos Maestre Morote", email = "m.maestremorote@uq.edu.au" },
 ]
 requires-python = ">=3.10"
 dependencies = [

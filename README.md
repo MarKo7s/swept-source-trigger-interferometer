@@ -25,7 +25,7 @@ The laser is launched into one port of a 50/50 coupler and sweeps optical freque
 After balanced photodetection (BPD), TIA, and voltage amplification, the electrical interferogram is:
 
 $$
-V_{\mathrm{BPD}}(\nu) = V_0 \cos\left(2\pi\cdot\frac{1}{\mathrm{FSR}}\cdot\nu\right)
+V_{\mathrm{BPD}}(\nu) = V_0 \cdot \cos\left(2\pi\cdot\frac{1}{\mathrm{FSR}}\cdot\nu\right)
 $$
 
 $V_{\mathrm{BPD}}$ crosses zero at equally spaced optical frequencies $\nu_n$. The spacing is the **free spectral range**
@@ -117,6 +117,8 @@ Firmware is **variant-specific** (polarity / laser). Pick the folder under `psoc
 Tools: [PSoC Programmer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.psocprogrammer) / [PSoC Creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/) → open project → **Debug → Program**.
 
 `*IDN?` returns firmware version and date.
+
+Production firmware is tuned for an **active-low** sweep gate. Other lasers or trigger polarities can be supported on request (see [Contact](#contact)).
 
 ### Sweep gate (Polarity Low)
 
