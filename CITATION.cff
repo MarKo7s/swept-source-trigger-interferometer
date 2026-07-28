@@ -5,7 +5,7 @@ authors:
   - family-names: Maestre Morote
     given-names: Marcos
 license: MIT
-version: "1.1.0"
+version: "1.1.1"
 date-released: "2026-07-28"
 repository-code: "https://github.com/MarKo7s/swept-source-trigger-interferometer"
 url: "https://github.com/MarKo7s/swept-source-trigger-interferometer"

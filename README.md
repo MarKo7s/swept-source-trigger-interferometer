@@ -60,13 +60,13 @@ This board digitally divides that TTL by an integer $Q$ in hardware, so only eve
 **Tagged release:**
 
 ```bash
-pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.1.0"
+pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.1.1"
 ```
 
 With notebook extras:
 
 ```bash
-pip install "pySSTri[notebooks] @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.1.0"
+pip install "pySSTri[notebooks] @ git+https://github.com/MarKo7s/swept-source-trigger-interferometer.git@v1.1.1"
 ```
 
 **Editable (dev):**
@@ -427,6 +427,6 @@ This project is licensed under the [MIT License](LICENSE). Copyright (c) 2026 Ma
 
 If you use this hardware or **pySSTri** in academic work, please cite:
 
-> Marcos Maestre Morote, *Swept-source interferometer camera trigger (pySSTri)*, GitHub, v1.1.0, https://github.com/MarKo7s/swept-source-trigger-interferometer
+> Marcos Maestre Morote, *Swept-source interferometer camera trigger (pySSTri)*, GitHub, v1.1.1, https://github.com/MarKo7s/swept-source-trigger-interferometer
 
 GitHub also exposes a **Cite this repository** button from [`CITATION.cff`](CITATION.cff).

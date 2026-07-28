@@ -10,6 +10,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Firmware deglitching / debounce on the BPD trigger path to reject false edges from interferogram noise.
 
+## [1.1.1] - 2026-07-28
+
+### Added
+
+- Zenodo archival deposit for a citable DOI (GitHub–Zenodo integration).
+
 ## [1.1.0] - 2026-07-23
 
 ### Added
