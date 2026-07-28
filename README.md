@@ -316,3 +316,15 @@ pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-inter
 ```
 
 **Requirements:** clean working tree; tag `vX.Y.Z` must not already exist on GitHub.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). Copyright (c) 2026 Marcos Maestre Morote.
+
+## Citation
+
+If you use this hardware or **pySSTri** in academic work, please cite:
+
+> Marcos Maestre Morote, *Swept-source interferometer camera trigger (pySSTri)*, GitHub, v1.1.0, https://github.com/MarKo7s/swept-source-trigger-interferometer
+
+GitHub also exposes a **Cite this repository** button from [`CITATION.cff`](CITATION.cff).

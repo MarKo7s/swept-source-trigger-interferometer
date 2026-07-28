@@ -3,6 +3,10 @@ name = "pySSTri"
 version = "1.1.0"
 description = "Serial interface for the ModeLab swept-source interferometer PSOC5 camera trigger"
 readme = "README.md"
+license = { text = "MIT" }
+authors = [
+  { name = "Marcos Maestre Morote" },
+]
 requires-python = ">=3.10"
 dependencies = [
   "pyserial>=3.5",
