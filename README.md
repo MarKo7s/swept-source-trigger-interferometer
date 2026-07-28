@@ -1,6 +1,7 @@
 # Swept-source interferometer camera trigger (k-clock)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21639219.svg)](https://doi.org/10.5281/zenodo.21639219)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21639219-blue)](https://doi.org/10.5281/zenodo.21639219)
+[![Release](https://img.shields.io/github/v/release/MarKo7s/swept-source-trigger-interferometer)](https://github.com/MarKo7s/swept-source-trigger-interferometer/releases/latest)
 
 ![Board](images/swept_source_trigger_white.png)
 
