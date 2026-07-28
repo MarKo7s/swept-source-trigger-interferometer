@@ -2,7 +2,7 @@
 
 ![Board](images/swept_source_trigger_white.png)
 
-A **k-clock** (laser-sweep interferometer) produces equally spaced optical-frequency samples across a fixed bandwidth by detecting zero-crossings of the interferogram $V_{\mathrm{BPD}}(\lambda)$ and emitting a TTL (~5 V) edge at each crossing. Those edges mark known optical frequencies $\nu$ (or wavelengths) along the sweep.
+A **k-clock** (laser-sweep interferometer) produces equally spaced optical-frequency samples across a fixed bandwidth by detecting zero-crossings of the interferogram $V_{\mathrm{BPD}}(\nu)$ and emitting a TTL (~5 V) edge at each crossing. Those edges mark known optical frequencies $\nu$ (or wavelengths) along the sweep.
 
 The raw interferogram rate is fixed by the interferogram path length missmatch between arms. The interfometer signal detection is dobe by a **PSoC 5LP** — a programmable SoC with a 32-bit MCU, configurable analog blocks, and programmable digital logic on one chip. This board allow for digitally **frequency division** of the BPD/camera trigger train by an arbitrary integer in hardware (no CPU in the divider path). Hosts talk over UART (115200 baud, CRLF). The Python package **pySSTri** wraps that protocol.
 
@@ -13,17 +13,17 @@ The laser is launched into one port of a 50/50 coupler and sweeps optical freque
 After balanced photodetection (BPD), TIA, and voltage amplification, the electrical interferogram is:
 
 $$
-V_{\mathrm{BPD}}(\nu) = V_0 \cos\left(2\pi\,\frac{1}{\mathrm{FSR}}\,\nu\right)
+V_{\mathrm{BPD}}(\nu) = V_0 \cos\left(2\pi\cdot\frac{1}{\mathrm{FSR}}\cdot\nu\right)
 $$
 
 $V_{\mathrm{BPD}}$ crosses zero at equally spaced optical frequencies $\nu_n$. The spacing is the **free spectral range**
 
 $$
-\mathrm{FSR} = \frac{v}{l_{\mathrm{DLY}}}
+\mathrm{FSR} = \frac{c}{n\,l_{\mathrm{DLY}}}
 \quad [\mathrm{Hz}]
 $$
 
-where $v$ is the speed of light in the fibre. Those zero crossings define the natural k-clock grid (panel a below).
+where $\nu$ is optical frequency, $c$ is the vacuum speed of light, and $n$ is the refractive index of the fibre (so the speed in the medium is $c/n$). Those zero crossings define the natural k-clock grid (panel a below).
 
 ![Swept laser interferometer scheme](images/interferometer_scheme.png)
 
