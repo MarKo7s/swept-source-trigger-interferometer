@@ -1,5 +1,7 @@
 # Swept-source interferometer camera trigger (k-clock)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21639219.svg)](https://doi.org/10.5281/zenodo.21639219)
+
 ![Board](images/swept_source_trigger_white.png)
 
 ## Project: DIY k-clock for laser-sweep synchronization
@@ -427,6 +429,9 @@ This project is licensed under the [MIT License](LICENSE). Copyright (c) 2026 Ma
 
 If you use this hardware or **pySSTri** in academic work, please cite:
 
-> Marcos Maestre Morote, *Swept-source interferometer camera trigger (pySSTri)*, GitHub, v1.1.1, https://github.com/MarKo7s/swept-source-trigger-interferometer
+> Marcos Maestre Morote, *Swept-source interferometer camera trigger (pySSTri)*, Zenodo, 2026.
+> https://doi.org/10.5281/zenodo.21639219
+
+Source code: https://github.com/MarKo7s/swept-source-trigger-interferometer (v1.1.1).
 
 GitHub also exposes a **Cite this repository** button from [`CITATION.cff`](CITATION.cff).

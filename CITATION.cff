@@ -9,3 +9,7 @@ version: "1.1.1"
 date-released: "2026-07-28"
 repository-code: "https://github.com/MarKo7s/swept-source-trigger-interferometer"
 url: "https://github.com/MarKo7s/swept-source-trigger-interferometer"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21639219
+    description: Zenodo archive
