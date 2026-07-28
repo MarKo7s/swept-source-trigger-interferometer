@@ -318,6 +318,12 @@ pip install "pySSTri @ git+https://github.com/MarKo7s/swept-source-trigger-inter
 
 **Requirements:** clean working tree; tag `vX.Y.Z` must not already exist on GitHub.
 
+## Contact
+
+Marcos Maestre Morote — [m.maestremorote@uq.edu.au](mailto:m.maestremorote@uq.edu.au)
+
+Questions, bug reports, or requests to adapt the firmware to a different swept laser / sweep-gate polarity are welcome.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE). Copyright (c) 2026 Marcos Maestre Morote.
