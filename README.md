@@ -99,6 +99,91 @@ There are two layers:
 
 Same baud rate (115200) and the same commands either way. Python methods map 1:1 onto SCPI (e.g. `SetFreqDivision(4)` → `SIG:TRIG:DIV 4`).
 
+The board does **not** start the laser. The laser (or your control software) asserts the sweep gate `sw`; the PSoC only measures and emits camera TTL. How the **host** keeps up with sweeps falls into two patterns.
+
+### Mode A — Asynchronous (poll / pull)
+
+Laser sweeps on its own schedule. The host configures the board once (`SIG:TRIG:DIV`, maybe encoding), then **queries when convenient**: status, last count, frequency, or pull timestamps **after** the sweep (idle). No blocking wait on UART notify.
+
+Typical uses: debugging, notebook checks, slow loops, “did the last sweep look OK?”
+
+```text
+  Laser ──► sw low ──► …sweep… ──► sw high
+  Host  ·····························► GetSweepStatus? / GetTimestamps?
+                                       (poll when idle)
+```
+
+```python
+board.SetModeNormal()                 # SYS:TRIG:NOT OFF — no end-of-sweep UART dump
+board.SetFreqDivision(2)
+# … laser sweeps somehow …
+while board.GetSweepStatus() == "1":  # optional: wait until idle
+    pass
+ts, ov, fc = board.GetTimestamps()    # pull buffer after the sweep
+```
+
+While `sw` is low, most commands return `ERROR: 1`; `LASER:SWE:STATUS?` still works.
+
+### Mode B — Synchronous (notify / wait)
+
+Enable end-of-sweep notify (`SYS:TRIG:NOT TIME|COUNT|FREQ|ALL|TIMESTAMP`). When each sweep finishes, the board **pushes** a line (or a `TSU` frame) on UART. The host blocks on `waitForSignal()` / `waitTimestamps()` and stays phase-locked to sweeps.
+
+Two common lab setups:
+
+1. **One-shot / coordinated** — a background thread (or another process) starts the laser sweep; the main thread is already blocked on `wait…`.
+2. **Free-running laser** — the source sweeps continuously; your loop is simply `wait → process → wait` and syncs to whatever the laser does.
+
+```mermaid
+sequenceDiagram
+    participant Laser
+    participant Board as PSoC board
+    participant Host as Host (pySSTri)
+
+    Host->>Board: SYS:TRIG:NOT COUNT (or TIMESTAMP)
+    Note over Host: flushSerialBuffer() then wait…
+
+    loop each sweep
+        Laser->>Board: sw low (sweeping)
+        Board->>Board: count / stamp camera TTL
+        Laser->>Board: sw high (idle)
+        Board-->>Host: notify line or TSU frame
+        Host->>Host: waitForSignal() / waitTimestamps() returns
+        Host->>Host: process / acquire / save
+    end
+```
+
+```python
+import threading
+
+board.SetModeCount()                  # or SetModeTimestamp(), SetModeAll(), …
+board.flushSerialBuffer()
+
+def start_sweep():
+    # your laser API — runs while main thread waits
+    laser.start_sweep()
+
+threading.Thread(target=start_sweep, daemon=True).start()
+msg = board.waitForSignal()           # blocks until this sweep’s notify
+# free-running: omit the thread; just loop waitForSignal()
+```
+
+For timestamp notify mode:
+
+```python
+board.SetModeTimestamp()
+board.flushSerialBuffer()
+ts, ov, fc = board.waitTimestamps(timeout_s=15.0)
+```
+
+| | Mode A (async) | Mode B (sync) |
+| - | -------------- | ------------- |
+| Notify | `SYS:TRIG:NOT OFF` | `TIME` / `COUNT` / `FREQ` / `ALL` / `TIMESTAMP` |
+| Host API | `GetSweepStatus`, `GetTimestamps`, … | `waitForSignal`, `waitTimestamps` |
+| Timing | Host decides when to ask | Host wakes at end of each sweep |
+| Best for | Inspection, scripts | Acquisition loops, camera sync helpers |
+
+Always `flushSerialBuffer()` after changing notify mode so a stale line does not satisfy the next `wait`.
+
 ---
 
 ## Firmware
@@ -235,6 +320,8 @@ print(board.ID())
 ```
 
 ### Everyday control
+
+See [How to operate](#how-to-operate) for async poll vs sync wait. Short sync example:
 
 ```python
 board.SetFreqDivision(2)
