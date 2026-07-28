@@ -1,8 +1,47 @@
-# Swept-source interferometer camera trigger
+# Swept-source interferometer camera trigger (k-clock)
 
-![Board](images/swept_source_trigger_white.png)
+A **k-clock** (laser-sweep interferometer) produces equally spaced optical-frequency samples across a fixed bandwidth by detecting zero-crossings of the interferogram $V_{\mathrm{BPD}}(\lambda)$ and emitting a TTL (~5 V) edge at each crossing. Those edges mark known optical frequencies $\nu$ (or wavelengths) along the sweep.
 
-PSoC 5LP board that gates on the laser sweep, divides BPD/camera triggers, and (on the Polarity Low firmware) timestamps each trigger edge in microseconds. Hosts talk over UART (115200 baud, CRLF). The Python package **pySSTri** wraps that protocol.
+The raw interferogram rate is fixed by the optics; this board **digitally divides** the BPD/camera trigger train by an arbitrary integer in hardware (no CPU in the divider path). Hosts talk over UART (115200 baud, CRLF). The Python package **pySSTri** wraps that protocol.
+
+### Board
+
+**PSoC 5LP** — a programmable SoC with a 32-bit MCU, configurable analog blocks, and programmable digital logic on one chip.
+
+## Interferometer working principle
+
+The laser is launched into one port of a 50/50 coupler and sweeps optical frequency $\nu$ at constant speed across a bandwidth $\Delta\nu$. After the first coupler, the field $E_{\mathrm{in}}(\nu)$ is split into $E_1(\nu)$ and $E_2(\nu)$ and recombined in a second coupler. One arm includes an extra fibre delay of length $l_{\mathrm{DLY}}$.
+
+After balanced photodetection (BPD), TIA, and voltage amplification, the electrical interferogram is:
+
+$$
+V_{\mathrm{BPD}}(\nu) = V_0 \cos\left(2\pi\,\frac{1}{\mathrm{FSR}}\,\nu\right)
+$$
+
+$V_{\mathrm{BPD}}$ crosses zero at equally spaced optical frequencies $\nu_n$. The spacing is the **free spectral range**
+
+$$
+\mathrm{FSR} = \frac{v}{l_{\mathrm{DLY}}}
+\quad [\mathrm{Hz}]
+$$
+
+where $v$ is the speed of light in the fibre. Those zero crossings define the natural k-clock grid (panel a below).
+
+![Swept laser interferometer scheme](images/interferometer_scheme.png)
+
+*Swept-laser Mach–Zehnder interferometer used as a k-clock.*
+
+The BPD sinusoid is conditioned into a TTL (0 → +5 V) pulse train with the same period $\mathrm{FSR}$. Each rising edge at $\nu_n$ can trigger a camera frame (panel b). The number of frames over the sweep is
+
+$$
+D_{\nu} = \frac{\Delta\nu}{\mathrm{FSR}}.
+$$
+
+This board digitally divides that TTL by an integer $Q$ in hardware, so only every $Q$-th edge is passed to the camera while keeping the same optical-frequency locations. Example with $Q = 4$: twelve raw edges become four divided triggers (panel c).
+
+![Trigger signals: BPD, TTL, and ÷4](images/trigger_signals.png)
+
+*(a) Raw BPD interferogram. (b) Rising-edge TTL after conditioning. (c) Same train after divide-by-4 ($Q=4$).*
 
 ---
 
@@ -43,10 +82,12 @@ python -m ipykernel install --user --name pySSTri_env --display-name "Python (py
 
 There are two layers:
 
-| Layer | Use when |
-|-------|----------|
+
+| Layer                      | Use when                                                  |
+| -------------------------- | --------------------------------------------------------- |
 | **Firmware (UART / SCPI)** | Any host language, raw serial, or writing your own driver |
-| **Python (`pySSTri`)** | Lab scripts / notebooks — preferred for day-to-day use |
+| **Python (**`pySSTri`**)** | Lab scripts / notebooks — preferred for day-to-day use    |
+
 
 Same baudrate (115200) and same commands either way. Python methods map 1:1 onto SCPI (e.g. `SetFreqDivision(4)` → `SIG:TRIG:DIV 4`).
 
@@ -58,10 +99,12 @@ Same baudrate (115200) and same commands either way. Python methods map 1:1 onto
 
 Firmware is **variant-specific** (polarity / laser). Pick the folder under `psoc5/firmware/` that matches your hardware:
 
-| Project | Role |
-|---------|------|
+
+| Project                                      | Role                                                                 |
+| -------------------------------------------- | -------------------------------------------------------------------- |
 | `PSOC_trigger_firmware_Trigger_Polarity_Low` | **Production** (FW 1.3.1) — active-low LEVEL sweep gate + timestamps |
-| `PSOC_trigger_firmware_DEBUG` | Experimental |
+| `PSOC_trigger_firmware_DEBUG`                | Experimental                                                         |
+
 
 Tools: [PSoC Programmer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.psocprogrammer) / [PSoC Creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/) → open project → **Debug → Program**.
 
@@ -80,19 +123,21 @@ While sweeping, most commands return `ERROR: 1`. Exception: `LASER:SWE:STATUS?` 
 
 Lines end with `\r\n`. Sets reply `OK` (or `OK - WARNING: …`). Queries reply a value. Errors: `ERROR: 0` (bad command), `ERROR: 1` (busy / sweeping).
 
-| Command | Meaning |
-|---------|---------|
-| `*IDN?` | Identify |
-| `SIG:TRIG:DIV <n>` / `?` | Camera trigger divider (default `2`) |
-| `SIG:TRIG:EVENTS:COUNT?` | Trigger count last sweep |
-| `SIG:TRIG:EVENTS:FREQ?` | Mean trigger rate [Hz] (first→last timestamp) |
-| `SIG:TRIG:TIMESTAMP?` | Pull timestamp buffer (idle only) |
-| `LASER:SWE:TIME?` | Sweep duration [µs] |
-| `LASER:SWE:COUNT?` / `0` / `RESET` | Cumulative sweeps / clear |
-| `LASER:SWE:STATUS?` | `1` sweeping / `0` idle |
-| `SYS:TRIG:NOT OFF\|TIME\|COUNT\|FREQ\|ALL\|TIMESTAMP` | End-of-sweep notify (`0`…`5`) |
-| `SYS:TIMESTAMP:DELTAENC OFF\|UINT8\|UINT16` | How timestamps are packed on the wire (`0`/`1`/`2` also OK) |
-| `SYS:TIMESTAMP:DELTAENC?` | Current encoding + rate limit warning |
+
+| Command                            | Meaning                                       |
+| ---------------------------------- | --------------------------------------------- |
+| `*IDN?`                            | Identify                                      |
+| `SIG:TRIG:DIV <n>` / `?`           | Camera trigger divider (default `2`)          |
+| `SIG:TRIG:EVENTS:COUNT?`           | Trigger count last sweep                      |
+| `SIG:TRIG:EVENTS:FREQ?`            | Mean trigger rate [Hz] (first→last timestamp) |
+| `SIG:TRIG:TIMESTAMP?`              | Pull timestamp buffer (idle only)             |
+| `LASER:SWE:TIME?`                  | Sweep duration [µs]                           |
+| `LASER:SWE:COUNT?` / `0` / `RESET` | Cumulative sweeps / clear                     |
+| `LASER:SWE:STATUS?`                | `1` sweeping / `0` idle                       |
+| `SYS:TRIG:NOT OFF                  | TIME                                          |
+| `SYS:TIMESTAMP:DELTAENC OFF        | UINT8                                         |
+| `SYS:TIMESTAMP:DELTAENC?`          | Current encoding + rate limit warning         |
+
 
 ### Timestamps
 
@@ -110,29 +155,35 @@ Each camera-trigger edge is stamped by a 24 MHz Timer during the sweep (ISR fill
 TSU <n> <ov> <fc> <t0> <enc>\r\n
 ```
 
-| Field | Meaning |
-|-------|---------|
-| `n` | Number of timestamps |
-| `ov` | `1` if buffer overflowed or a delta was clamped |
-| `fc` | Hardware event count for the sweep |
-| `t0` | First sample [µs] |
-| `enc` | Packing mode (`0` / `1` / `2`) — always last |
+
+| Field | Meaning                                         |
+| ----- | ----------------------------------------------- |
+| `n`   | Number of timestamps                            |
+| `ov`  | `1` if buffer overflowed or a delta was clamped |
+| `fc`  | Hardware event count for the sweep              |
+| `t0`  | First sample [µs]                               |
+| `enc` | Packing mode (`0` / `1` / `2`) — always last    |
+
 
 Then the **payload** depends on `enc`:
 
-| `enc` | Name | Payload | Host reconstruct |
-|-------|------|---------|------------------|
-| `0` | OFF (absolute) | `n × uint32` LE absolute µs | use as-is |
-| `1` | UINT8 deltas | `(n−1) × uint8` gaps | `t[0]=t0`, then accumulate |
-| `2` | UINT16 deltas | `(n−1) × uint16` LE gaps | same accumulate |
+
+| `enc` | Name           | Payload                     | Host reconstruct           |
+| ----- | -------------- | --------------------------- | -------------------------- |
+| `0`   | OFF (absolute) | `n × uint32` LE absolute µs | use as-is                  |
+| `1`   | UINT8 deltas   | `(n−1) × uint8` gaps        | `t[0]=t0`, then accumulate |
+| `2`   | UINT16 deltas  | `(n−1) × uint16` LE gaps    | same accumulate            |
+
 
 Delta encoding shrinks UART traffic when consecutive gaps are small. Choose a mode whose **max gap** fits your laser:
 
-| Mode | Max gap | Safe if trigger rate |
-|------|---------|----------------------|
-| UINT8 | 255 µs | **≥ ~3.9 kHz** |
-| UINT16 | 65535 µs | **≥ ~15 Hz** |
-| OFF | (full uint32) | any |
+
+| Mode   | Max gap       | Safe if trigger rate |
+| ------ | ------------- | -------------------- |
+| UINT8  | 255 µs        | **≥ ~3.9 kHz**       |
+| UINT16 | 65535 µs      | **≥ ~15 Hz**         |
+| OFF    | (full uint32) | any                  |
+
 
 If a gap is too large for the mode, firmware **clamps** it and sets `ov=1` (lossy). For ~3 kHz SS sources, prefer **UINT16** or **OFF**, not UINT8.
 
@@ -221,7 +272,7 @@ Use [semantic versioning](https://semver.org/): `MAJOR.MINOR.PATCH`.
 
 Firmware has its own identity (`FW_VERSION` / `FW_DATE` in `main.c`, reported by `*IDN?`). Bump that when you change the PSoC image; it is independent of the pySSTri package version.
 
-Default git branch is **`main`**.
+Default git branch is `main`.
 
 ### Releasing a new version
 
