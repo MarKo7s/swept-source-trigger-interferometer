@@ -107,18 +107,26 @@ Same baud rate (115200) and the same commands either way. Python methods map 1:1
 
 Firmware is **variant-specific** (polarity / laser). Pick the folder under `psoc5/firmware/` that matches your hardware:
 
-
-| Project                                      | Role                                                                 |
-| -------------------------------------------- | -------------------------------------------------------------------- |
+| Project | Role |
+| ------- | ---- |
 | `PSOC_trigger_firmware_Trigger_Polarity_Low` | **Production** (FW 1.3.1) — active-low LEVEL sweep gate + timestamps |
-| `PSOC_trigger_firmware_DEBUG`                | Experimental                                                         |
-
-
-Tools: [PSoC Programmer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.psocprogrammer) / [PSoC Creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/) → open project → **Debug → Program**.
-
-`*IDN?` returns firmware version and date.
+| `PSOC_trigger_firmware_DEBUG` | Experimental |
 
 Production firmware is tuned for an **active-low** sweep gate. Other lasers or trigger polarities can be supported on request (see [Contact](#contact)).
+
+### Install tools and flash
+
+1. Install [PSoC Programmer](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.psocprogrammer). If it asks to update the kit / MiniProg firmware, allow that, then **close** Programmer.
+2. Install [PSoC Creator](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-software/psoc-creator/) (Cypress / Infineon).
+3. In Creator, open the workspace for the project you chose, e.g. production:
+
+   `psoc5/firmware/PSOC_trigger_firmware_Trigger_Polarity_Low/Trigger_PSOC5.cywrk`
+
+4. Connect the board (USB / MiniProg as wired on your PCB).
+5. Build if needed, then **Debug → Program**.
+6. Verify over UART (115200 baud, CRLF): send `*IDN?` — it should report firmware version and date (e.g. FW 1.3.1). With Python: `board.ID()` after `connect()`.
+
+Host control after flashing: see [Installation (Python)](#installation-python) and `trigger_example.ipynb`.
 
 ### Sweep gate (Polarity Low)
 
