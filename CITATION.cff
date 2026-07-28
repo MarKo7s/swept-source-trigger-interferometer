@@ -1,15 +1,40 @@
 cff-version: 1.2.0
-message: If you use this software, please cite it as below.
+message: >-
+  If you use this hardware or software, please cite it using the metadata below
+  (Zenodo DOI). See also CITATION.bib and the Citation section in README.md for
+  manuscript-ready Methods / Supplementary text.
+type: software
 title: "Swept-source interferometer camera trigger (pySSTri)"
 authors:
   - family-names: Maestre Morote
     given-names: Marcos
+    email: m.maestremorote@uq.edu.au
+    affiliation: "The University of Queensland"
 license: MIT
 version: "1.1.1"
 date-released: "2026-07-28"
 repository-code: "https://github.com/MarKo7s/swept-source-trigger-interferometer"
-url: "https://github.com/MarKo7s/swept-source-trigger-interferometer"
+url: "https://doi.org/10.5281/zenodo.21639219"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.21639219
-    description: Zenodo archive
+    description: Zenodo archive (cite this DOI)
+keywords:
+  - k-clock
+  - swept-source
+  - OCT
+  - interferometer
+  - PSoC
+  - pySSTri
+preferred-citation:
+  type: software
+  authors:
+    - family-names: Maestre Morote
+      given-names: Marcos
+  title: "Swept-source interferometer camera trigger (pySSTri)"
+  year: 2026
+  version: "1.1.1"
+  doi: 10.5281/zenodo.21639219
+  publisher:
+    name: Zenodo
+  url: "https://doi.org/10.5281/zenodo.21639219"

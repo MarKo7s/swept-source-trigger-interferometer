@@ -357,6 +357,8 @@ psoc5/firmware/   PSoC Creator projects
 pcb/              Eagle schematics
 trigger_example.ipynb
 scripts/release.py
+CITATION.cff      GitHub / Zenodo cite metadata
+CITATION.bib      BibTeX for manuscripts
 ```
 
 ---
@@ -427,11 +429,47 @@ This project is licensed under the [MIT License](LICENSE). Copyright (c) 2026 Ma
 
 ## Citation
 
-If you use this hardware or **pySSTri** in academic work, please cite:
+Use these identifiers in the manuscript so Methods, Supplementary, and the bibliography stay consistent.
 
-> Marcos Maestre Morote, *Swept-source interferometer camera trigger (pySSTri)*, Zenodo, 2026.
-> https://doi.org/10.5281/zenodo.21639219
+### Versions to tag
 
-Source code: https://github.com/MarKo7s/swept-source-trigger-interferometer (v1.1.1).
+| Item | Value to cite |
+| ---- | ------------- |
+| Software / archive | **pySSTri v1.1.1** |
+| Git tag | `v1.1.1` |
+| Zenodo DOI | [10.5281/zenodo.21639219](https://doi.org/10.5281/zenodo.21639219) |
+| Production firmware | **Polarity Low 1.3.1** (`*IDN?` / `board.ID()`) |
+| BibTeX key | `MaestreMorote2026pySSTri` (see [`CITATION.bib`](CITATION.bib)) |
 
-GitHub also exposes a **Cite this repository** button from [`CITATION.cff`](CITATION.cff).
+### BibTeX (drop into your `.bib`)
+
+```bibtex
+@software{MaestreMorote2026pySSTri,
+  author       = {Maestre Morote, Marcos},
+  title        = {{Swept-source interferometer camera trigger (pySSTri)}},
+  year         = {2026},
+  publisher    = {Zenodo},
+  version      = {v1.1.1},
+  doi          = {10.5281/zenodo.21639219},
+  url          = {https://doi.org/10.5281/zenodo.21639219},
+  note         = {Firmware Polarity Low 1.3.1; source https://github.com/MarKo7s/swept-source-trigger-interferometer}
+}
+```
+
+LaTeX: `\cite{MaestreMorote2026pySSTri}`. Word / EndNote: import the DOI or use the formatted reference below.
+
+### Formatted reference
+
+> Marcos Maestre Morote. *Swept-source interferometer camera trigger (pySSTri)*. Zenodo (2026). Version v1.1.1. https://doi.org/10.5281/zenodo.21639219
+
+### Paste into Methods
+
+Adapt to your tense/house style; keep the cite key and versions:
+
+> Wavelength / optical-frequency sampling during each laser sweep was provided by a fibre Mach–Zehnder k-clock interferometer and balanced photodiode. Zero-crossing edges were conditioned into a TTL train and divided by an integer $Q$ in hardware on a custom PSoC 5LP camera-trigger board. Instrument control used the open-source package pySSTri (v1.1.1; firmware Polarity Low 1.3.1) \cite{MaestreMorote2026pySSTri}.
+
+### Paste into Supplementary
+
+> **Trigger interferometer and camera timing.** The auxiliary k-clock path is a fibre Mach–Zehnder interferometer with fixed delay; the balanced-photodiode interferogram is converted to a TTL pulse train at the free-spectral-range spacing. A PSoC 5LP board performs hardware frequency division of that train and exposes sweep timing over UART (115200 baud, SCPI-like commands). Host software was **pySSTri** v1.1.1 (GitHub tag `v1.1.1`), archived at Zenodo (DOI: 10.5281/zenodo.21639219), with production firmware **Trigger Polarity Low** 1.3.1. Schematics, firmware, and the Python interface are available under the MIT License at https://github.com/MarKo7s/swept-source-trigger-interferometer. Further protocol details (notify vs poll modes, timestamp frames) are documented in the repository README.
+
+GitHub also exposes **Cite this repository** from [`CITATION.cff`](CITATION.cff).
