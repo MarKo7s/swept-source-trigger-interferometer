@@ -140,13 +140,13 @@ sequenceDiagram
     participant Board as PSoC board
     participant Laser
 
-    Main->>Board: SYS:TRIG:NOT COUNT
-    Main->>Watch: start (waitForSignal)
-    Main->>Laser: start_sweep()
-    Laser->>Board: sw low … sw high
+    Main->>Board: set notify COUNT
+    Main->>Watch: start waitForSignal
+    Main->>Laser: start_sweep
+    Laser->>Board: sw low then high
     Board-->>Watch: notify line
-    Watch->>Main: done.set()
-    Main->>Main: done.wait() returns; continue
+    Watch->>Main: done.set
+    Note over Main: done.wait returns
 ```
 
 ```python
@@ -168,8 +168,8 @@ done.wait(timeout=30.0)     # sync when board says sweep finished
 
 For timestamp notify on the watcher thread, use `waitTimestamps()` instead of `waitForSignal()`.
 
-| | Mode A (async) | Mode B (sync) |
-| - | -------------- | ------------- |
+| Aspect | Mode A (async) | Mode B (sync) |
+| ------ | -------------- | ------------- |
 | Notify | `SYS:TRIG:NOT OFF` | `TIME` / `COUNT` / `FREQ` / `ALL` / `TIMESTAMP` |
 | Host API | `GetSweepStatus`, `GetTimestamps`, … | watcher: `waitForSignal` / `waitTimestamps`; main: `Event.wait` |
 | Timing | Host decides when to ask | Main syncs when end-of-sweep notify arrives |
