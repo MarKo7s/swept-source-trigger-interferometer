@@ -1,7 +1,7 @@
 # Swept-source interferometer camera trigger (k-clock)
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21639219-blue)](https://doi.org/10.5281/zenodo.21639219)
-[![Release](https://img.shields.io/github/v/release/MarKo7s/swept-source-trigger-interferometer)](https://github.com/MarKo7s/swept-source-trigger-interferometer/releases/latest)
+[![Release](https://img.shields.io/badge/release-v1.1.1-green)](https://github.com/MarKo7s/swept-source-trigger-interferometer/releases/tag/v1.1.1)
 
 ![Board](images/swept_source_trigger_white.png)
 
@@ -129,61 +129,51 @@ While `sw` is low, most commands return `ERROR: 1`; `LASER:SWE:STATUS?` still wo
 
 ### Mode B — Synchronous (notify / wait)
 
-Enable end-of-sweep notify (`SYS:TRIG:NOT TIME|COUNT|FREQ|ALL|TIMESTAMP`). When each sweep finishes, the board **pushes** a line (or a `TSU` frame) on UART. The host blocks on `waitForSignal()` / `waitTimestamps()` and stays phase-locked to sweeps.
+Enable end-of-sweep notify (`SYS:TRIG:NOT TIME|COUNT|FREQ|ALL|TIMESTAMP`). When each sweep finishes, the board **pushes** a line (or a `TSU` frame) on UART.
 
-Two common lab setups:
-
-1. **One-shot / coordinated** — a background thread (or another process) starts the laser sweep; the main thread is already blocked on `wait…`.
-2. **Free-running laser** — the source sweeps continuously; your loop is simply `wait → process → wait` and syncs to whatever the laser does.
+Typical pattern: a **watcher thread** blocks on `waitForSignal()` / `readline`; the **main thread** runs the laser (or other work) and syncs with `done.wait()` when the notify arrives — so UART wait does not block the main thread.
 
 ```mermaid
 sequenceDiagram
-    participant Laser
+    participant Main as Main thread
+    participant Watch as Watcher thread
     participant Board as PSoC board
-    participant Host as Host (pySSTri)
+    participant Laser
 
-    Host->>Board: SYS:TRIG:NOT COUNT (or TIMESTAMP)
-    Note over Host: flushSerialBuffer() then wait…
-
-    loop each sweep
-        Laser->>Board: sw low (sweeping)
-        Board->>Board: count / stamp camera TTL
-        Laser->>Board: sw high (idle)
-        Board-->>Host: notify line or TSU frame
-        Host->>Host: waitForSignal() / waitTimestamps() returns
-        Host->>Host: process / acquire / save
-    end
+    Main->>Board: SYS:TRIG:NOT COUNT
+    Main->>Watch: start (waitForSignal)
+    Main->>Laser: start_sweep()
+    Laser->>Board: sw low … sw high
+    Board-->>Watch: notify line
+    Watch->>Main: done.set()
+    Main->>Main: done.wait() returns; continue
 ```
 
 ```python
 import threading
 
-board.SetModeCount()                  # or SetModeTimestamp(), SetModeAll(), …
+done = threading.Event()
+
+def watch_sweep_done():
+    board.waitForSignal()   # blocks only this thread on UART notify
+    done.set()
+
+board.SetModeCount()
 board.flushSerialBuffer()
+threading.Thread(target=watch_sweep_done, daemon=True).start()
 
-def start_sweep():
-    # your laser API — runs while main thread waits
-    laser.start_sweep()
-
-threading.Thread(target=start_sweep, daemon=True).start()
-msg = board.waitForSignal()           # blocks until this sweep’s notify
-# free-running: omit the thread; just loop waitForSignal()
+laser.start_sweep()         # main owns the sweep / other work
+done.wait(timeout=30.0)     # sync when board says sweep finished
 ```
 
-For timestamp notify mode:
-
-```python
-board.SetModeTimestamp()
-board.flushSerialBuffer()
-ts, ov, fc = board.waitTimestamps(timeout_s=15.0)
-```
+For timestamp notify on the watcher thread, use `waitTimestamps()` instead of `waitForSignal()`.
 
 | | Mode A (async) | Mode B (sync) |
 | - | -------------- | ------------- |
 | Notify | `SYS:TRIG:NOT OFF` | `TIME` / `COUNT` / `FREQ` / `ALL` / `TIMESTAMP` |
-| Host API | `GetSweepStatus`, `GetTimestamps`, … | `waitForSignal`, `waitTimestamps` |
-| Timing | Host decides when to ask | Host wakes at end of each sweep |
-| Best for | Inspection, scripts | Acquisition loops, camera sync helpers |
+| Host API | `GetSweepStatus`, `GetTimestamps`, … | watcher: `waitForSignal` / `waitTimestamps`; main: `Event.wait` |
+| Timing | Host decides when to ask | Main syncs when end-of-sweep notify arrives |
+| Best for | Inspection, scripts | Acquisition loops without blocking main on UART |
 
 Always `flushSerialBuffer()` after changing notify mode so a stale line does not satisfy the next `wait`.
 
